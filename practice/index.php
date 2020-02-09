@@ -7,6 +7,7 @@
 
 <body> 	
 	<h1>Practice Application</h1> 
+    <p>By Shawna Summers</p>
 </body> 
 
 </html>

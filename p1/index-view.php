@@ -19,7 +19,7 @@
     <form method='POST' action='process.php'>
         <fieldset>
             <label for='inputString'>Enter a string: </label><br>
-            <input type='text' name='inputString'><br><br>
+            <input type='text' name='inputString' id='inputString'><br><br>
             <button type='submit'>Process</button>
         </fieldset>
     </form>

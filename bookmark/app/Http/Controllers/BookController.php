@@ -37,6 +37,7 @@ class BookController extends Controller
         
         #must pass the $title variable along with the view()
         #
+        dump($title);
         return view('books.show')->with(['title' => $title, 'bookFound' => $bookFound]);
         
         

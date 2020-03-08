@@ -1,0 +1,130 @@
+body{
+    text-align: center;
+}
+
+p#subtitle {
+    font-size: 1vw;
+    color: blue;
+}
+
+input::placeholder{
+    text-align: center;
+}
+
+#vHourInput{
+    
+    /border: 1px solid red;
+    background-color: lightgray;
+    text-align: center;
+    /float: left;
+    padding: 50px;
+    /margin: 30px;
+    margin: auto;
+    width: 55%;
+    height: 775px;
+
+}
+
+#vHourOutput{
+    /border: 1px solid red;
+    text-align: center;
+    float: right;
+    padding: 50px;
+    margin: 30px;
+    width: 55%;
+    height: 775px;
+}
+
+#processedString{
+    /color:red; 
+    /background-color:lightyellow; 
+    font-weight:bold; 
+    font-size:4em;
+}
+
+#processedStringData{
+    width: 80%;
+    color: white;
+    background-color: black;
+    
+    /*center the div*/
+    margin: 0 auto 0 auto;
+    padding: 5px 0 20px 0;
+    border: 1px inset #566963;
+    border-radius: 25px;
+}
+
+#studentFirstName, #studentLastName{
+    height: 45px;
+    width: 8.8em;
+    /margin: 0 auto 0 auto;
+}
+
+#headerMedium, p#subtitle{
+    font-size: 2.5vw;
+}
+
+button {
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	background-color:#768d87;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	/font-family:Arial;
+	font-size:25px;
+	/font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+    width: 5em;
+}
+
+button:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	background-color:#6c7c7c;
+}
+
+button:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+
+/****  MEDIA QUERIES ****/
+
+
+
+/* window smaller than 1400px 
+
+@media only screen and (max-width: 1400px){
+    #headerMedium, p#subtitle{
+        font-size: 2vw;
+    }
+}
+*/
+
+
+
+
+/* window larger than 900px */
+@media only screen and (min-width: 900px){
+    #headerMedium, p#subtitle{
+        font-size: 2vw;
+    }
+    
+}
+
+
+
+/* window larger than 1400px */
+@media only screen and (min-width: 1400px){
+    #headerMedium, p#subtitle{
+        font-size: 1.75vw;
+    }
+    
+}

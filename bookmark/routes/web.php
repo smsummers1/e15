@@ -11,8 +11,20 @@
 |
 */
 
-#ERROR
-Route::get('/example', function() {
+# Example route used to demonstrate error pages
+Route::get('/example', function () {
+    $foo = [1,2,3];
+
+    # dump, die
+    //dd($foo);
+
+    # dump, die, debug
+    //ddd($foo);
+
+    Log::info($foo);
+
+    ddd(storage_path('temp'));
+
     return view('abc');
 });
 
@@ -26,11 +38,16 @@ Route::get('/', function () {
     return view('welcome');
 });*/
 
+# Misc. Pages
 Route::get('/', 'PageController@welcome');
-
+Route::get('/support', 'PageController@support');
 
 
 #BOOKS
+Route::get('/books/create', 'BookController@create');
+Route::post('/books', 'BookController@store');
+
+
 #
 #dynamic pages
 #
@@ -72,7 +89,7 @@ Route::get('/books/{$title?}', function ($title = null) {
     return 'Details for book: ' . $title;
 });*/
 
-Route::get('/books/{title?}', 'BookController@show');
+# Route::get('/books/{title?}', 'BookController@show');
 
 #multiple route parameters as part of your url structure
 /*Route::get('/filter/{category}/{subcategory?}', function ($category, $subcategory = null) {
@@ -84,6 +101,15 @@ Route::get('/books/{title?}', 'BookController@show');
 
     return $output;
 });*/
-Route::get('/filter/{category}/{subcategory?}', 'BookController@filter');
+
+Route::get('/books/{slug?}', 'BookController@show');
+
+Route::get('/search', 'BookController@search');
+
+Route::get('/list', 'BookController@list');
+
+#This is an example route to show multiple parameters
+#Not a feature we're actually building, so I'm commenting it out
+# Route::get('/filter/{category}/{subcategory?}', 'BookController@filter');
 
 #remember that outputs normally occur in our view files

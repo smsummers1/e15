@@ -3,54 +3,190 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Arr;
+use Str;
 
 class BookController extends Controller
 {
+    
+    /*************************************
+    * GET /books/create
+    * Display the form to add a new book
+    *************************************/
+    public function create(Request $request) 
+    {
+        return view('books.create');
+    }
+
+
+    /******************************************
+    * POST /books
+    * Process the form for adding a new book
+    ******************************************/
+    public function store(Request $request) 
+    {
+        # Code will eventually go here to add the book to the database, 
+        # but for now we'll just dump the form data to the page for proof of concept
+        dump($request->all());
+    }
+    
+    
+    /**************
+    * GET /search *
+    **************/
+    public function search(Request $request)
+    {
+        #validate entry first
+        #if validation fails then we will be redirected back to the previous
+        #location which in this instance is the form
+        $request -> validate([
+            'searchTerms' => 'required',
+            'searchType' => 'required',
+        ]);
+        
+        #first we need to know what user entered
+        #instead of using the superglobal $_GET we will use
+        #a Laravel built in request class
+        
+
+        # ======== Temporary code to explore $request ==========
+
+        # Get all the properties and methods available in the $request object
+        //dump($request); # Object of type Illuminate\Http\Request
+
+        # Get the form data (array) from the $request object
+        //dump($request->all()); # Equivalent of dump($_GET)
+
+        # Get the form data from individual fields
+        //dump($request->input('searchTerms'));
+        //dump($request->input('searchType'));
+    
+        # Form data from individual fields can also be accessed via dynamic properties
+        //dump($request->searchTerms);
+
+        # Boolean to see if the request contains data for a particular field
+        //dump($request->has('searchTerms')); # Should be true
+        
+        # You can get more information about a request than just the data of the form, for example...
+        //dump($request->path()); # "search"
+        //dump($request->is('search')); # true
+        //dump($request->is('books')); # false
+        //dump($request->fullUrl()); # e.g. http://bookmark.loc search?searchTerms=Harry%20Potter&searchType=title
+        //dump($request->method()); # GET
+        //dump($request->isMethod('post')); # False
+
+        # ======== End exploration of $request ==========
+        # Start with an empty array of search results; books that
+    # match our search query will get added to this array
+    $searchResults = [];
+
+    # Get the input values (default to null if no values exist)
+    $searchTerms = $request->input('searchTerms', null);
+    $searchType = $request->input('searchType', null);
+
+    # Load our book data using PHP's file_get_contents
+    # We specify our books.json file path using Laravel's database_path helper
+    $bookData = file_get_contents(database_path('books.json'));
+    
+    # Convert the string of JSON text we loaded from books.json into an
+    # array using PHP's built-in json_decode function
+    $books = json_decode($bookData, true);
+    
+    # This algorithm will filter our $books down to just the books where either
+    # the title or author ($searchType) matches the keywords the user entered ($searchTerms)
+    # The search values are convereted to lower case using PHP's built in strtolower function
+    # so that the search is case insensitive
+    $searchResults = array_filter($books, function ($book) use ($searchTerms, $searchType) {
+        return Str::contains(strtolower($book[$searchType]), strtolower($searchTerms));
+    });
+
+    # The above array_filter accomplishes the same thing this for loop would
+    // foreach ($books as $slug => $book) {
+    //     if (strtolower($book[$searchType]) == strtolower($searchTerms)) {
+    //         $searchResults[$slug] = $book;
+    //     }
+    // }
+    
+    //dd($searchResults);
+    # Redirect back to the form with data/results stored in the session
+    # Ref: https://laravel.com/docs/redirects#redirecting-with-flashed-session-data
+    return redirect('/')->with([
+        'searchTerms' => $searchTerms,
+        'searchType' => $searchType,
+        'searchResults' => $searchResults
+    ]);
+    }
+    
+    
+    /************
+    * GET /list *
+    ************/
+    public function list()
+    {
+        # TODO
+        return view('books.list');
+    }
+    
+    /************************************
+    * GET /books                        *  
+    * Show all the books in the library *
+    ************************************/
     public function index()
     {
-        //eventually this will be a view
-        //do not normally want to return a string from here
-        //this is just for a quick example and slowly 
-        //introduce you to how all of these pieces work together
-        #return 'Here are all the books!';
+        # Open the books.json data file
+        # database_path() is a Laravel helper to get the path to the database folder
+        # See https://laravel.com/docs/helpers for other path related helpers
+        # file_get_contents is a built-in PHP function
+        $bookData = file_get_contents(database_path('books.json'));
+
+        # Convert the JSON to an array PHP's json_decode function
+        $books = json_decode($bookData, true);
         
-        return view('books.index')->with(['books'=>[
-            ['title' => 'Winnie The Pooh'],
-            ['title' => 'Turtle and Nacho']
-        ]]);
+        # Alphabetize the books
+        $books = Arr::sort($books, function ($value) {
+            return $value['title'];
+        });
+
+        return view('books.index')->with([
+            'books' => $books
+        ]);
     }
 
-    public function show($title = null)
+    /******************************************
+    * GET /book/{slug}                        *
+    * Show the details for an individual book *
+    ******************************************/
+    public function show($slug)
     {
-        //Query the database for a book where the title = $title
-        //return a view to show the book
-        //Include the book data
-        //return 'Details for book: ' . $title;
+        # Load the JSON book data
+        $bookData = file_get_contents(database_path('books.json'));
+
+        # Convert the JSON to an array
+        $books = json_decode($bookData, true);
         
-        #the path to the views directory is known by the view()
-        #books.show = books is the directory and show is the show.blade.php file
-        #be sure to use dot notation for directories to files
-        #only use the first part of the blade.php file types
-        #view() understands that show is the show.blade.php file
+        $book = Arr::first($books, function ($value, $key) use ($slug) {
+            return $key == $slug;
+        });
         
-        $bookFound = false;
-        
-        #must pass the $title variable along with the view()
-        #
-        dump($title);
-        return view('books.show')->with(['title' => $title, 'bookFound' => $bookFound]);
-        
-        
+        return view('books.show')->with([
+            'book' => $book,
+            'slug' => $slug,
+        ]);
     }
 
-    public function filter($category, $subcategory = null)
-    {
-        $output = 'Books in category <b>' . $category . '</b>';
+    /**
+     * GET /filter/{$category}/{subcategory?}
+     * Example demonstrating multiple parameters
+     * Not a feature we're actually building, so I'm commenting out
+     */
+    // public function filter($category, $subcategory = null)
+    // {
+    //     $output = 'Here are all the books under the category '.$category;
 
-        if ($subcategory) {
-            $output .= ' and subcategory <b>' . $subcategory . '</b>';
-        }
+    //     if ($subcategory) {
+    //         $output .= ' and also the subcategory '.$subcategory;
+    //     }
 
-        return $output;
-    }
+    //     return $output;
+    // }
 }

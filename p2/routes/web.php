@@ -14,3 +14,10 @@
 
 //page to the form
 Route::get('/', 'FormController@index');
+
+//processes the form and pulls data for user
+//this route will be redirected to show on the 
+//same page as the form in my search function
+Route::get('/search', 'FormController@search');
+
+

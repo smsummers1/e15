@@ -88,10 +88,14 @@ class BookController extends Controller
     # We specify our books.json file path using Laravel's database_path helper
     $bookData = file_get_contents(database_path('books.json'));
     
+    //dd($bookData);
+    
     # Convert the string of JSON text we loaded from books.json into an
     # array using PHP's built-in json_decode function
     $books = json_decode($bookData, true);
     
+    //dd($books);
+
     # This algorithm will filter our $books down to just the books where either
     # the title or author ($searchType) matches the keywords the user entered ($searchTerms)
     # The search values are convereted to lower case using PHP's built in strtolower function
@@ -100,6 +104,8 @@ class BookController extends Controller
         return Str::contains(strtolower($book[$searchType]), strtolower($searchTerms));
     });
 
+    //dd($searchResults);
+        
     # The above array_filter accomplishes the same thing this for loop would
     // foreach ($books as $slug => $book) {
     //     if (strtolower($book[$searchType]) == strtolower($searchTerms)) {

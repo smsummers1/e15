@@ -1,5 +1,7 @@
-body{
+html, body{
     text-align: center;
+    font-family: 'Nunito', sans-serif;
+
 }
 
 p#subtitle {
@@ -9,6 +11,19 @@ p#subtitle {
 
 input::placeholder{
     text-align: center;
+}
+
+table{
+    text-align: center;
+    padding:15px;
+    margin:auto;
+    background-color: red;
+    
+}
+
+td{
+    padding:15px;
+    border-bottom: 1px solid #ddd;
 }
 
 #vHourInput{
@@ -22,7 +37,6 @@ input::placeholder{
     margin: auto;
     width: 55%;
     height: 775px;
-
 }
 
 #vHourOutput{
@@ -91,9 +105,6 @@ button:active {
 	position:relative;
 	top:1px;
 }
-
-
-
 
 /****  MEDIA QUERIES ****/
 

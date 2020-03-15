@@ -17,13 +17,14 @@ table{
     text-align: center;
     padding:15px;
     margin:auto;
-    background-color: red;
+    background-color: lightcyan;
     
 }
 
 td{
     padding:15px;
     border-bottom: 1px solid #ddd;
+    color: black;
 }
 
 #vHourInput{

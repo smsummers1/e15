@@ -68,10 +68,20 @@ class FormController extends Controller
                 //dump($searchResults[$slug]);
              }
             
-            $totalVolunteerTime += $entry['volunteerTimeToday'];
+            //if studentFirstName and studentLastName == the First and Last 
+            //Name entered into form then add up the volunteer hours
+            if($studentFirstName == $entry['studentFirstName'] && 
+               $studentLastName == $entry['studentLastName'])
+            {
+                $totalVolunteerTime += $entry['volunteerTimeToday'];
+            
+                //dump($slug);
+                //dump($entry);
+                //dump($totalVolunteerTime);
+            }
         }
         
-        
+        //dd($totalVolunteerTime);
         
         $remainingVolunteerTime -= $totalVolunteerTime;
         

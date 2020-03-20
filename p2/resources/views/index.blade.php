@@ -110,15 +110,15 @@
                            <td>{{$entry['date']}}</td>
                            <td>{{$entry['volunteerFirstName'] }}</td>
                            <td>{{$entry['volunteerLastName'] }}</td>
-                           <td>{{$entry['volunteerTimeToday'] }}</td>
+                           <td>{{$entry['volunteerTimeToday'] }}&nbsp; mins</td>
                        </tr>
                        
                        @endforeach
                    </table>
                 
                        <br><br>
-                       <p><b>Hours Complete:</b> {{number_format($totalVolunteerTime, 2)}}</p>
-                       <p><b>Hours Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}</p>
+                       <p><b>Complete:</b> {{number_format($totalVolunteerTime, 2)}}&nbsp;hours</p>
+                       <p><b>Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}&nbsp;hours</p>
                        
                 <!--Do Not Show detailedReport-->
                 @else

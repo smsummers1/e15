@@ -125,14 +125,14 @@
                 
                        <br><br>
                        <p><b>Complete:</b> {{number_format($totalVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $totalVolunteerTime) }}</p>
-                       <p><b>Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $totalVolunteerTime) }}</p>
+                       <p><b>Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $remainingVolunteerTime) }}</p>
                        
                 <!--Do Not Show detailedReport-->
                 @else
                     <h3>Volunteer Hour Report</h3>
                     <br>
                     <p><b>Complete:</b> {{number_format($totalVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $totalVolunteerTime) }}</p>
-                    <p><b>Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $remainingVolunteerTime) }}</p>
+                    <p><b>Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $remainingVolunteerTime) }}</p> 
                 @endif
                 
             </div>

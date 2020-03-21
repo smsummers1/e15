@@ -88,7 +88,7 @@
         
         @if(!is_null($searchResults))
             <br>
-            <p id="reportAvailable">** Scroll Down For Report **</p>
+            <p id="reportAvailable">** Scroll Down For Results **</p>
         @endif
         
     </form>

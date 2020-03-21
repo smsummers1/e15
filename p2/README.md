@@ -13,7 +13,7 @@
 + https://fonts.google.com/
 
 ## Notes for instructor
-This application will calculate the total number of volunteer hours recorded as well as the number of hours remaining based on the data in the **jan2020.json** and **feb202.json** files.  For now the application only calculates the amount of time completed on the month you select in the drop down field.
+This application will calculate the total number of volunteer hours recorded as well as the number of hours remaining based on the data in the `**jan2020.json**` and `**feb2020.json**` files.  For now the application only calculates the amount of time completed on the month you select in the drop down field.
 
 Each student must have 36 hours of volunteer time completed by a parent, family memeber, guardian, friend of the family, etc. by the end of the year.  Here is a list of the student names in the json files:
 + Julie Jones

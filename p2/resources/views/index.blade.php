@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('header')
+    <br>
     <h1>Volunteer Hour Calculator</h1>
     <p id="subtitle">Calculates the monthly volunteer hours recorded for each student</p>
     <br>
@@ -84,57 +85,112 @@
                 @endforeach
             </ul>
         @endif
+        
+        @if(!is_null($searchResults))
+            <br>
+            <p id="reportAvailable">** Scroll Down For Report **</p>
+        @endif
+        
     </form>
 </div>
 @endsection
     
 @section('report')
     
-    <!-- Results from form submission -->
+    <!-- if user submitted form show Results -->
 <div>
     @if(!is_null($searchResults))
+    
+        <!-- No results found -->
         @if(count($searchResults) == 0)
             <br><br>
             <div class='results alert alert-warning'>
                 No results found.
             </div>
+    
+        <!-- Results Found-->
         @else
-            <br><br>
             <div class='results alert alert-primary' id="report">
 
                {{ count($searchResults) }} 
                {{ Str::plural('Entry', count($searchResults)) }}:
                 <br><br>
                 
-                <!--show detailedReport-->
+                <!--user chose to view detailed report-->
                 @if($detailedReport=='yes')
-                <h3 id="reportHeading">Volunteer Hour Report</h3>
-                   <table>
-                        @foreach($searchResults as $slug => $entry)
-                            
+                   <h1>Volunteer Hour Report</h1>
+                   <br>
+                   <table id="details">
                        <tr>
+                           <th colspan="4">
+                               <!-- Display the Month-->
+                                @if($inputFile == 'jan2020')
+                                    <b> January 2020 </b>
+                                @else
+                                    <b> February 2020 </b>
+                                @endif
+                            </th>
+                       </tr>
+                       
+                        @foreach($searchResults as $slug => $entry)
+                        <tr>   
                            <td>{{$entry['date']}}</td>
                            <td>{{$entry['volunteerFirstName'] }}</td>
                            <td>{{$entry['volunteerLastName'] }}</td>
                            <td>{{$entry['volunteerTimeToday'] }}&nbsp; 
                                {{ Str::plural('min', $entry['volunteerTimeToday']) }}</td>
                        </tr>
-                       
                        @endforeach
-                   </table>
-                
-                       <br><br>
-                       <p><b>Complete:</b> {{number_format($totalVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $totalVolunteerTime) }}</p>
-                       <p><b>Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $remainingVolunteerTime) }}</p>
                        
+                   </table>
+            
+                
+                   <br><br>
+                
+                    <table id="overview">
+                        <th colspan="2">Overview</th>
+                        <tr>
+                            <td id="important"><b>Student:</b> </td>
+                            <td id="data">{{$studentFirstName}}&nbsp;
+                            {{$studentLastName}}</td>
+                        </tr>
+                       
+                        <tr>
+                            <td id="important"><b>Complete:</b> </td>
+                            <td id="data">{{number_format($totalVolunteerTime, 2)}}&nbsp;
+                            {{ Str::plural('hour', $totalVolunteerTime) }}</td>
+                        </tr>
+                        <tr>
+                            <td id="important"><b>Remaining:</b> </td>
+                            <td id="data">{{number_format($remainingVolunteerTime, 2)}}&nbsp;
+                            {{ Str::plural('hour', $remainingVolunteerTime) }}</td>
+                        </tr>
+                    </table>
                 <!--Do Not Show detailedReport-->
                 @else
-                    <h3>Volunteer Hour Report</h3>
+                    <h1>Volunteer Hour Report</h1>
                     <br>
-                    <p><b>Complete:</b> {{number_format($totalVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $totalVolunteerTime) }}</p>
-                    <p><b>Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $remainingVolunteerTime) }}</p> 
+                    <table id="overview">
+                        <th colspan="2">
+                           <!-- Display the Month-->
+                            @if($inputFile == 'jan2020')
+                                <b> January 2020 </b>
+                            @else
+                                <b> February 2020 </b>
+                            @endif
+                        </th>
+                        <tr>
+                            <td id="important"><b>Student:</b></td><td id="data">{{$studentFirstName}}&nbsp; {{$studentLastName}}</td>
+                        </tr>
+                        <tr>
+                            <td id="important"><b>Complete:</b></td><td id="data">{{number_format($totalVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $totalVolunteerTime) }}</td>
+                        </tr>
+                        <tr>
+                            <td id="important"><b>Remaining:</b></td>
+                            <td id="data">{{number_format($remainingVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $remainingVolunteerTime) }}</td>
+                        </tr>
+                    </table>
                 @endif
-                
             </div>
         @endif
     @endif

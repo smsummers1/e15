@@ -70,8 +70,8 @@ class FormController extends Controller
             
             //if studentFirstName and studentLastName == the First and Last 
             //Name entered into form then add up the volunteer hours
-            if($studentFirstName == $entry['studentFirstName'] && 
-               $studentLastName == $entry['studentLastName'])
+            if(strtolower($studentFirstName) == strtolower($entry['studentFirstName']) && 
+               strtolower($studentLastName) == strtolower($entry['studentLastName']))
             {
                 $totalVolunteerTime += $entry['volunteerTimeToday'];
             

@@ -141,32 +141,30 @@
                                {{ Str::plural('min', $entry['volunteerTimeToday']) }}</td>
                        </tr>
                        @endforeach
-                       
+                  
                    </table>
-            
+                   <br>
+                   <br>    
+                   <table id="overview">
+                     <th colspan="2">Overview</th>
+                     <tr>
+                        <td id="important"><b>Student:</b> </td>
+                        <td id="data">{{$studentFirstName}}&nbsp;
+                        {{$studentLastName}}</td>
+                     </tr>
+                     <tr>
+                        <td id="important"><b>Complete:</b> </td>
+                        <td id="data">{{number_format($totalVolunteerTime, 2)}}&nbsp;
+                        {{ Str::plural('hour', $totalVolunteerTime) }}</td>
+                     </tr>
+                     <tr>
+                        <td id="important"><b>Remaining:</b> </td>
+                        <td id="data">{{number_format($remainingVolunteerTime, 2)}}&nbsp;
+                        {{ Str::plural('hour', $remainingVolunteerTime) }}</td>
+                     </tr>
+                   </table>
                 
-                   <br><br>
-                
-                    <table id="overview">
-                        <th colspan="2">Overview</th>
-                        <tr>
-                            <td id="important"><b>Student:</b> </td>
-                            <td id="data">{{$studentFirstName}}&nbsp;
-                            {{$studentLastName}}</td>
-                        </tr>
-                       
-                        <tr>
-                            <td id="important"><b>Complete:</b> </td>
-                            <td id="data">{{number_format($totalVolunteerTime, 2)}}&nbsp;
-                            {{ Str::plural('hour', $totalVolunteerTime) }}</td>
-                        </tr>
-                        <tr>
-                            <td id="important"><b>Remaining:</b> </td>
-                            <td id="data">{{number_format($remainingVolunteerTime, 2)}}&nbsp;
-                            {{ Str::plural('hour', $remainingVolunteerTime) }}</td>
-                        </tr>
-                    </table>
-                <!--Do Not Show detailedReport-->
+                <!--Do Not Show Detailed Report Only Overview-->
                 @else
                     <h1>Volunteer Hour Report</h1>
                     <br>

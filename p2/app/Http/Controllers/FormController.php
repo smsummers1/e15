@@ -46,7 +46,8 @@ class FormController extends Controller
                 
         #check for which file to pull data from
         #based on the users selection
-        if($inputFile == 'jan2020'){
+        if($inputFile == 'jan2020')
+        {
             $volunteerDataString = file_get_contents(database_path('jan2020.json'));
         }else{
             $volunteerDataString = file_get_contents(database_path('feb2020.json'));
@@ -65,7 +66,6 @@ class FormController extends Controller
             if(strtolower($entry['studentFirstName'])==strtolower($studentFirstName) && strtolower($entry['studentLastName'])==strtolower($studentLastName))
              {
                 $searchResults[$slug] = $entry;
-                //dump($searchResults[$slug]);
              }
             
             //if studentFirstName and studentLastName == the First and Last 
@@ -74,15 +74,9 @@ class FormController extends Controller
                strtolower($studentLastName) == strtolower($entry['studentLastName']))
             {
                 $totalVolunteerTime += $entry['volunteerTimeToday'];
-            
-                //dump($slug);
-                //dump($entry);
-                //dump($totalVolunteerTime);
             }
         }
-        
-        //dd($totalVolunteerTime);
-        
+                
         $remainingVolunteerTime -= $totalVolunteerTime;
         
         $totalVolunteerTime /= 60;

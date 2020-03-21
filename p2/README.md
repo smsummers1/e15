@@ -1,6 +1,6 @@
 
 # Project 2
-+ By: *Shawna Summers*
++ By: **Shawna Summers**
 + Production URL: <http://e15p2.shawnasummers.xyz>
 
 ## Outside resources
@@ -9,9 +9,11 @@
 + https://developer.mozilla.org/en-US/docs/Web/HTML
 + https://www.php.net/
 + https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
++ https://getbootstrap.com/
++ https://fonts.google.com/
 
 ## Notes for instructor
-This application will calculate the total number of volunteer hours recorded as well as the number of hours remaining based on the data in the *jan2020.json* and *feb202.json* files.  For now the application only calculates the amount of time completed on the month you select in the drop down field.
+This application will calculate the total number of volunteer hours recorded as well as the number of hours remaining based on the data in the **jan2020.json** and **feb202.json** files.  For now the application only calculates the amount of time completed on the month you select in the drop down field.
 
 Each student must have 36 hours of volunteer time completed by a parent, family memeber, guardian, friend of the family, etc. by the end of the year.  Here is a list of the student names in the json files:
 + Julie Jones

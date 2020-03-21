@@ -31,6 +31,11 @@
 </section>
     
 <br><br>
+<section>
+    @yield('report')
+</section>
+    
+<br><br>
 <footer>
     &copy; {{ date('Y') }}
 </footer>

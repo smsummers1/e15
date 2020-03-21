@@ -86,6 +86,11 @@
         @endif
         
     </form>
+@endsection
+    
+@section('report')
+    
+    <!-- Results from form submission -->
     
     @if(!is_null($searchResults))
         @if(count($searchResults) == 0)
@@ -95,14 +100,15 @@
             </div>
         @else
             <br><br>
-            <div class='results alert alert-primary'>
+            <div class='results alert alert-primary' id="report">
 
                {{ count($searchResults) }} 
                {{ Str::plural('Entry', count($searchResults)) }}:
                 <br><br>
+                
                 <!--show detailedReport-->
                 @if($detailedReport=='yes')
-                   <h3>Volunteer Hour Report</h3>
+                <h3 id="reportHeading">Volunteer Hour Report</h3>
                    <table>
                         @foreach($searchResults as $slug => $entry)
                             
@@ -110,22 +116,23 @@
                            <td>{{$entry['date']}}</td>
                            <td>{{$entry['volunteerFirstName'] }}</td>
                            <td>{{$entry['volunteerLastName'] }}</td>
-                           <td>{{$entry['volunteerTimeToday'] }}&nbsp; mins</td>
+                           <td>{{$entry['volunteerTimeToday'] }}&nbsp; 
+                               {{ Str::plural('min', $entry['volunteerTimeToday']) }}</td>
                        </tr>
                        
                        @endforeach
                    </table>
                 
                        <br><br>
-                       <p><b>Complete:</b> {{number_format($totalVolunteerTime, 2)}}&nbsp;hours</p>
-                       <p><b>Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}&nbsp;hours</p>
+                       <p><b>Complete:</b> {{number_format($totalVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $totalVolunteerTime) }}</p>
+                       <p><b>Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $totalVolunteerTime) }}</p>
                        
                 <!--Do Not Show detailedReport-->
                 @else
                     <h3>Volunteer Hour Report</h3>
-
-                    <p><b>Hours Complete:</b> {{number_format($totalVolunteerTime, 2)}}</p>
-                    <p><b>Hours Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}</p>
+                    <br>
+                    <p><b>Complete:</b> {{number_format($totalVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $totalVolunteerTime) }}</p>
+                    <p><b>Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $totalVolunteerTime) }}</p>
                 @endif
                 
             </div>

@@ -5,7 +5,7 @@ html, body{
 }
 
 p#subtitle {
-    font-size: 1vw;
+    font-size: 1%;
     color: blue;
 }
 
@@ -111,19 +111,26 @@ button:active {
 
 
 
-/* window smaller than 1400px 
+/* window smaller than 600px 
 
-@media only screen and (max-width: 1400px){
-    #headerMedium, p#subtitle{
-        font-size: 2vw;
+@media only screen and (max-width: 600px){
+   #report{
+       /font-size: 1vw;
+       width: 190%;
+       padding-left:4px;
     }
+    
+    h3{
+        font-size: 5%;
+    }
+    
+    p#subtitle {
+        color: red;
+    }
+    
 }
-*/
 
-
-
-
-/* window larger than 900px */
+/* styles for window larger than 900px 
 @media only screen and (min-width: 900px){
     #headerMedium, p#subtitle{
         font-size: 2vw;
@@ -131,12 +138,10 @@ button:active {
     
 }
 
-
-
-/* window larger than 1400px */
+/* styles for window larger than 1400px 
 @media only screen and (min-width: 1400px){
     #headerMedium, p#subtitle{
         font-size: 1.75vw;
     }
     
-}
+}*/

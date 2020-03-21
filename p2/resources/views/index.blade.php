@@ -14,7 +14,7 @@
         <fieldset>
             
             <label for='inputFile'
-                   id="headerMedium">
+                   class="headerMedium">
             Choose a Month: </label>
             
             <br>
@@ -32,7 +32,7 @@
             
             <br><br><br>
 
-            <p id="headerMedium">Student Name:</p>
+            <p class="headerMedium">Student Name:</p>
             
             <label for='studentFirstName'> </label>
             <input type='text'
@@ -52,7 +52,7 @@
             
             <br><br><br>
 
-            <p id="headerMedium">Detailed Report:</p>
+            <p class="headerMedium">Detailed Report:</p>
             
             <label>Yes</label>
             <input type='radio' 

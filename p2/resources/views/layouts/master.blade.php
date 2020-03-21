@@ -29,8 +29,8 @@
 <section>
     @yield('form')
 </section>
+<br>
     
-<br><br>
 <section>
     @yield('report')
 </section>

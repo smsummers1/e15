@@ -2,7 +2,7 @@
 
 @section('header')
     <h1>Volunteer Hour Calculator</h1>
-    <p id="subtitle">Calculates the total number of volunteer hours recorded for the specified student</p>
+    <p id="subtitle">Calculates the monthly volunteer hours recorded for each student</p>
     <br>
 @endsection
 
@@ -14,7 +14,7 @@
             
             <label for='inputFile'
                    id="headerMedium">
-            Choose a Data Set: </label>
+            Choose a Month: </label>
             
             <br>
             
@@ -31,7 +31,7 @@
             
             <br><br><br>
 
-            <p id="headerMedium">Student Name</p>
+            <p id="headerMedium">Student Name:</p>
             
             <label for='studentFirstName'> </label>
             <input type='text'
@@ -84,14 +84,14 @@
                 @endforeach
             </ul>
         @endif
-        
     </form>
+</div>
 @endsection
     
 @section('report')
     
     <!-- Results from form submission -->
-    
+<div>
     @if(!is_null($searchResults))
         @if(count($searchResults) == 0)
             <br><br>
@@ -132,7 +132,7 @@
                     <h3>Volunteer Hour Report</h3>
                     <br>
                     <p><b>Complete:</b> {{number_format($totalVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $totalVolunteerTime) }}</p>
-                    <p><b>Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $totalVolunteerTime) }}</p>
+                    <p><b>Remaining:</b> {{number_format($remainingVolunteerTime, 2)}}&nbsp;{{ Str::plural('hour', $remainingVolunteerTime) }}</p>
                 @endif
                 
             </div>

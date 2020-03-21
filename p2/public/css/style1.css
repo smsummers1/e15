@@ -1,12 +1,11 @@
 html, body{
     text-align: center;
     font-family: 'Nunito', sans-serif;
-
 }
 
 p#subtitle {
-    font-size: 1%;
-    color: blue;
+    color: teal;
+    font-size: 90%;
 }
 
 input::placeholder{
@@ -18,7 +17,6 @@ table{
     padding:15px;
     margin:auto;
     background-color: lightcyan;
-    
 }
 
 td{
@@ -27,21 +25,16 @@ td{
     color: black;
 }
 
-#vHourInput{
-    
-    /border: 1px solid red;
+#vHourInput{    
     background-color: lightgray;
     text-align: center;
-    /float: left;
     padding: 50px;
-    /margin: 30px;
     margin: auto;
     width: 55%;
     height: 775px;
 }
 
 #vHourOutput{
-    /border: 1px solid red;
     text-align: center;
     float: right;
     padding: 50px;
@@ -51,8 +44,6 @@ td{
 }
 
 #processedString{
-    /color:red; 
-    /background-color:lightyellow; 
     font-weight:bold; 
     font-size:4em;
 }
@@ -72,11 +63,10 @@ td{
 #studentFirstName, #studentLastName{
     height: 45px;
     width: 8.8em;
-    /margin: 0 auto 0 auto;
 }
 
-#headerMedium, p#subtitle{
-    font-size: 2.5vw;
+#headerMedium{
+    font-size: 110%;
 }
 
 button {
@@ -88,9 +78,7 @@ button {
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	/font-family:Arial;
 	font-size:25px;
-	/font-weight:bold;
 	padding:11px 23px;
 	text-decoration:none;
 	text-shadow:0px -1px 0px #2b665e;
@@ -107,41 +95,17 @@ button:active {
 	top:1px;
 }
 
-/****  MEDIA QUERIES ****/
-
-
-
-/* window smaller than 600px 
-
-@media only screen and (max-width: 600px){
-   #report{
-       /font-size: 1vw;
-       width: 190%;
-       padding-left:4px;
+/*
+@media only screen and (max-width: 700px){
+    #headerMedium, p#subtitle{
+        font-size: 90%;
     }
-    
-    h3{
-        font-size: 5%;
-    }
-    
-    p#subtitle {
-        color: red;
-    }
-    
 }
 
-/* styles for window larger than 900px 
-@media only screen and (min-width: 900px){
+@media only screen and (min-width: 1000px)
+{
     #headerMedium, p#subtitle{
-        font-size: 2vw;
+        font-size: 90%;
     }
-    
 }
-
-/* styles for window larger than 1400px 
-@media only screen and (min-width: 1400px){
-    #headerMedium, p#subtitle{
-        font-size: 1.75vw;
-    }
-    
-}*/
+*/

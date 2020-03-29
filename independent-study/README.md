@@ -1,5 +1,11 @@
 # Importing Excel data files into a MySQL database
 
+This tutorial covers several techniques to import an excel data file into a MySQL database.  We discuss how to manually import excel data, how to utilize the Excel Import to MySQL option in Excel, how to write raw php code using a spreadsheet-reader library to import the data, to finally utilizing the PHP Framework Laravel and a Maatwebsite package to import the data.
+
+Depending on what your application needs will help you decide how to implement the import of the excel spreadsheet.  ***put examples of when you might use each of these different options***
+
+
+
 ### How to manually import excel data files into a MySQL database
 
 1. Open Excel file
@@ -33,10 +39,26 @@
 9. Click import
 10.	Now all data is imported and you should check your MySQL database to make sure that it imported the way you expected.
 
+### PHP to import an Excel spreadsheet into a MySQL database
 
-### Programmatically import an Excel spreadsheet into a MySQL database
+1. Create an html form for user to choose the excel file they want to import
+2. Download and deploy PHP spreadsheet-reader library
+3. Parse the excel data sheet by sheet
+4. Insert data into database
 
-1. Start
+
+### Utilizing Laravel to import an Excel spreadsheet into a MySQL database
+
+1. Create a new Laravel application
+2. Set database credentials in .env file
+3. Install Maatwebsite package
+4. Add fake records In database
+5. Create controller
+6. Add routes
+7. Create import export classes
+8. Create blade view
+9. Start development server
+
 
 
 
@@ -49,3 +71,5 @@
 - <https://blogs.oracle.com/mysql/how-to-guide-to-exporting-data-from-excel-to-a-new-mysql-table>
 - <https://davalign.com/articles/import-excel-data-into-mysql-using-phpmyadmin/>
 - <https://www.databasejournal.com/features/mysql/importing-xml-csv-text-and-ms-excel-files-into-mysql.html>
+- <https://www.itsolutionstuff.com/post/laravel-57-import-export-excel-to-database-exampleexample.html>
+- <https://www.tutsmake.com/laravel-6-import-export-excel-csv-to-database-example/>

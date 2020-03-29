@@ -65,7 +65,7 @@ Depending on what your application needs will help you decide how to implement t
 
 
 
-### Resources
+### Resources:
  
 - <https://dev.mysql.com/doc/mysql-for-excel/en/mysql-for-excel-export.html>
 - <http://talkerscode.com/webtricks/export-mysql-data-to-excel-using-php-and-html.php>
@@ -78,4 +78,17 @@ Depending on what your application needs will help you decide how to implement t
 - <https://www.tutsmake.com/laravel-6-import-export-excel-csv-to-database-example/>
 - <https://phppot.com/php/import-excel-file-into-mysql-database-using-php/>
 - <https://medium.com/@haseeb.basil/how-can-php-import-excel-to-mysql-using-an-php-xlsx-reader-and-excel-xlsx-converter-b013c31ba2cf>
+- <https://stackoverflow.com/questions/19075023/flow-text-around-an-image-in-github-markdown>
+- <https://webtoolsplus.com/how-to-import-excel-into-mysql-using-php/>
+- <https://webtoolsplus.com/excel-to-mysql/>
+- <https://www.youtube.com/watch?v=2FH72e6OjeQ>
+- <http://www.phpzone.in/laravel-5-import-export-data-csv-excel-using-maatwebsite/>
+- <https://www.youtube.com/watch?v=dYQKiaHHq7U>
+- <https://ourcodeworld.com/articles/read/234/how-to-create-an-excel-file-using-php-office-in-laravel>
+
+### Image Resources:
+
+- <https://www.techddi.com/techddi/msexcel-mysql-converter.html>
+
+
 

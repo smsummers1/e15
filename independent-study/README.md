@@ -84,6 +84,7 @@ Depending on what your application needs will help you decide how to implement t
 - <http://www.phpzone.in/laravel-5-import-export-data-csv-excel-using-maatwebsite/>
 - <https://www.youtube.com/watch?v=dYQKiaHHq7U>
 - <https://ourcodeworld.com/articles/read/234/how-to-create-an-excel-file-using-php-office-in-laravel>
+- <https://www.markdownguide.org/>
 
 ### Image Resources:
 

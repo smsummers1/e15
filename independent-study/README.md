@@ -73,3 +73,6 @@ Depending on what your application needs will help you decide how to implement t
 - <https://www.databasejournal.com/features/mysql/importing-xml-csv-text-and-ms-excel-files-into-mysql.html>
 - <https://www.itsolutionstuff.com/post/laravel-57-import-export-excel-to-database-exampleexample.html>
 - <https://www.tutsmake.com/laravel-6-import-export-excel-csv-to-database-example/>
+- <https://phppot.com/php/import-excel-file-into-mysql-database-using-php/>
+- <https://medium.com/@haseeb.basil/how-can-php-import-excel-to-mysql-using-an-php-xlsx-reader-and-excel-xlsx-converter-b013c31ba2cf>
+

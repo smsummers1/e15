@@ -10,6 +10,8 @@ Depending on what your application needs will help you decide how to implement t
 
 ### How to manually import excel data files into a MySQL database
 
+***Add Images for each step***
+
 1. Open Excel file
 2. Select the worksheet you want to import (you can only import one worksheet at a time)
 3. Save the worksheet as a comma separated values (.csv) file
@@ -30,6 +32,8 @@ Depending on what your application needs will help you decide how to implement t
 
 ### How to import Excel spreadsheets using the Import MySQL Data option
 
+***Add Images for each step***
+
 1. Open the Excel file you want to import.
 2. Select the Data tab.
 3. Select the “MySQL for Excel” Database icon.  
@@ -43,6 +47,8 @@ Depending on what your application needs will help you decide how to implement t
 
 ### PHP to import an Excel spreadsheet into a MySQL database
 
+***Add Images for each step***
+
 1. Create an html form for user to choose the excel file they want to import
 2. Download and deploy PHP spreadsheet-reader library
 3. Parse the excel data sheet by sheet
@@ -50,6 +56,8 @@ Depending on what your application needs will help you decide how to implement t
 
 
 ### Utilizing Laravel to import an Excel spreadsheet into a MySQL database
+
+***Add Images for each step***
 
 1. Create a new Laravel application
 2. Set database credentials in .env file

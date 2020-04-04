@@ -11,6 +11,13 @@
 |
 */
 
+#Dynamic Practice Route
+Route::any('/practice/{n?}', 'PracticeController@index');
+
+// practice/1 - should get a page
+// practice/2 - get a different page
+// practice/  - should still get a page
+
 # Example route used to demonstrate error pages
 Route::get('/example', function () {
     $foo = [1,2,3];

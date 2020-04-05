@@ -213,11 +213,18 @@ class PracticeController extends Controller
             if(!$book){
                 dump('All books have been deleted and/or book was not found.');
             }else{
-                dump($book->title);
+                dump($book->title, $book->author);
                 $book->delete();
                 dump('Deletion Complete');
             }
         }
+    }
+    
+    public function practice14()
+    {
+        $book = Book::where('author', '=', 'Dr. Seuss')->get();
+        $book->delete();
+        dump('Book deleted.');
     }
     
     

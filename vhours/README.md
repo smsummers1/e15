@@ -1,10 +1,10 @@
 # Importing Excel Data
 
-Importing Excel data files into a MySQL database utilizing a Laravel tool called Maatwebsite
+## Importing Excel data files into a MySQL database utilizing a Laravel tool called Maatwebsite
 
 Up until now, all our data has come from user input, a seeder file, or just recently the testing tool Dusk. My final project is the beginning of a volunteer hour tracking software application that will have data entered via excel files. I wanted to learn how to allow a user to input a file via an html form that would then populate the database. Thus, my search for the best way to import an Excel data file into a MySQL database.
 
-W ![](RackMultipart20200425-4-1tqgdeb_html_ec783b269c72999a.png) hat I found was that there are several ways to import an Excel data file into a MySQL database. You can……
+What I found was that there are several ways to import an Excel data file into a MySQL database. You can……
 
 - **manually** import excel data
 - use the **Excel Import to MySQL** option in Excel,
@@ -17,7 +17,7 @@ So let&#39;s get started. We have a lot of ground to cover.
 
 # **Utilizing Laravel and the Maatwebsite package to import an Excel spreadsheet into a MySQL database**
 
-**Create a new Laravel application**
+## Create a new Laravel application
 
 Go ahead and create a new Laravel application and point the local server to your new app called **vhours**. If you don&#39;t remember how to do this follow the instructions at the link below.
 
@@ -127,7 +127,7 @@ Go ahead and set the following database configurations as you see below. Notice 
 
 Put the following code in your **routes/web.php** file.
 
-Route::get(&#39;/debug&#39;, function () {
+```Route::get(&#39;/debug&#39;, function () {
 
 $debug = [
 
@@ -167,7 +167,7 @@ $debug[&#39;Database connection test&#39;] = &#39;FAILED: &#39; . $e-\&gt;getMes
 
 dump($debug);
 
-});
+});```
 
 Now run the following URL in your browser
 
@@ -211,6 +211,7 @@ Below are the changes that need to be made to the file so that the fields/column
 
 **Note** : The id() and the timestamps() functions listed in the code below will auto generate values and will not cause an issue when we do our import. Also, a database tool that we utilize in our Laravel applications called [Eloquent](https://laravel.com/docs/7.x/eloquent#introduction) is expecting to see these fields in the table. If they are not there, Eloquent will not work properly.
 
+```
 publicfunction up()
 
 {
@@ -232,6 +233,7 @@ $table-\&gt;string(&#39;street\_address&#39;, 100)-\&gt;nullable();
 });
 
 }
+```
 
 Now we are going to set up our tables in our **vhours** database by running our migrations.
 
@@ -271,6 +273,7 @@ This should create a **StudentsImport.php** file in the **app/Imports** director
 
 Now we need to edit this file to reflect the data that will be imported from the Excel data file.
 
+```
 publicfunction model(array $row)
 
 {
@@ -288,6 +291,7 @@ returnnew Student([
 ]);
 
 }
+```
 
 Now we need to generate the App\Student use file listed at the top of the StudentImport.php file.
 
@@ -295,6 +299,7 @@ Navigate to the app directory and manually create a Student.php file. Then open 
 
 Your Student.php file should look like this…..
 
+```
 \&lt;?php
 
 namespace App;
@@ -328,6 +333,7 @@ protected $fillable = [
 ];
 
 }
+```
 
 **Create MyController**
 
@@ -335,6 +341,7 @@ Now we need to create **MyController** by extending the **controller** class in 
 
 We will create the import request logic and return response here. Go ahead and manually create the **MyController.php** file in the **Controllers directory** and write the following code in the file. Feel free to copy and paste the code below.
 
+```
 \&lt;?php
 
 namespace App\Http\Controllers;
@@ -380,11 +387,13 @@ return back();
 }
 
 }
+```
 
 **Create the View**
 
 And finally, we need to create our html form to allow users to import a file. This new file will be called **import.blade.php** and will be placed in the **vhours/resources/views** directory. Go ahead and navigate to the **views** directory and manually create the **import.blade.php** file. Then put the following code in the file.
 
+```
 \&lt;!DOCTYPEhtml\&gt;
 
 \&lt;html\&gt;
@@ -432,6 +441,7 @@ Laravel 7 Import Excel to MySQL database
 \&lt;/body\&gt;
 
 \&lt;/html\&gt;
+```
 
 **Run the app**
 

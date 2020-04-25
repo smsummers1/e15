@@ -428,7 +428,7 @@ You have now officially created a Laravel 7 application that will import an Exce
 12. Run the app
 
 # ERRORS
-## Some of the errors that may come up when you run your app and their solutions are below.
+## Below are some of the errors that may come up when you run your app and their solutions are below.
 
 **Error: Permission Denied**
 

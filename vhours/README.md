@@ -113,7 +113,7 @@ Then type in the name of your database. Set the database name is to **vhours** a
 
 ![](RackMultipart20200425-4-1tqgdeb_html_dd8328ccde62fa10.png)
 
-Y ![](RackMultipart20200425-4-1tqgdeb_html_f66aeaf59fd75fba.png) ou should now see the **vhours** database listed on the left-hand side of the phpMyAdmin screen as you see highlighted below.
+You should now see the **vhours** database listed on the left-hand side of the phpMyAdmin screen as you see highlighted below.
 
 And again, you may not have as many databases as I have. Just be sure that you have the **vhours** database listed.
 
@@ -133,27 +133,27 @@ Put the following code in your **routes/web.php** file.
 Route::get('/debug', function () {
 
         $debug = ['Environment' => App::environment(),
-];
+    ];
 
-/*
-The following commented out line will print your MySQL credentials.
-Uncomment this line only if you&#39;re facing difficulties connecting to the
-database and you need to confirm your credentials. When you&#39;re done
-debugging, comment it back out so you don&#39;t accidentally leave it
-running on your production server, making your credentials public.
-*/
+    /*
+    The following commented out line will print your MySQL credentials.
+    Uncomment this line only if you&#39;re facing difficulties connecting to the
+    database and you need to confirm your credentials. When you&#39;re done
+    debugging, comment it back out so you don&#39;t accidentally leave it
+    running on your production server, making your credentials public.
+    */
 
-#$debug['MySQL connection config'] = config('database.connections.mysql');
+    #$debug['MySQL connection config'] = config('database.connections.mysql');
 
-try {
-    $databases = DB::select('SHOW DATABASES;');
-    $debug['Database connection test'] = 'PASSED';
-    $debug['Databases'] = array_column($databases, 'Database');
-} catch (Exception $e) {
-    $debug['Database connection test'] = 'FAILED:' . $e->getMessage();
-}
+    try {
+        $databases = DB::select('SHOW DATABASES;');
+        $debug['Database connection test'] = 'PASSED';
+        $debug['Databases'] = array_column($databases, 'Database');
+    } catch (Exception $e) {
+        $debug['Database connection test'] = 'FAILED:' . $e->getMessage();
+    }
 
-dump($debug);
+    dump($debug);
 
 });
 ```
@@ -236,7 +236,7 @@ and then if we click on the **Structure** tab you should see this:
 
 ![](RackMultipart20200425-4-1tqgdeb_html_90d358f049784e34.png)
 
-## 9. Set up Route
+## 9. Set up a Route
 
 Now we need to set up a resource route in our **routes/web.php** file for our crud application, which means that we want to have a route to allow users to get to our import web page where they will be able to import the excel file. We will create that page soon. For now we will set up the route.
 
@@ -244,7 +244,7 @@ Add the following line to the **routes/web.php** file under the **debug** route 
 
 ![](RackMultipart20200425-4-1tqgdeb_html_d37d0bbaa68a6bc8.png)
 
-## 10. Set up Model
+## 10. Set up a Model
 
 Now we need to create an **import** class so we can start creating the ability to import our Excel data file. Maatwebsite package provides a way to build an import class. We will need to use this in our controller. Run the following command.
 
@@ -303,7 +303,7 @@ class Student extends Authenticatable
 }
 ```
 
-## 11. Create MyController
+## 11. Create a Controller
 
 Now we need to create **MyController** by extending the **controller** class in **vhours/app/Http/Controllers/MyController.php**.
 
@@ -341,7 +341,7 @@ class MyController extends Controller
 }
 ```
 
-## 12. Create the View
+## 12. Create a View
 
 And finally, we need to create our html form to allow users to import a file. This new file will be called **import.blade.php** and will be placed in the **vhours/resources/views** directory. Go ahead and navigate to the **views** directory and manually create the **import.blade.php** file. Then put the following code in the file.
 
@@ -360,33 +360,20 @@ And finally, we need to create our html form to allow users to import a file. Th
 <body>
 
 <divclass="container">
-
-<divclass="card bg-light mt-3">
-
-<divclass="card-header">
-
-Laravel 7 Import Excel to MySQL database
-
-</div>
-
-<divclass="card-body">
-
-<formaction="{{ route('import') }}"method="POST"enctype="multipart/form-data">
-
-{{ csrf\_field() }}
-
-<inputtype="file"name="file"class="form-control">
-
-<br>
-
-<buttonclass="btn btn-success">Import User Data</button>
-
-</form>
-
-</div>
-
-</div>
-
+    <divclass="card bg-light mt-3">
+        <divclass="card-header">
+            Laravel 7 Import Excel to MySQL database
+        </div>
+    
+        <divclass="card-body">
+            <formaction="{{ route('import') }}"method="POST"enctype="multipart/form-data">
+            {{ csrf\_field() }}
+            <inputtype="file"name="file"class="form-control">
+            <br>
+            <buttonclass="btn btn-success">Import User Data</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 </body>

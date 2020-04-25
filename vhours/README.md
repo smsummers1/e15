@@ -1,23 +1,21 @@
 # Importing Excel Data
 
-## Importing Excel data files into a MySQL database utilizing a Laravel tool called Maatwebsite
+### How to import an Excel data file into a MySQL database utilizing a Laravel tool called Maatwebsite
 
 Up until now, all our data has come from user input, a seeder file, or just recently the testing tool Dusk. My final project is the beginning of a volunteer hour tracking software application that will have data entered via excel files. I wanted to learn how to allow a user to input a file via an html form that would then populate the database. Thus, my search for the best way to import an Excel data file into a MySQL database.
 
-What I found was that there are several ways to import an Excel data file into a MySQL database. You can……
+What I found was that there are several ways to import an Excel spreadsheet into a MySQL database.
 
 - **manually** import excel data
 - use the **Excel Import to MySQL** option in Excel,
 - write **raw php code** using a **spreadsheet-reader library** to import the data
 - utilize **Laravel** and the **Maatwebsite** package
 
-This tutorial covers the later and we will be walking through the creation of an entire Laravel application that will utilize the Maatwebsite package to import an Excel data file.
+This tutorial covers the later and we will be walking through the creation of an entire Laravel application that will utilize the Maatwebsite package to import an Excel spreadsheet via an html form.  You have access to the code and the Excel spreadsheet here in Github.
 
-So let&#39;s get started. We have a lot of ground to cover.
+Let&#39;s get started. We have a lot of ground to cover.
 
-# **Utilizing Laravel and the Maatwebsite package to import an Excel spreadsheet into a MySQL database**
-
-## Create a new Laravel application
+## 1. Create a new Laravel application
 
 Go ahead and create a new Laravel application and point the local server to your new app called **vhours**. If you don&#39;t remember how to do this follow the instructions at the link below.
 
@@ -27,7 +25,7 @@ I named my new Laravel application **vhours**
 
 ![](RackMultipart20200425-4-1tqgdeb_html_8b09b34cafb52ee5.png)
 
-**Install Maatwebsite package**
+## 2. Install Maatwebsite package**
 
 To get our applications to import Excel files to our database we are going to need an additional Laravel package called Maatwebsite that doesn&#39;t come standard with the framework. We need to install the Maatwebsite package and check that our dependencies are set up correctly for this new package.
 
@@ -45,7 +43,7 @@ $ cat composer.json
 
 _File Snippet 1 - You should see &quot;maatwebsite/excel&quot;: &quot;^3.1&quot;_
 
-**Add service provider and alias to your config/app.php file**
+## 3. Add service provider and alias to your config/app.php file**
 
 Open the **config/app.php** file and add the line you see below in the **providers section** of the file. Then add the **alias** line in the **aliases section** of the file. (You can copy and paste the lines in the grey boxes below).
 
@@ -53,8 +51,11 @@ Open the **config/app.php** file and add the line you see below in the **provide
 
 **Aside** : If you are working in Nano you need to do the following commands after you have finished making all of the changes and are ready to save and close the file: **ctrl+x** to exit, then **y** to save and then finally **enter** to finalize your changes to the current file. You will be prompted for all these responses.
 
+```
 $ nano app.php
+```
 
+```
 &#39;providers&#39; =\&gt; [
 
 ....
@@ -62,8 +63,9 @@ $ nano app.php
 Maatwebsite\Excel\ExcelServiceProvider::class,
 
 ],
+```
 
-![](RackMultipart20200425-4-1tqgdeb_html_4f2d90e64f7e7226.png)
+```
 
 &#39;aliases&#39; =\&gt; [
 
@@ -72,10 +74,9 @@ Maatwebsite\Excel\ExcelServiceProvider::class,
 &#39;Excel&#39; =\&gt; Maatwebsite\Excel\Facades\Excel::class,
 
 ],
+```
 
-![](RackMultipart20200425-4-1tqgdeb_html_9966893eab93a13.png)
-
-**Now we Publish the configuration file with the following command**
+## 4. Now we Publish the configuration file with the following command**
 
 Use the command below to create a new file named **config/excel.php**. You will be prompted to choose the provider from a list to publish. Be sure to choose the **Provider: Maatwebsite\Excel\ExcelServiceProvider**
 
@@ -87,7 +88,7 @@ Check to make sure that the **config/excel.php** file was created
 
 ![](RackMultipart20200425-4-1tqgdeb_html_90609fb25283932e.png)
 
-**Prepare the database**
+## 5. Prepare the database**
 
 Create the database via phpMyAdmin
 
@@ -115,7 +116,7 @@ Y ![](RackMultipart20200425-4-1tqgdeb_html_f66aeaf59fd75fba.png) ou should now s
 
 And again, you may not have as many databases as I have. Just be sure that you have the **vhours** database listed.
 
-Configure Database Environment
+## 6. Configure Database Environment
 
 Now that we have our **vhours** database we need to update the database configuration in the .env file at the root of the application so that we can connect our application to the database. Open the **vhours/.env** file.
 
@@ -123,11 +124,12 @@ Go ahead and set the following database configurations as you see below. Notice 
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
-**Test our connection:**
+## 7. Test our connection:**
 
 Put the following code in your **routes/web.php** file.
 
-```Route::get(&#39;/debug&#39;, function () {
+```
+Route::get(&#39;/debug&#39;, function () {
 
 $debug = [
 
@@ -167,7 +169,8 @@ $debug[&#39;Database connection test&#39;] = &#39;FAILED: &#39; . $e-\&gt;getMes
 
 dump($debug);
 
-});```
+});
+```
 
 Now run the following URL in your browser
 
@@ -187,7 +190,9 @@ While we could manually create our table via phpMyAdmin, we are going to opt to 
 
 To start this process we will use the [Artisan](https://laravel.com/docs/7.x/artisan) tool to generate our migration file called create\_students\_table.
 
+```
 $ php artisan make:migration create\_students\_table --create=students
+```
 
 ![](RackMultipart20200425-4-1tqgdeb_html_1c4e5995e11f2d86.png)
 
@@ -237,7 +242,9 @@ $table-\&gt;string(&#39;street\_address&#39;, 100)-\&gt;nullable();
 
 Now we are going to set up our tables in our **vhours** database by running our migrations.
 
+```
 $ php artisan migrate:fresh
+```
 
 ![](RackMultipart20200425-4-1tqgdeb_html_9553587631451459.png)
 
@@ -253,7 +260,7 @@ and then if we click on the **Structure** tab you should see this:
 
 ![](RackMultipart20200425-4-1tqgdeb_html_90d358f049784e34.png)
 
-**Set up Route**
+## Set up Route**
 
 Now we need to set up a resource route in our **routes/web.php** file for our crud application, which means that we want to have a route to allow users to get to our import web page where they will be able to import the excel file. We will create that page soon. For now we will set up the route.
 

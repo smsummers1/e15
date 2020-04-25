@@ -412,7 +412,7 @@ After you click the Import User Data button, you should return to the form again
 
 You have now officially created a Laravel 7 application that will import an Excel file and populate the respective database table.
 
-**Recap:**
+# **Recap:**
 
 1. Create a new Laravel 7 application
 2. Install Maatwebsite package
@@ -427,7 +427,8 @@ You have now officially created a Laravel 7 application that will import an Exce
 11. Create the View
 12. Run the app
 
-Some of the errors that may come up when you run your app and their solutions are below.
+# ERRORS
+## Some of the errors that may come up when you run your app and their solutions are below.
 
 **Error: Permission Denied**
 

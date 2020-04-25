@@ -24,6 +24,8 @@ Go ahead and create a new Laravel application and point the local server to your
 
 I named my new Laravel application **vhours**
 
+![]: image/1.png "Optional title attribute"
+
 ![](RackMultipart20200425-4-1tqgdeb_html_8b09b34cafb52ee5.png)
 
 
@@ -439,10 +441,11 @@ You have now officially created a Laravel 7 application that will import an Exce
 6. Configure the database environment
 7. Test Connection
 8. Add Migration to create table
-9. Setup Route and Model
-10. Create the Controller
-11. Create the View
-12. Run the app
+9. Setup a Route 
+10. Setup a Model
+11. Create the Controller
+12. Create the View
+13. Run the app
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 

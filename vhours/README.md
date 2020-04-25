@@ -49,6 +49,8 @@ $ cat composer.json
 
 _You should see &quot;maatwebsite/excel&quot;: &quot;^3.1&quot;_
 
+![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+
 
 ## 3. Add service provider and alias to your config/app.php file
 
@@ -77,6 +79,8 @@ $ nano app.php
 
 ],
 ```
+
+![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
 
 ## 4. Now we Publish the configuration file with the following command
@@ -122,7 +126,9 @@ You should now see the **vhours** database listed on the left-hand side of the p
 
 And again, you may not have as many databases as I have. Just be sure that you have the **vhours** database listed.
 
-<br>
+![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+
+
 ## 6. Configure Database Environment
 
 Now that we have our **vhours** database we need to update the database configuration in the .env file at the root of the application so that we can connect our application to the database. Open the **vhours/.env** file.
@@ -174,6 +180,8 @@ You should see **vhours** in the array of databases. This means you are connecte
 ![](RackMultipart20200425-4-1tqgdeb_html_905129c85ce26769.png)
 
 Now that the database has been created and we are connected, we need to create a table in our database that will line up with our Excel data file.
+
+![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
 
 ## 8. Creating a table in our database via migrations
@@ -313,6 +321,8 @@ class Student extends Authenticatable
 }
 ```
 
+![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+
 
 ## 11. Create a Controller
 
@@ -351,6 +361,8 @@ class MyController extends Controller
 
 }
 ```
+
+![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
 
 ## 12. Create a View
@@ -393,6 +405,8 @@ And finally, we need to create our html form to allow users to import a file. Th
 </html>
 ```
 
+![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+
 
 ## 13. Run the app
 
@@ -412,6 +426,9 @@ After you click the Import User Data button, you should return to the form again
 
 You have now officially created a Laravel 7 application that will import an Excel file and populate the respective database table.
 
+![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+
+
 # **Recap:**
 
 1. Create a new Laravel 7 application
@@ -426,6 +443,9 @@ You have now officially created a Laravel 7 application that will import an Exce
 10. Create the Controller
 11. Create the View
 12. Run the app
+
+![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+
 
 # ERRORS
 #### Below are some of the errors that may come up when you run your app and their solutions are below.
@@ -507,6 +527,7 @@ Went into **config/excel.php** and change the path for temporary storage from **
 - [https://stackoverflow.com/questions/54500990/could-not-open-var-folders-n-laravel-excel-maatwebsite](https://stackoverflow.com/questions/54500990/could-not-open-var-folders-n-laravel-excel-maatwebsite)
 
 
+# BONUS INFORMATION:
 
 # How to manually import excel data into a MySQL database
 

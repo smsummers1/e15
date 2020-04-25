@@ -23,7 +23,8 @@ Go ahead and create a new Laravel application and point the local server to your
 [https://hesweb.dev/e15/notes/laravel/new-laravel-app](https://hesweb.dev/e15/notes/laravel/new-laravel-app)
 
 I named my new Laravel application **vhours**
-<img style="width:300px;" href="images/1.png">
+
+<img style="width:400px;" src="images/1.png">
 
 ![alt-text](images/1.png)
 

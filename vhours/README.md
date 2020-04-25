@@ -122,7 +122,7 @@ You should now see the **vhours** database listed on the left-hand side of the p
 
 And again, you may not have as many databases as I have. Just be sure that you have the **vhours** database listed.
 
-
+<br>
 ## 6. Configure Database Environment
 
 Now that we have our **vhours** database we need to update the database configuration in the .env file at the root of the application so that we can connect our application to the database. Open the **vhours/.env** file.

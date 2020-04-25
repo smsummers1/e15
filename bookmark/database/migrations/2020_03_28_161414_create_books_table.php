@@ -16,28 +16,29 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            
+
             //slug VARCHAR
             $table->string('slug');
-            
+
             //title VARCHAR
             $table->string('title');
-            
+
             //author VARCHAR
-            $table->string('author');
-            
+            # using an author_id foreign key instead
+            //$table->string('author');
+
             //published_year SMALLINT
             $table->smallInteger('published_year');
-            
+
             //cover_url VARCHAR
             $table->string('cover_url');
-            
+
             //info_url VARCHAR
             $table->string('info_url');
-            
+
             //purchase_url VARCHAR
             $table->string('purchase_url');
-            
+
             //description TEXT
             $table->text('description');
         });

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('import');
 });
 
 Route::get('/debug', function () {
@@ -37,14 +37,14 @@ Route::get('/debug', function () {
         $debug['Database connection test'] = 'PASSED';
         $debug['Databases'] = array_column($databases, 'Database');
     } catch (Exception $e) {
-        $debug['Database connection test'] = 'FAILED: '.$e->getMessage();
+        $debug['Database connection test'] = 'FAILED: ' . $e->getMessage();
     }
 
     dump($debug);
 });
 
-Route::post('/import','MyController@import')->name('import');
+#get php info
+Route::get('/getinfo', 'MyController@getinfo');
 
-
-
-
+#Import excel files page
+Route::post('/import', 'MyController@import')->name('import');

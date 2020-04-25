@@ -20,7 +20,7 @@ Route::any('/practice/{n?}', 'PracticeController@index');
 
 # Example route used to demonstrate error pages
 Route::get('/example', function () {
-    $foo = [1,2,3];
+    $foo = [1, 2, 3];
 
     # dump, die
     //dd($foo);
@@ -35,7 +35,7 @@ Route::get('/example', function () {
     return view('abc');
 });
 
- Route::get('/debug', function () {
+Route::get('/debug', function () {
 
     $debug = [
         'Environment' => App::environment(),
@@ -55,7 +55,7 @@ Route::get('/example', function () {
         $debug['Database connection test'] = 'PASSED';
         $debug['Databases'] = array_column($databases, 'Database');
     } catch (Exception $e) {
-        $debug['Database connection test'] = 'FAILED: '.$e->getMessage();
+        $debug['Database connection test'] = 'FAILED: ' . $e->getMessage();
     }
 
     dump($debug);
@@ -76,21 +76,30 @@ Route::get('/support', 'PageController@support');
 
 
 #BOOKS
-Route::get('/books/create', 'BookController@create');
-Route::post('/books', 'BookController@store');
+Route::group(['middleware' => 'auth'], function () {
+    #two routes needed to CREATE a book
+    Route::get('/books/create', 'BookController@create');
+    Route::post('/books', 'BookController@store');
 
+    #two routes needed to EDIT/UPDATE a book
+    Route::get('/books/{slug}/edit', 'BookController@edit');
+    Route::put('/books/{slug}', 'BookController@update');
 
-#
-#dynamic pages
-#
+    #DELETE book
+    Route::get('/books/{slug}/delete', 'BookController@delete');
+    Route::delete('/books/{slug}', 'BookController@destroy');
 
-#the question mark makes the title optional and we handle
-#the case where a user enters a book in the url or
-#they do not enter a book in the url
+    #
+    #dynamic pages
+    #
 
-#while this code will work fine it is not as logically organized as if we 
-#created two separate cases
-/*
+    #the question mark makes the title optional and we handle
+    #the case where a user enters a book in the url or
+    #they do not enter a book in the url
+
+    #while this code will work fine it is not as logically organized as if we 
+    #created two separate cases
+    /*
 Route::get('/books/{title?}', function ($title = null) {
 
     #eventually we will do something like query the
@@ -107,24 +116,25 @@ Route::get('/books/{title?}', function ($title = null) {
 });
 */
 
-#No book in the URL
-#instead of using the function we are now going to use the BookController Method 
-/*Route::get('/books', function () {
+    #No book in the URL
+    #instead of using the function we are now going to use the BookController Method 
+    /*Route::get('/books', function () {
     return 'Here are all the books....';
 });*/
 
-Route::get('/books', 'BookController@index');
+    #SHOW all books
+    Route::get('/books', 'BookController@index');
 
-#Dynamic title listed
-/*
+    #Dynamic title listed
+    /*
 Route::get('/books/{$title?}', function ($title = null) {
     return 'Details for book: ' . $title;
 });*/
 
-# Route::get('/books/{title?}', 'BookController@show');
+    # Route::get('/books/{title?}', 'BookController@show');
 
-#multiple route parameters as part of your url structure
-/*Route::get('/filter/{category}/{subcategory?}', function ($category, $subcategory = null) {
+    #multiple route parameters as part of your url structure
+    /*Route::get('/filter/{category}/{subcategory?}', function ($category, $subcategory = null) {
     $output = 'Books in category <b>' . $category . '</b>';
 
     if ($subcategory) {
@@ -134,14 +144,22 @@ Route::get('/books/{$title?}', function ($title = null) {
     return $output;
 });*/
 
-Route::get('/books/{slug?}', 'BookController@show');
+    #Show a book
+    Route::get('/books/{slug?}', 'BookController@show');
 
-Route::get('/search', 'BookController@search');
+    #List
+    Route::get('/list', 'ListController@show');
+    Route::get('/list/{slug?}/add', 'ListController@add');
+    Route::post('/list/{slug?}/add', 'ListController@save');
 
-Route::get('/list', 'BookController@list');
+    #Misc
+    Route::get('/search', 'BookController@search');
 
-#This is an example route to show multiple parameters
-#Not a feature we're actually building, so I'm commenting it out
-# Route::get('/filter/{category}/{subcategory?}', 'BookController@filter');
+    #This is an example route to show multiple parameters
+    #Not a feature we're actually building, so I'm commenting it out
+    # Route::get('/filter/{category}/{subcategory?}', 'BookController@filter');
 
-#remember that outputs normally occur in our view files
+    #remember that outputs normally occur in our view files
+});
+
+Auth::routes();

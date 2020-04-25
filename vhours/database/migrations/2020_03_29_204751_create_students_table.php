@@ -16,9 +16,11 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->char('studentName', 100);
-            $table->char('homeroom', 100);
-            $table->char('streetAddress', 100);
+
+            $table->string('student_name', 100);
+            $table->smallInteger('volunteer_hours')->nullable();
+            $table->string('homeroom', 100)->nullable();
+            $table->string('street_address', 100)->nullable();
         });
     }
 

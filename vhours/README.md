@@ -25,7 +25,7 @@ I named my new Laravel application **vhours**
 
 ![](RackMultipart20200425-4-1tqgdeb_html_8b09b34cafb52ee5.png)
 
-## 2. Install Maatwebsite package**
+## 2. Install Maatwebsite package
 
 To get our applications to import Excel files to our database we are going to need an additional Laravel package called Maatwebsite that doesn&#39;t come standard with the framework. We need to install the Maatwebsite package and check that our dependencies are set up correctly for this new package.
 
@@ -43,7 +43,7 @@ $ cat composer.json
 
 _File Snippet 1 - You should see &quot;maatwebsite/excel&quot;: &quot;^3.1&quot;_
 
-## 3. Add service provider and alias to your config/app.php file**
+## 3. Add service provider and alias to your config/app.php file
 
 Open the **config/app.php** file and add the line you see below in the **providers section** of the file. Then add the **alias** line in the **aliases section** of the file. (You can copy and paste the lines in the grey boxes below).
 
@@ -76,7 +76,7 @@ Maatwebsite\Excel\ExcelServiceProvider::class,
 ],
 ```
 
-## 4. Now we Publish the configuration file with the following command**
+## 4. Now we Publish the configuration file with the following command
 
 Use the command below to create a new file named **config/excel.php**. You will be prompted to choose the provider from a list to publish. Be sure to choose the **Provider: Maatwebsite\Excel\ExcelServiceProvider**
 
@@ -88,7 +88,7 @@ Check to make sure that the **config/excel.php** file was created
 
 ![](RackMultipart20200425-4-1tqgdeb_html_90609fb25283932e.png)
 
-## 5. Prepare the database**
+## 5. Prepare the database
 
 Create the database via phpMyAdmin
 
@@ -124,7 +124,7 @@ Go ahead and set the following database configurations as you see below. Notice 
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
-## 7. Test our connection:**
+## 7. Test our connection
 
 Put the following code in your **routes/web.php** file.
 
@@ -182,7 +182,7 @@ You should see **vhours** in the array of databases. This means you are connecte
 
 Now that the database has been created and we are connected, we need to create a table in our database that will line up with our Excel data file.
 
-**Creating a table in our database via migrations**
+## 8. Creating a table in our database via migrations
 
 While we could manually create our table via phpMyAdmin, we are going to opt to utilize [migrations](https://medium.com/@rakshithvasudev/laravel-migrations-what-are-they-why-use-them-how-to-use-203769a917c3). They are a necessity when creating a database driven app. Check out the notes to remind yourself just how powerful migrations are and why they are a necessity.
 
@@ -260,7 +260,7 @@ and then if we click on the **Structure** tab you should see this:
 
 ![](RackMultipart20200425-4-1tqgdeb_html_90d358f049784e34.png)
 
-## Set up Route**
+## 9. Set up Route
 
 Now we need to set up a resource route in our **routes/web.php** file for our crud application, which means that we want to have a route to allow users to get to our import web page where they will be able to import the excel file. We will create that page soon. For now we will set up the route.
 
@@ -268,7 +268,7 @@ Add the following line to the **routes/web.php** file under the **debug** route 
 
 ![](RackMultipart20200425-4-1tqgdeb_html_d37d0bbaa68a6bc8.png)
 
-**Set up Model**
+## 10. Set up Model
 
 Now we need to create an **import** class so we can start creating the ability to import our Excel data file. Maatwebsite package provides a way to build an import class. We will need to use this in our controller. Run the following command.
 
@@ -342,7 +342,7 @@ protected $fillable = [
 }
 ```
 
-**Create MyController**
+## 11. Create MyController
 
 Now we need to create **MyController** by extending the **controller** class in **vhours/app/Http/Controllers/MyController.php**.
 
@@ -396,7 +396,7 @@ return back();
 }
 ```
 
-**Create the View**
+## 12. Create the View
 
 And finally, we need to create our html form to allow users to import a file. This new file will be called **import.blade.php** and will be placed in the **vhours/resources/views** directory. Go ahead and navigate to the **views** directory and manually create the **import.blade.php** file. Then put the following code in the file.
 
@@ -450,7 +450,7 @@ Laravel 7 Import Excel to MySQL database
 \&lt;/html\&gt;
 ```
 
-**Run the app**
+## 13. Run the app
 
 Go to your **vhours.loc/** page. The import form should look like what you see below.
 
@@ -511,9 +511,9 @@ Went into **config/excel.php** and change the path for temporary storage from **
 
 ![](RackMultipart20200425-4-1tqgdeb_html_94785e580477f5ae.png)
 
-**Resources**
+## Resources
 
-Import Excel to MySQL:
+### Import Excel to MySQL:
 
 - [https://chartio.com/resources/tutorials/excel-to-mysql/](https://chartio.com/resources/tutorials/excel-to-mysql/)
 - [https://www.w3resource.com/mysql/exporting-and-importing-data-between-mysql-and-microsoft-excel.php](https://www.w3resource.com/mysql/exporting-and-importing-data-between-mysql-and-microsoft-excel.php)
@@ -536,18 +536,18 @@ Import Excel to MySQL:
 - [https://laravel.com/docs/5.8/migrations](https://laravel.com/docs/5.8/migrations)
 - [http://www.phpzone.in/laravel-5-import-export-data-csv-excel-using-maatwebsite/](http://www.phpzone.in/laravel-5-import-export-data-csv-excel-using-maatwebsite/)
 
-Style and Formatting:
+### Style and Formatting:
 
 - [https://cdnjs.com/libraries/twitter-bootstrap](https://cdnjs.com/libraries/twitter-bootstrap)
 - [https://stackoverflow.com/questions/19075023/flow-text-around-an-image-in-github-markdown](https://stackoverflow.com/questions/19075023/flow-text-around-an-image-in-github-markdown)
 - [https://www.markdownguide.org](https://www.markdownguide.org/basic-syntax/#paragraphs-1)
 
-PhpSpreadsheet:
+### PhpSpreadsheet:
 
 - [https://phpspreadsheet.readthedocs.io/en/latest/topics/reading-and-writing-to-file/](https://phpspreadsheet.readthedocs.io/en/latest/topics/reading-and-writing-to-file/)
 - [https://www.htmlgoodies.com/beyond/making-the-switch-from-phpexcel-to-phpspreadsheet.html](https://www.htmlgoodies.com/beyond/making-the-switch-from-phpexcel-to-phpspreadsheet.html)
 
-Image Resources:
+### Image Resources:
 
 - [https://www.eggslab.net/export-mysql-table-data-into-excel-sheet/](https://www.eggslab.net/export-mysql-table-data-into-excel-sheet/)
 - [https://webtoolsplus.com/how-to-import-excel-into-mysql-using-php/](https://webtoolsplus.com/how-to-import-excel-into-mysql-using-php/)
@@ -556,9 +556,11 @@ Image Resources:
 - [http://www.phpzone.in/laravel-5-import-export-data-csv-excel-using-maatwebsite/](http://www.phpzone.in/laravel-5-import-export-data-csv-excel-using-maatwebsite/)
 - [https://ourcodeworld.com/articles/read/234/how-to-create-an-excel-file-using-php-office-in-laravel](https://ourcodeworld.com/articles/read/234/how-to-create-an-excel-file-using-php-office-in-laravel)
 
-Fixing Errors:
+### Fixing Errors:
 
 - [https://stackoverflow.com/questions/54500990/could-not-open-var-folders-n-laravel-excel-maatwebsite](https://stackoverflow.com/questions/54500990/could-not-open-var-folders-n-laravel-excel-maatwebsite)
+
+
 
 # How to manually import excel data into a MySQL database
 

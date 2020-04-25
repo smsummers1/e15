@@ -62,7 +62,7 @@ Open the **config/app.php** file and add the line you see below in the **provide
 $ nano app.php
 ```
 
-```
+```php
 'providers' =>; [
 
     Maatwebsite\Excel\ExcelServiceProvider::class,
@@ -70,7 +70,7 @@ $ nano app.php
 ],
 ```
 
-```
+```php
 'aliases' => [
 
     'Excel' => Maatwebsite\Excel\Facades\Excel::class,
@@ -136,7 +136,7 @@ Go ahead and set the following database configurations as you see below. Notice 
 
 Put the following code in your **routes/web.php** file.
 
-```
+```php
 Route::get('/debug', function () {
 
         $debug = ['Environment' => App::environment(),
@@ -210,7 +210,7 @@ Below are the changes that need to be made to the file so that the fields/column
 
 **Note:** The id() and the timestamps() functions listed in the code below will auto generate values and will not cause an issue when we do our import. Also, a database tool that we utilize in our Laravel applications called [Eloquent](https://laravel.com/docs/7.x/eloquent#introduction) is expecting to see these fields in the table. If they are not there, Eloquent will not work properly.
 
-```
+```php
 publicfunction up()
 {
     Schema::create('students', function (Blueprint $table) {
@@ -268,7 +268,7 @@ This should create a **StudentsImport.php** file in the **app/Imports** director
 
 Now we need to edit this file to reflect the data that will be imported from the Excel data file.
 
-```
+```php
 public function model(array $row)
 {
     return new Student([
@@ -286,7 +286,7 @@ Navigate to the app directory and manually create a Student.php file. Then open 
 
 Your Student.php file should look like this…..
 
-```
+```php
 <?php
 
 namespace App;
@@ -320,7 +320,7 @@ Now we need to create **MyController** by extending the **controller** class in 
 
 We will create the import request logic and return response here. Go ahead and manually create the **MyController.php** file in the **Controllers directory** and write the following code in the file. Feel free to copy and paste the code below.
 
-```
+```php
 <?php
 
 namespace App\Http\Controllers;
@@ -357,7 +357,7 @@ class MyController extends Controller
 
 And finally, we need to create our html form to allow users to import a file. This new file will be called **import.blade.php** and will be placed in the **vhours/resources/views** directory. Go ahead and navigate to the **views** directory and manually create the **import.blade.php** file. Then put the following code in the file.
 
-```
+```html
 <!DOCTYPEhtml>
 
 <html>
@@ -428,7 +428,7 @@ You have now officially created a Laravel 7 application that will import an Exce
 12. Run the app
 
 # ERRORS
-### Below are some of the errors that may come up when you run your app and their solutions are below.
+#### Below are some of the errors that may come up when you run your app and their solutions are below.
 
 ### **Error: Permission Denied**
 

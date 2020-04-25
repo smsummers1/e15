@@ -15,6 +15,7 @@ This tutorial covers the later and we will be walking through the creation of an
 
 Let&#39;s get started. We have a lot of ground to cover.
 
+
 ## 1. Create a new Laravel application
 
 Go ahead and create a new Laravel application and point the local server to your new app called **vhours**. If you don&#39;t remember how to do this follow the instructions at the link below.
@@ -24,6 +25,7 @@ Go ahead and create a new Laravel application and point the local server to your
 I named my new Laravel application **vhours**
 
 ![](RackMultipart20200425-4-1tqgdeb_html_8b09b34cafb52ee5.png)
+
 
 ## 2. Install Maatwebsite package
 
@@ -46,6 +48,7 @@ $ cat composer.json
 ![](RackMultipart20200425-4-1tqgdeb_html_b0d517f50d4d83a7.png) ![](RackMultipart20200425-4-1tqgdeb_html_17d832186f4bbefb.gif)
 
 _You should see &quot;maatwebsite/excel&quot;: &quot;^3.1&quot;_
+
 
 ## 3. Add service provider and alias to your config/app.php file
 
@@ -75,6 +78,7 @@ $ nano app.php
 ],
 ```
 
+
 ## 4. Now we Publish the configuration file with the following command
 
 Use the command below to create a new file named **config/excel.php**. You will be prompted to choose the provider from a list to publish. Be sure to choose the **Provider: Maatwebsite\Excel\ExcelServiceProvider**
@@ -88,6 +92,7 @@ $ php artisan vendor:publish
 Check to make sure that the **config/excel.php** file was created
 
 ![](RackMultipart20200425-4-1tqgdeb_html_90609fb25283932e.png)
+
 
 ## 5. Prepare the database
 
@@ -117,6 +122,7 @@ You should now see the **vhours** database listed on the left-hand side of the p
 
 And again, you may not have as many databases as I have. Just be sure that you have the **vhours** database listed.
 
+
 ## 6. Configure Database Environment
 
 Now that we have our **vhours** database we need to update the database configuration in the .env file at the root of the application so that we can connect our application to the database. Open the **vhours/.env** file.
@@ -124,6 +130,7 @@ Now that we have our **vhours** database we need to update the database configur
 Go ahead and set the following database configurations as you see below. Notice that the **DB\_PASSWORD** is **empty**. There isn&#39;t anything there because I didn&#39;t set a password. Once you set this file up the way you see below, save and close.
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+
 
 ## 7. Test our connection
 
@@ -167,6 +174,7 @@ You should see **vhours** in the array of databases. This means you are connecte
 ![](RackMultipart20200425-4-1tqgdeb_html_905129c85ce26769.png)
 
 Now that the database has been created and we are connected, we need to create a table in our database that will line up with our Excel data file.
+
 
 ## 8. Creating a table in our database via migrations
 
@@ -236,6 +244,7 @@ and then if we click on the **Structure** tab you should see this:
 
 ![](RackMultipart20200425-4-1tqgdeb_html_90d358f049784e34.png)
 
+
 ## 9. Set up a Route
 
 Now we need to set up a resource route in our **routes/web.php** file for our crud application, which means that we want to have a route to allow users to get to our import web page where they will be able to import the excel file. We will create that page soon. For now we will set up the route.
@@ -243,6 +252,7 @@ Now we need to set up a resource route in our **routes/web.php** file for our cr
 Add the following line to the **routes/web.php** file under the **debug** route at the end of the file.
 
 ![](RackMultipart20200425-4-1tqgdeb_html_d37d0bbaa68a6bc8.png)
+
 
 ## 10. Set up a Model
 
@@ -303,6 +313,7 @@ class Student extends Authenticatable
 }
 ```
 
+
 ## 11. Create a Controller
 
 Now we need to create **MyController** by extending the **controller** class in **vhours/app/Http/Controllers/MyController.php**.
@@ -340,6 +351,7 @@ class MyController extends Controller
 
 }
 ```
+
 
 ## 12. Create a View
 
@@ -380,6 +392,7 @@ And finally, we need to create our html form to allow users to import a file. Th
 
 </html>
 ```
+
 
 ## 13. Run the app
 

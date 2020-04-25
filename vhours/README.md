@@ -422,14 +422,14 @@ After you click the Import User Data button, you should return to the form again
 
 ![](RackMultipart20200425-4-1tqgdeb_html_f71dde573c2d92e2.png)
 
-**The import is complete! Congratulations!!!**
+### **The import is complete! Congratulations!!!**
 
 You have now officially created a Laravel 7 application that will import an Excel file and populate the respective database table.
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
 
-# **Recap:**
+## **Recap:**
 
 1. Create a new Laravel 7 application
 2. Install Maatwebsite package

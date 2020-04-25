@@ -24,7 +24,7 @@ Go ahead and create a new Laravel application and point the local server to your
 
 I named my new Laravel application **vhours**
 
-![](image/1.png "Optional title attribute")
+![alte-text](images/1.png)
 
 ![](RackMultipart20200425-4-1tqgdeb_html_8b09b34cafb52ee5.png)
 

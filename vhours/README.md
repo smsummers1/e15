@@ -428,9 +428,9 @@ You have now officially created a Laravel 7 application that will import an Exce
 12. Run the app
 
 # ERRORS
-## Below are some of the errors that may come up when you run your app and their solutions are below.
+### Below are some of the errors that may come up when you run your app and their solutions are below.
 
-**Error: Permission Denied**
+### **Error: Permission Denied**
 
 ![](RackMultipart20200425-4-1tqgdeb_html_32d6cc7ba507d616.png)
 
@@ -448,13 +448,14 @@ Notice my example below is for a Mac. If you have a windows machine you may not 
 
 ![](RackMultipart20200425-4-1tqgdeb_html_970e01d17ede92bb.png)
 
-**Error: Unable to create file**
+### **Error: Unable to create file**
 
 \ ![](RackMultipart20200425-4-1tqgdeb_html_3336b72be46c44f9.png)
 
 Went into **config/excel.php** and change the path for temporary storage from **sys\_get\_temp\_dir()** to **storage\_path().** This sets the temporary folder to your storage path which has the proper permissions. Notice in the image below I commented out the first local\_path so the only local\_path that is being executed is the second one.
 
 ![](RackMultipart20200425-4-1tqgdeb_html_94785e580477f5ae.png)
+
 
 ## Resources
 

@@ -31,17 +31,21 @@ To get our applications to import Excel files to our database we are going to ne
 
 To install the Maatwebsite package we will use our PHP dependency manager tool [Composer](https://getcomposer.org/).
 
+```
 $ composer require maatwebsite/excel
+```
 
 ![](RackMultipart20200425-4-1tqgdeb_html_1fc5aa1a9d6feebd.png) ![](RackMultipart20200425-4-1tqgdeb_html_ff31f92b40313be9.gif)
 
 Once the package has generated successfully, check the **composer.json** file to make sure you see the **maatwebsite/excel** line that is highlighted below. It should be listed under the **&quot;require&quot;** area of the file.
 
+```
 $ cat composer.json
+```
 
 ![](RackMultipart20200425-4-1tqgdeb_html_b0d517f50d4d83a7.png) ![](RackMultipart20200425-4-1tqgdeb_html_17d832186f4bbefb.gif)
 
-_File Snippet 1 - You should see &quot;maatwebsite/excel&quot;: &quot;^3.1&quot;_
+_You should see &quot;maatwebsite/excel&quot;: &quot;^3.1&quot;_
 
 ## 3. Add service provider and alias to your config/app.php file
 
@@ -56,22 +60,17 @@ $ nano app.php
 ```
 
 ```
-&#39;providers&#39; =\&gt; [
+'providers' =>; [
 
-....
-
-Maatwebsite\Excel\ExcelServiceProvider::class,
+    Maatwebsite\Excel\ExcelServiceProvider::class,
 
 ],
 ```
 
 ```
+'aliases' => [
 
-&#39;aliases&#39; =\&gt; [
-
-....
-
-&#39;Excel&#39; =\&gt; Maatwebsite\Excel\Facades\Excel::class,
+    'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
 ],
 ```
@@ -80,7 +79,9 @@ Maatwebsite\Excel\ExcelServiceProvider::class,
 
 Use the command below to create a new file named **config/excel.php**. You will be prompted to choose the provider from a list to publish. Be sure to choose the **Provider: Maatwebsite\Excel\ExcelServiceProvider**
 
+```
 $ php artisan vendor:publish
+```
 
 ![](RackMultipart20200425-4-1tqgdeb_html_f8fbbdcfb1de4513.png)
 
@@ -94,7 +95,7 @@ Create the database via phpMyAdmin
 
 Turn on your XAMPP web server and then click the **start all** button.
 
-**Note** : Feel free to only start the MySQL database and the Apache web server if you want. I just prefer to start them all since it is just one click and it won&#39;t hurt or noticeably slow anything down to have the ProFTPD running along-side the others even though we aren&#39;t going to use it.
+**Note:** Feel free to only start the MySQL database and the Apache web server if you want. I just prefer to start them all since it is just one click and it won&#39;t hurt or noticeably slow anything down to have the ProFTPD running along-side the others even though we aren&#39;t going to use it.
 
 Open a browser and type in the URL [http://localhost/phpmyadmin/](http://localhost/phpmyadmin/)
 
@@ -129,42 +130,27 @@ Go ahead and set the following database configurations as you see below. Notice 
 Put the following code in your **routes/web.php** file.
 
 ```
-Route::get(&#39;/debug&#39;, function () {
+Route::get('/debug', function () {
 
-$debug = [
-
-&#39;Environment&#39; =\&gt; App::environment(),
-
+        $debug = ['Environment' => App::environment(),
 ];
 
-/\*
-
+/*
 The following commented out line will print your MySQL credentials.
-
 Uncomment this line only if you&#39;re facing difficulties connecting to the
-
 database and you need to confirm your credentials. When you&#39;re done
-
 debugging, comment it back out so you don&#39;t accidentally leave it
-
 running on your production server, making your credentials public.
+*/
 
-\*/
-
-#$debug[&#39;MySQL connection config&#39;] = config(&#39;database.connections.mysql&#39;);
+#$debug['MySQL connection config'] = config('database.connections.mysql');
 
 try {
-
-$databases = DB::select(&#39;SHOW DATABASES;&#39;);
-
-$debug[&#39;Database connection test&#39;] = &#39;PASSED&#39;;
-
-$debug[&#39;Databases&#39;] = array\_column($databases, &#39;Database&#39;);
-
+    $databases = DB::select('SHOW DATABASES;');
+    $debug['Database connection test'] = 'PASSED';
+    $debug['Databases'] = array_column($databases, 'Database');
 } catch (Exception $e) {
-
-$debug[&#39;Database connection test&#39;] = &#39;FAILED: &#39; . $e-\&gt;getMessage();
-
+    $debug['Database connection test'] = 'FAILED:' . $e->getMessage();
 }
 
 dump($debug);
@@ -206,37 +192,27 @@ To code our new migration file correctly we need to check out the data we want t
 
 We need to code the migration to create the fields/columns in the database table **students** to correlate to the columns in the Excel data file called **studentData.xlsx** above.
 
-**Note** : You must delete the heading row 1 before you import the file, but I left it there for you to see how each column matches up to the field/column in the database.
+**Note:** You must delete the heading row 1 before you import the file, but I left it there for you to see how each column matches up to the field/column in the database.
 
 Now that you have looked over the above Excel file, open the **create\_students\_table.php** migration file.
 
-**FYI** : Notice that there is a timestamp and a number prefixing the migration filename. I will usually leave that prefix off when referring to a migration file.
+**FYI:** Notice that there is a timestamp and a number prefixing the migration filename. I will usually leave that prefix off when referring to a migration file.
 
 Below are the changes that need to be made to the file so that the fields/columns in the studentData.xlsx file line up with the fields/columns in the students table.
 
-**Note** : The id() and the timestamps() functions listed in the code below will auto generate values and will not cause an issue when we do our import. Also, a database tool that we utilize in our Laravel applications called [Eloquent](https://laravel.com/docs/7.x/eloquent#introduction) is expecting to see these fields in the table. If they are not there, Eloquent will not work properly.
+**Note:** The id() and the timestamps() functions listed in the code below will auto generate values and will not cause an issue when we do our import. Also, a database tool that we utilize in our Laravel applications called [Eloquent](https://laravel.com/docs/7.x/eloquent#introduction) is expecting to see these fields in the table. If they are not there, Eloquent will not work properly.
 
 ```
 publicfunction up()
-
 {
-
-Schema::create(&#39;students&#39;, function (Blueprint $table) {
-
-$table-\&gt;id();
-
-$table-\&gt;timestamps();
-
-$table-\&gt;string(&#39;student\_name&#39;, 100);
-
-$table-\&gt;smallInteger(&#39;volunteer\_hours&#39;)-\&gt;nullable();
-
-$table-\&gt;string(&#39;homeroom&#39;, 100)-\&gt;nullable();
-
-$table-\&gt;string(&#39;street\_address&#39;, 100)-\&gt;nullable();
-
-});
-
+    Schema::create('students', function (Blueprint $table) {
+        $table->id();
+        $table->timestamps();
+        $table->string('student\_name', 100);
+        $table->smallInteger('volunteer\_hours')->nullable();
+        $table->string('homeroom', 100)->nullable();
+        $table->string('street\_address', 100)->nullable();
+    });
 }
 ```
 
@@ -272,7 +248,9 @@ Add the following line to the **routes/web.php** file under the **debug** route 
 
 Now we need to create an **import** class so we can start creating the ability to import our Excel data file. Maatwebsite package provides a way to build an import class. We will need to use this in our controller. Run the following command.
 
+```
 $ php artisan make:import StudentsImport –-model=Student
+```
 
 ![](RackMultipart20200425-4-1tqgdeb_html_d9ecb8ad29f6bf02.png)
 
@@ -281,22 +259,14 @@ This should create a **StudentsImport.php** file in the **app/Imports** director
 Now we need to edit this file to reflect the data that will be imported from the Excel data file.
 
 ```
-publicfunction model(array $row)
-
+public function model(array $row)
 {
-
-returnnew Student([
-
-&#39;student\_name&#39; =\&gt; $row[0],
-
-&#39;volunteer\_hours&#39; =\&gt; $row[1],
-
-&#39;homeroom&#39; =\&gt; $row[2],
-
-&#39;street\_address&#39; =\&gt; $row[3],
-
-]);
-
+    return new Student([
+        'student_name' => $row[0],
+        'volunteer_hours' => $row[1],
+        'homeroom' => $row[2],
+        'street_address' => $row[3],
+    ]);
 }
 ```
 
@@ -307,37 +277,28 @@ Navigate to the app directory and manually create a Student.php file. Then open 
 Your Student.php file should look like this…..
 
 ```
-\&lt;?php
+<?php
 
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
 use Illuminate\Notifications\Notifiable;
 
 class Student extends Authenticatable
-
 {
 
-use Notifiable;
+    use Notifiable;
 
-/\*\*
+    /**
+    * The attributes that are mass assignable.
+    *
+    * @vararray
+    */
 
-\* The attributes that are mass assignable.
-
-\*
-
-\* @vararray
-
-\*/
-
-protected $fillable = [
-
-&#39;student\_name&#39;, &#39;volunteer\_hours&#39;, &#39;homeroom&#39;, &#39;street\_address&#39;
-
-];
+    protected $fillable = [
+        'student\_name', 'volunteer\_hours', 'homeroom', 'street\_address'
+    ];
 
 }
 ```
@@ -349,49 +310,33 @@ Now we need to create **MyController** by extending the **controller** class in 
 We will create the import request logic and return response here. Go ahead and manually create the **MyController.php** file in the **Controllers directory** and write the following code in the file. Feel free to copy and paste the code below.
 
 ```
-\&lt;?php
+<?php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Imports\StudentsImport;
-
 use Maatwebsite\Excel\Facades\Excel;
 
 class MyController extends Controller
-
 {
 
-/\*\*
+    /*
+    * @return \Illuminate\Support\Collection
+    */
+    publicfunction importView()
+    {
+        return view('import');
+    }
 
-\* @return \Illuminate\Support\Collection
-
-\*/
-
-publicfunction importView()
-
-{
-
-return view(&#39;import&#39;);
-
-}
-
-/\*\*
-
-\* @return \Illuminate\Support\Collection
-
-\*/
-
-publicfunction import()
-
-{
-
-Excel::import(new StudentsImport,request()-\&gt;file(&#39;file&#39;));
-
-return back();
-
-}
+    /*
+    * @return \Illuminate\Support\Collection
+    */
+    publicfunction import()
+    {
+        Excel::import(new StudentsImport,request()->file('file'));
+        return back();
+    }
 
 }
 ```
@@ -401,53 +346,52 @@ return back();
 And finally, we need to create our html form to allow users to import a file. This new file will be called **import.blade.php** and will be placed in the **vhours/resources/views** directory. Go ahead and navigate to the **views** directory and manually create the **import.blade.php** file. Then put the following code in the file.
 
 ```
-\&lt;!DOCTYPEhtml\&gt;
+<!DOCTYPEhtml>
 
-\&lt;html\&gt;
+<html>
 
-\&lt;head\&gt;
+<head>
+    <title>Laravel 7 Import Excel to MySQL database</title>
 
-\&lt;title\&gt;Laravel 7 Import Excel to MySQL database\&lt;/title\&gt;
+    <linkrel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css"/>
 
-\&lt;linkrel=&quot;stylesheet&quot;href=&quot;https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css&quot;/\&gt;
+</head>
 
-\&lt;/head\&gt;
+<body>
 
-\&lt;body\&gt;
+<divclass="container">
 
-\&lt;divclass=&quot;container&quot;\&gt;
+<divclass="card bg-light mt-3">
 
-\&lt;divclass=&quot;card bg-light mt-3&quot;\&gt;
-
-\&lt;divclass=&quot;card-header&quot;\&gt;
+<divclass="card-header">
 
 Laravel 7 Import Excel to MySQL database
 
-\&lt;/div\&gt;
+</div>
 
-\&lt;divclass=&quot;card-body&quot;\&gt;
+<divclass="card-body">
 
-\&lt;formaction=&quot;{{ route(&#39;import&#39;) }}&quot;method=&quot;POST&quot;enctype=&quot;multipart/form-data&quot;\&gt;
+<formaction="{{ route('import') }}"method="POST"enctype="multipart/form-data">
 
 {{ csrf\_field() }}
 
-\&lt;inputtype=&quot;file&quot;name=&quot;file&quot;class=&quot;form-control&quot;\&gt;
+<inputtype="file"name="file"class="form-control">
 
-\&lt;br\&gt;
+<br>
 
-\&lt;buttonclass=&quot;btn btn-success&quot;\&gt;Import User Data\&lt;/button\&gt;
+<buttonclass="btn btn-success">Import User Data</button>
 
-\&lt;/form\&gt;
+</form>
 
-\&lt;/div\&gt;
+</div>
 
-\&lt;/div\&gt;
+</div>
 
-\&lt;/div\&gt;
+</div>
 
-\&lt;/body\&gt;
+</body>
 
-\&lt;/html\&gt;
+</html>
 ```
 
 ## 13. Run the app
@@ -456,11 +400,11 @@ Go to your **vhours.loc/** page. The import form should look like what you see b
 
 ![](RackMultipart20200425-4-1tqgdeb_html_e12d6846b930c5ff.png)
 
-Let&#39;s see if it works. Go ahead and choose the studentData.xlsx file provided with this tutorial. Then click **Import User Data**.
+Let's see if it works. Go ahead and choose the studentData.xlsx file provided with this tutorial. Then click **Import User Data**.
 
 ![](RackMultipart20200425-4-1tqgdeb_html_af8fc248086de6c1.png)
 
-After you click the Import User Data button, you should return to the form again. Check the database to see the newly imported data in the students&#39; table.
+After you click the Import User Data button, you should return to the form again. Check the database to see the newly imported data in the students' table.
 
 ![](RackMultipart20200425-4-1tqgdeb_html_f71dde573c2d92e2.png)
 

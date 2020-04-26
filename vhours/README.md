@@ -594,6 +594,8 @@ Went into **config/excel.php** and change the path for temporary storage from **
 15. To make sure the data was imported properly you need to click the Browse tab. You should see all the records or rows of data that were in your worksheet.
 16. If you have more worksheets to import you just repeat steps 7 through 15.
 
+![]()
+
 ## How to import Excel spreadsheets using the Excel Import MySQL Data option
 
 1. Open the Excel file you want to import.
@@ -606,6 +608,8 @@ Went into **config/excel.php** and change the path for temporary storage from **
 8. By default, all columns are selected and will be imported, but you can specify which columns you would like imported.
 9. Click import
 10. Now all data is imported, and you should check your MySQL database to make sure that it imported the way you expected.
+
+![]()
 
 ## Raw PHP to import an Excel spreadsheet into a MySQL database
 

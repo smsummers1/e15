@@ -571,6 +571,8 @@ Went into **config/excel.php** and change the path for temporary storage from **
 
 - [https://stackoverflow.com/questions/54500990/could-not-open-var-folders-n-laravel-excel-maatwebsite](https://stackoverflow.com/questions/54500990/could-not-open-var-folders-n-laravel-excel-maatwebsite)
 
+![]()
+
 
 # BONUS INFORMATION:
 

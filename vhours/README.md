@@ -210,19 +210,16 @@ $ php artisan make:migration create\_students\_table --create=students
 ```
 
 <img src='images/14.png' width='550'>
-
 ![]()
 
 Let&#39;s go check and make sure it was created. The new migration file will be in **vhours/database/migrations** directory.
 
 <img src='images/15.png' width='700'>
-
 ![]()
 
 To code our new migration file correctly we need to check out the data we want to import into our table first. Below is an example Excel file that we will be practicing with for our application. Notice the column headings and the content in each column.
 
 <img src='images/16.png' width='700'>
-
 ![]()
 
 We need to set up the migration file to create the fields/columns in the database table **students** to correlate with the columns in the Excel spreadsheet called **studentData.xlsx** above.  You **must** delete the heading row 1 before you import the file.  I left it there for you to see how each column matches up to the field/column in the database.
@@ -257,23 +254,19 @@ $ php artisan migrate:fresh
 <img src='images/17.png' width='600'>
 
 ![]()
-
 Let&#39;s go check phpMyAdmin to see if we have our new tables. You should have the same tables I have listed below. We are going to focus our attention on the students table.
 
 <img src='images/18.png' width='700'>
-
 ![]()
 
 Click on the **vhours** database in the left-hand column and you should see 4 tables appear in the center of the screen one of which is our **students** table. Now let&#39;s check to see if it is set up the way we expected. Click on the **students** table and you should see this:
 
 <img src='images/19.png' width='700'>
-
 ![]()
 
 and then if we click on the **Structure** tab you should see this:
 
 <img src='images/20.png' width='700'>
-
 ![]()
 
 
@@ -284,7 +277,6 @@ Now we need to set up a resource route in our **routes/web.php** file for our cr
 Add the following line to the **routes/web.php** file under the **debug** route at the end of the file.
 
 <img src='images/21.png' width='500'>
-
 ![]()
 
 
@@ -296,7 +288,6 @@ Now we need to create an **import** class so we can start creating the ability t
 $ php artisan make:import StudentsImport –-model=Student
 ```
 <img src='images/22.png' width='600'>
-
 ![]()
 
 This should create a **StudentsImport.php** file in the **app/Imports** directory. Let&#39;s go make sure this file was generated. Go ahead and open the **StudentsImport.php file**.
@@ -388,7 +379,6 @@ class MyController extends Controller
 
 }
 ```
-
 ![]()
 
 
@@ -431,7 +421,6 @@ And finally, we need to create our html form to allow users to import a file. Th
 
 </html>
 ```
-
 ![]()
 
 
@@ -440,19 +429,16 @@ And finally, we need to create our html form to allow users to import a file. Th
 Go to your **vhours.loc/** page. The import form should look like what you see below.
 
 <img src='images/23.png' width='700'>
-
 ![]()
 
 Let's see if it works. Go ahead and choose the studentData.xlsx file provided with this tutorial. Then click **Import User Data**.
 
 <img src='images/24.png' width='700'>
-
 ![]()
 
 After you click the Import User Data button, you should return to the form again. Check the database to see the newly imported data in the students' table.
 
 <img src='images/25.png' width='700'>
-
 ![]()
 
 ### **The import is complete! Congratulations!!!**

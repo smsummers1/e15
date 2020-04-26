@@ -505,13 +505,13 @@ If you end up with the chmod errors like you see below you may need to use the a
 
 Notice my example below is for a Mac. If you have a windows machine you may not have these issues since there is extensive read and write access to local paths.
 
-<img src='images/27.png' width='900'>
+<img src='images/27.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_970e01d17ede92bb.png)
 
 ### **Error: Unable to create file**
 
-<img src='images/28.png' width='800'>
+<img src='images/28.png' width='700'>
 
 \ ![](RackMultipart20200425-4-1tqgdeb_html_3336b72be46c44f9.png)
 

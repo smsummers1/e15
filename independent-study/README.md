@@ -63,7 +63,7 @@ The service provider is the central place of all Laravel application bootstrappi
 Open the **config/app.php** file and add the line you see below in the **providers section** of the file.  (You can copy and paste the lines below).
 
 ```php
-'providers' =>; [
+'providers' => [
 
     Maatwebsite\Excel\ExcelServiceProvider::class,
 
@@ -261,7 +261,7 @@ Below are the changes that need to be made to the file so that the fields/column
 **Note:** The id() and the timestamps() functions listed in the code below will auto generate values and will not cause an issue when we do our import. Also, a database tool that we utilize in our Laravel applications called [Eloquent](https://laravel.com/docs/7.x/eloquent#introduction) is expecting to see these fields in the table. If they are not there, Eloquent will not work properly.
 
 ```php
-publicfunction up()
+public function up()
 {
     Schema::create('students', function (Blueprint $table) {
         $table->id();
@@ -302,13 +302,13 @@ and then if we click on the **Structure** tab you should see this:
 
 All database tables in Laravel have a corresponding class, known as a **Model**, that will allow us to interact with the specified table.  Models give us the ability to execute CRUD operations.  The Model we are building is for the only table we will have....**students**.
 
-The main thing we are trying to accomplish is importing our Excel spreadsheet into our students table in the vhours database.  To do this we will build an **import** model to have the ability to import our Excel spreadsheet. Maatwebsite package provides a way to build an import class. We will need to use this in our controller which we will set up next. For now run the following command to create the **StudentImport.php** file in the **app/Imports** directory.
+The main thing we are trying to accomplish is importing our Excel spreadsheet into our students table in the vhours database.  To do this we will build an **import** model to have the ability to import our Excel spreadsheet. Maatwebsite package provides a way to build an import class. We will need to use this in our controller which we will set up next. For now run the following command to create the **StudentsImport.php** file in the **app/Imports** directory.
 
 ```
 $ php artisan make:import StudentsImport –-model=Student
 ```
 
-Let&#39;s go make sure the **app/Imports/StudenImport.php** file was generated. 
+Let&#39;s go make sure the **app/Imports/StudentsImport.php** file was generated. 
 
 Go ahead and open it up.  We need to edit this file so we can import the data from the Excel spreadsheet properly.
 
@@ -324,7 +324,7 @@ public function model(array $row)
 }
 ```
 
-Now we need to generate the **App\Student** use file listed at the top of the **StudentImport.php** file.
+Now we need to generate the **App\Student** use file listed at the top of the **StudentsImport.php** file.
 
 Navigate to the **app** directory and manually create a **Student.php** file. Then open the **User.php** file and copy the contents and paste them into the **Student.php** file. Be sure to change the class name to **Student** instead of **User**. You also need to change the $fillable array to correspond with the fields in the database.
 
@@ -351,7 +351,7 @@ class Student extends Authenticatable
     */
 
     protected $fillable = [
-        'student\_name', 'volunteer\_hours', 'homeroom', 'street\_address'
+        'student_name', 'volunteer_hours', 'homeroom', 'street_address'
     ];
 
 }

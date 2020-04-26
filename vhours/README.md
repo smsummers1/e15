@@ -1,8 +1,8 @@
 # Importing Excel Data
 
-### How to import an Excel data file into a MySQL database utilizing a Laravel tool called Maatwebsite
+### How to import an Excel spreadsheet into a MySQL database utilizing a Laravel tool called Maatwebsite
 
-Up until now, all our data has come from user input, a seeder file, or just recently the testing tool Dusk. My final project is the beginning of a volunteer hour tracking software application that will have data entered via excel files. I wanted to learn how to allow a user to input a file via an html form that would then populate the database. Thus, my search for the best way to import an Excel data file into a MySQL database.
+Up until now, all our data has come from user input, a seeder file, or just recently the testing tool Dusk. My final project is the beginning of a volunteer hour tracking software application that will have data entered via excel files. I wanted to learn how to allow a user to input a file via an html form that would then populate the database. Thus, my search for the best way to import an Excel spreadsheet into a MySQL database.
 
 What I found was that there are several ways to import an Excel spreadsheet into a MySQL database.
 
@@ -42,13 +42,13 @@ $ composer require maatwebsite/excel
 
 ![](RackMultipart20200425-4-1tqgdeb_html_1fc5aa1a9d6feebd.png) 
 
-Once the package has generated successfully, check the **composer.json** file to make sure you see the **maatwebsite/excel** line that is highlighted below. It should be listed under the **&quot;require&quot;** area of the file.
+Once the package has generated successfully, check the **composer.json** file to make sure you see the **maatwebsite/excel** line that you see in the image below. It should be listed under the **&quot;require&quot;** area of the file.
 
 ```
 $ cat composer.json
 ```
 <img src='images/3.png' width='300'>
-_You should see &quot;maatwebsite/excel&quot;: &quot;^3.1&quot;_
+You should see &quot;maatwebsite/excel&quot;: &quot;^3.1&quot;
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
@@ -201,7 +201,7 @@ You should see **vhours** in the array of databases. This means you are connecte
 
 ![](RackMultipart20200425-4-1tqgdeb_html_905129c85ce26769.png)
 
-Now that the database has been created and we are connected, we need to create a table in our database that will line up with our Excel data file.
+Now that the database has been created and we are connected, we need to create a table in our database that will line up with our Excel spreadsheet.
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
@@ -234,7 +234,7 @@ To code our new migration file correctly we need to check out the data we want t
 
 ![](RackMultipart20200425-4-1tqgdeb_html_2334f618f45df8c1.png)
 
-We need to code the migration to create the fields/columns in the database table **students** to correlate to the columns in the Excel data file called **studentData.xlsx** above.
+We need to code the migration to create the fields/columns in the database table **students** to correlate to the columns in the Excel spreadsheet called **studentData.xlsx** above.
 
 **Note:** You must delete the heading row 1 before you import the file, but I left it there for you to see how each column matches up to the field/column in the database.
 
@@ -301,7 +301,7 @@ Add the following line to the **routes/web.php** file under the **debug** route 
 
 ## 10. Set up a Model
 
-Now we need to create an **import** class so we can start creating the ability to import our Excel data file. Maatwebsite package provides a way to build an import class. We will need to use this in our controller. Run the following command.
+Now we need to create an **import** class so we can start creating the ability to import our Excel spreadsheet. Maatwebsite package provides a way to build an import class. We will need to use this in our controller. Run the following command.
 
 ```
 $ php artisan make:import StudentsImport –-model=Student
@@ -312,7 +312,7 @@ $ php artisan make:import StudentsImport –-model=Student
 
 This should create a **StudentsImport.php** file in the **app/Imports** directory. Let&#39;s go make sure this file was generated. Go ahead and open the **StudentsImport.php file**.
 
-Now we need to edit this file to reflect the data that will be imported from the Excel data file.
+Now we need to edit this file to reflect the data that will be imported from the Excel spreadsheet.
 
 ```php
 public function model(array $row)

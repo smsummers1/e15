@@ -26,7 +26,7 @@ I named my new Laravel application **vhours**
 
 <img src='images/1.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_8b09b34cafb52ee5.png)
+![]()
 
 
 ## 2. Install Maatwebsite package
@@ -40,7 +40,7 @@ $ composer require maatwebsite/excel
 ```
 <img src='images/2.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_1fc5aa1a9d6feebd.png) 
+![]()
 
 Once the package has generated successfully, check the **composer.json** file to make sure you see the **maatwebsite/excel** line that you see in the image below. It should be listed under the **&quot;require&quot;** area of the file.
 
@@ -50,8 +50,7 @@ $ cat composer.json
 <img src='images/3.png' width='300'>
 You should see &quot;maatwebsite/excel&quot;: &quot;^3.1&quot;
 
-![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
-
+![]()
 
 ## 3. Add service provider and alias to your config/app.php file
 
@@ -80,8 +79,7 @@ Open the **config/app.php** file and add the line you see below in the **provide
 
 <img src='images/5.png' width='500'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
-
+![]()
 
 ## 4. Now we Publish the configuration file with the following command
 
@@ -93,14 +91,13 @@ $ php artisan vendor:publish
 
 <img src='images/6.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_f8fbbdcfb1de4513.png)
+![]()
 
 Check to make sure that the **config/excel.php** file was created
 
 <img src='images/7.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_90609fb25283932e.png)
-
+![]()
 
 ## 5. Prepare the database
 
@@ -116,7 +113,7 @@ You should see a screen that looks like what you see below. You might not have a
 
 <img src='images/8.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_f2240975acb5c54.png)
+![]()
 
 We need to create a new database. For consistency, we will name our database the same as our application.
 
@@ -124,13 +121,13 @@ Click on the **Databases** tab at the top just above the heading General setting
 
 <img src='images/9.png' width='500'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_c80e4f0b41a204.png)
+![]()
 
 Then type in the name of your database. Set the database name is to **vhours** and the collation to **utf8mb4\_general\_ci.** Then click the **create** button.
 
 <img src='images/10.png' width='500'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_dd8328ccde62fa10.png)
+![]()
 
 You should now see the **vhours** database listed on the left-hand side of the phpMyAdmin screen as you see highlighted below.
 
@@ -138,7 +135,7 @@ And again, you may not have as many databases as I have. Just be sure that you h
 
 <img src='images/11.png' width='200'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+![]()
 
 
 ## 6. Configure Database Environment
@@ -149,7 +146,7 @@ Go ahead and set the following database configurations as you see below. Notice 
 
 <img src='images/12.png' width='200'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+![]()
 
 
 ## 7. Test our connection
@@ -193,11 +190,11 @@ You should see **vhours** in the array of databases. This means you are connecte
 
 <img src='images/13.png' width='325' height='400'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_905129c85ce26769.png)
+![]()
 
 Now that the database has been created and we are connected, we need to create a table in our database that will line up with our Excel spreadsheet.
 
-![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+![]()
 
 
 ## 8. Creating a table in our database via migrations
@@ -214,19 +211,19 @@ $ php artisan make:migration create\_students\_table --create=students
 
 <img src='images/14.png' width='550'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_1c4e5995e11f2d86.png)
+![]()
 
 Let&#39;s go check and make sure it was created. The new migration file will be in **vhours/database/migrations** directory.
 
 <img src='images/15.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_e702f5a759aea14b.png)
+![]()
 
 To code our new migration file correctly we need to check out the data we want to import into our table first. Below is an example Excel file that we will be practicing with for our application. Notice the column headings and the content in each column.
 
 <img src='images/16.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_2334f618f45df8c1.png)
+![]()
 
 We need to set up the migration file to create the fields/columns in the database table **students** to correlate with the columns in the Excel spreadsheet called **studentData.xlsx** above.  You **must** delete the heading row 1 before you import the file.  I left it there for you to see how each column matches up to the field/column in the database.
 
@@ -259,25 +256,25 @@ $ php artisan migrate:fresh
 ```
 <img src='images/17.png' width='600'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_9553587631451459.png)
+![]()
 
 Let&#39;s go check phpMyAdmin to see if we have our new tables. You should have the same tables I have listed below. We are going to focus our attention on the students table.
 
 <img src='images/18.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_6b714d0e7955e975.png)
+![]()
 
 Click on the **vhours** database in the left-hand column and you should see 4 tables appear in the center of the screen one of which is our **students** table. Now let&#39;s check to see if it is set up the way we expected. Click on the **students** table and you should see this:
 
 <img src='images/19.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_f2f95ae39570c056.png)
+![]()
 
 and then if we click on the **Structure** tab you should see this:
 
 <img src='images/20.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_90d358f049784e34.png)
+![]()
 
 
 ## 9. Set up a Route
@@ -288,7 +285,7 @@ Add the following line to the **routes/web.php** file under the **debug** route 
 
 <img src='images/21.png' width='500'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_d37d0bbaa68a6bc8.png)
+![]()
 
 
 ## 10. Set up a Model
@@ -300,7 +297,7 @@ $ php artisan make:import StudentsImport –-model=Student
 ```
 <img src='images/22.png' width='600'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_d9ecb8ad29f6bf02.png)
+![]()
 
 This should create a **StudentsImport.php** file in the **app/Imports** directory. Let&#39;s go make sure this file was generated. Go ahead and open the **StudentsImport.php file**.
 
@@ -351,7 +348,7 @@ class Student extends Authenticatable
 }
 ```
 
-![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+![]()
 
 
 ## 11. Create a Controller
@@ -392,7 +389,7 @@ class MyController extends Controller
 }
 ```
 
-![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+![]()
 
 
 ## 12. Create a View
@@ -435,7 +432,7 @@ And finally, we need to create our html form to allow users to import a file. Th
 </html>
 ```
 
-![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+![]()
 
 
 ## 13. Run the app
@@ -444,25 +441,25 @@ Go to your **vhours.loc/** page. The import form should look like what you see b
 
 <img src='images/23.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_e12d6846b930c5ff.png)
+![]()
 
 Let's see if it works. Go ahead and choose the studentData.xlsx file provided with this tutorial. Then click **Import User Data**.
 
 <img src='images/24.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_af8fc248086de6c1.png)
+![]()
 
 After you click the Import User Data button, you should return to the form again. Check the database to see the newly imported data in the students' table.
 
 <img src='images/25.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_f71dde573c2d92e2.png)
+![]()
 
 ### **The import is complete! Congratulations!!!**
 
 You have now officially created a Laravel 7 application that will import an Excel file and populate the respective database table.
 
-![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+![]()
 
 
 ## **Recap:**
@@ -481,7 +478,7 @@ You have now officially created a Laravel 7 application that will import an Exce
 12. Create the View
 13. Run the app
 
-![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
+![]()
 
 
 # ERRORS
@@ -491,7 +488,7 @@ You have now officially created a Laravel 7 application that will import an Exce
 
 <img src='images/26.png' width='750'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_32d6cc7ba507d616.png)
+![]()
 
 If you get this error it means that you forgot to set your permissions or there are new permissions that need to be set.
 
@@ -507,19 +504,19 @@ Notice my example below is for a Mac. If you have a windows machine you may not 
 
 <img src='images/27.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_970e01d17ede92bb.png)
+![]()
 
 ### **Error: Unable to create file**
 
 <img src='images/28.png' width='700'>
 
-\ ![](RackMultipart20200425-4-1tqgdeb_html_3336b72be46c44f9.png)
+![]()
 
 Went into **config/excel.php** and change the path for temporary storage from **sys\_get\_temp\_dir()** to **storage\_path().** This sets the temporary folder to your storage path which has the proper permissions. Notice in the image below I commented out the first local\_path so the only local\_path that is being executed is the second one.
 
 <img src='images/29.png' width='600'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_94785e580477f5ae.png)
+![]()
 
 
 ## Resources

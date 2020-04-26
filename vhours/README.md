@@ -489,7 +489,7 @@ You have now officially created a Laravel 7 application that will import an Exce
 
 ### **Error: Permission Denied**
 
-<img src='images/26.png' width='700'>
+<img src='images/26.png' width='750'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_32d6cc7ba507d616.png)
 
@@ -503,21 +503,21 @@ Once you double check this and make sure that your permissions are set properly,
 
 If you end up with the chmod errors like you see below you may need to use the administrative command to change the file permissions.
 
-Notice my example below is for a Mac. If you have a windows machine you may not have these issues since there extensive read and write acess to local paths.
+Notice my example below is for a Mac. If you have a windows machine you may not have these issues since there is extensive read and write access to local paths.
 
-<img src='images/27.png' width='700'>
+<img src='images/27.png' width='800'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_970e01d17ede92bb.png)
 
 ### **Error: Unable to create file**
 
-<img src='images/28.png' width='700'>
+<img src='images/28.png' width='800'>
 
 \ ![](RackMultipart20200425-4-1tqgdeb_html_3336b72be46c44f9.png)
 
 Went into **config/excel.php** and change the path for temporary storage from **sys\_get\_temp\_dir()** to **storage\_path().** This sets the temporary folder to your storage path which has the proper permissions. Notice in the image below I commented out the first local\_path so the only local\_path that is being executed is the second one.
 
-<img src='images/29.png' width='700'>
+<img src='images/29.png' width='600'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_94785e580477f5ae.png)
 

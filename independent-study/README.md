@@ -15,6 +15,8 @@ This tutorial covers the later and we are going to walk through the creation of 
 
 Let&#39;s get started. We have a lot of ground to cover.
 
+![]()
+
 
 ## 1. Create a new Laravel application
 
@@ -94,6 +96,7 @@ While you are still in the **config/app.php** file add the **alias** line in the
 
 ![]()
 
+
 ## 5. Publish Maatwebsite's configuration file
 
 Publishing Maatwebsite's configuration file will copy it to the specified publish location allowing you to easily access the configuration values if needed.  When we publish Maatwebsite's config file, a new file will be created in the config directory called excel.php.  Then the Maatwebsite's config file will be copied over to the new config/excel.php file.
@@ -119,6 +122,7 @@ $ php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider"
 ```
 
 ![]()
+
 
 ## 6. Create the vhours database
 
@@ -489,6 +493,11 @@ If you see what is in the image above your application is working!
 
 You have now officially created a Laravel 7 application that will import an Excel file and populate the respective database table. Amazing work!
 
+## A few things to consider as you move forward with this application
+**1. Validation** - we want to make sure the user is submitting an Excel file and not an SQL injection or other malicious file.  
+**2. Duplicate Data** - It might be important to make sure duplicate data is not being entered.  Right now you can import the same file over and over again and it will keep importing the data into the table.
+**3. Notification** - Right now when you import the file you just return to the form without any notification that your data was imported into the database table.  It would be nice to give the user some sort of information that the data has been imported successfully.
+
 ![]()
 
 
@@ -512,10 +521,10 @@ You have now officially created a Laravel 7 application that will import an Exce
 ![]()
 
 
-## ERRORS
+# ERRORS
 #### Below are some of the errors that may come up when you run your app and their solutions.
 
-### **Error: Permission Denied**
+## **Error: Permission Denied**
 
 <img src='images/26.png' width='750' height='auto'>
 
@@ -537,7 +546,7 @@ Notice my example below is for a Mac. If you have a windows machine you may not 
 
 ![]()
 
-### **Error: Unable to create file**
+## **Error: Unable to create file**
 
 <img src='images/28.png' width='700' height='auto'>
 
@@ -550,7 +559,7 @@ Went into **config/excel.php** and change the path for temporary storage from **
 ![]()
 
 
-## Resources
+# Resources
 
 ### Import Excel to MySQL:
 

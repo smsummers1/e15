@@ -73,7 +73,7 @@ $ nano app.php
 ],
 ```
 
-<img src='images/4.png' width='700'>
+<img src='images/4.png' width='400'>
 
 
 ```php
@@ -142,7 +142,7 @@ You should now see the **vhours** database listed on the left-hand side of the p
 
 And again, you may not have as many databases as I have. Just be sure that you have the **vhours** database listed.
 
-<img src='images/11.png' width='700'>
+<img src='images/11.png' width='300'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
@@ -153,7 +153,7 @@ Now that we have our **vhours** database we need to update the database configur
 
 Go ahead and set the following database configurations as you see below. Notice that the **DB\_PASSWORD** is **empty**. There isn&#39;t anything there because I didn&#39;t set a password. Once you set this file up the way you see below, save and close.
 
-<img src='images/12.png' width='700'>
+<img src='images/12.png' width='200'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
@@ -197,7 +197,7 @@ Now run the following URL in your browser
 
 You should see **vhours** in the array of databases. This means you are connected successfully to the database and ready to move forward.
 
-<img src='images/13.png' width='700'>
+<img src='images/13.png' width='300'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_905129c85ce26769.png)
 

@@ -1,4 +1,4 @@
-# Importing Excel Data                                                 ![](images/0.png)
+# Importing Excel Data  <img src='images/0.png' align="right">
 
 ### How to import an Excel spreadsheet into a MySQL database utilizing a Laravel tool called Maatwebsite 
 

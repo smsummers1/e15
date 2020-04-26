@@ -410,7 +410,9 @@ Now that we have everything set up we need to set up a route in our **routes/web
 
 Add the following line to **routes/web.php** under the **debug** route at the end of the file.
 
-<img src='images/21.png' width='500' height='auto'>
+```php
+Route::post('/import','MyController@import')->name('import');
+```
 
 ![]()
 
@@ -461,7 +463,7 @@ Finally, we need to create a web page that has an html form that will allow user
 
 ## 14. Run the app
 
-After all that work we are now at that exciting moment of seeing if our application will work.  Don't be surprised if there are issues or errors in your code.  When I ran this the first time I had 4 different errors.  As soon as I fixed one then there was another one, and then another, etc.  If you do run into errors, I have a few of the ones I ran into listed below the recap section with solutions.
+After all that work we are now at that exciting moment of seeing if our application will work.  Don't be surprised if there are issues or errors in your code.  When I ran this the first time I had 4 different errors.  As soon as I fixed one, then there was another one, and then another, etc.  If you do run into errors, I have a few of the ones I ran into listed below the recap section with solutions.
 
 No time like the present, let's see if this application will work.  Go to your **vhours.loc/** page. The import form should look like what you see below.
 
@@ -475,7 +477,7 @@ Let's see if it works. Go ahead and choose the **studentData.xlsx** file provide
 
 ![]()
 
-After you click the Import User Data button, you should return to the form again. Check the database to see the newly imported data is in the students table.
+After you click the Import User Data button, you should return to the form again. Now, check the database to see the newly imported data is in the students table.
 
 <img src='images/25.png' width='700' height='auto'>
 

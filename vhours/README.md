@@ -59,12 +59,6 @@ Open the **config/app.php** file and add the line you see below in the **provide
 
 **Note** : Notice that the aliases are in alphabetical order, so be sure to put the **Excel** alias after the **Event** alias.
 
-**Aside** : If you are working in Nano you need to do the following commands after you have finished making all of the changes and are ready to save and close the file: **ctrl+x** to exit, then **y** to save and then finally **enter** to finalize your changes to the current file. You will be prompted for all these responses.
-
-```
-$ nano app.php
-```
-
 ```php
 'providers' =>; [
 
@@ -218,7 +212,7 @@ To start this process we will use the [Artisan](https://laravel.com/docs/7.x/art
 $ php artisan make:migration create\_students\_table --create=students
 ```
 
-<img src='images/14.png' width='700'>
+<img src='images/14.png' width='550'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_1c4e5995e11f2d86.png)
 
@@ -234,9 +228,7 @@ To code our new migration file correctly we need to check out the data we want t
 
 ![](RackMultipart20200425-4-1tqgdeb_html_2334f618f45df8c1.png)
 
-We need to code the migration to create the fields/columns in the database table **students** to correlate to the columns in the Excel spreadsheet called **studentData.xlsx** above.
-
-**Note:** You must delete the heading row 1 before you import the file, but I left it there for you to see how each column matches up to the field/column in the database.
+We need to set up the migration file to create the fields/columns in the database table **students** to correlate with the columns in the Excel spreadsheet called **studentData.xlsx** above.  You **must** delete the heading row 1 before you import the file.  I left it there for you to see how each column matches up to the field/column in the database.
 
 Now that you have looked over the above Excel file, open the **create\_students\_table.php** migration file.
 
@@ -265,7 +257,7 @@ Now we are going to set up our tables in our **vhours** database by running our 
 ```
 $ php artisan migrate:fresh
 ```
-<img src='images/17.png' width='500'>
+<img src='images/17.png' width='600'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_9553587631451459.png)
 
@@ -306,7 +298,7 @@ Now we need to create an **import** class so we can start creating the ability t
 ```
 $ php artisan make:import StudentsImport –-model=Student
 ```
-<img src='images/22.png' width='500'>
+<img src='images/22.png' width='600'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_d9ecb8ad29f6bf02.png)
 
@@ -497,6 +489,8 @@ You have now officially created a Laravel 7 application that will import an Exce
 
 ### **Error: Permission Denied**
 
+<img src='images/26.png' width='700'>
+
 ![](RackMultipart20200425-4-1tqgdeb_html_32d6cc7ba507d616.png)
 
 If you get this error it means that you forgot to set your permissions or there are new permissions that need to be set.
@@ -511,13 +505,19 @@ If you end up with the chmod errors like you see below you may need to use the a
 
 Notice my example below is for a Mac. If you have a windows machine you may not have these issues since there extensive read and write acess to local paths.
 
+<img src='images/27.png' width='700'>
+
 ![](RackMultipart20200425-4-1tqgdeb_html_970e01d17ede92bb.png)
 
 ### **Error: Unable to create file**
 
+<img src='images/28.png' width='700'>
+
 \ ![](RackMultipart20200425-4-1tqgdeb_html_3336b72be46c44f9.png)
 
 Went into **config/excel.php** and change the path for temporary storage from **sys\_get\_temp\_dir()** to **storage\_path().** This sets the temporary folder to your storage path which has the proper permissions. Notice in the image below I commented out the first local\_path so the only local\_path that is being executed is the second one.
+
+<img src='images/29.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_94785e580477f5ae.png)
 
@@ -574,7 +574,7 @@ Went into **config/excel.php** and change the path for temporary storage from **
 
 # BONUS INFORMATION:
 
-# How to manually import excel data into a MySQL database
+## How to manually import excel data into a MySQL database
 
 1. Open Excel file
 2. Select the worksheet you want to import (you can only import one worksheet at a time)
@@ -593,7 +593,7 @@ Went into **config/excel.php** and change the path for temporary storage from **
 15. To make sure the data was imported properly you need to click the Browse tab. You should see all the records or rows of data that were in your worksheet.
 16. If you have more worksheets to import you just repeat steps 7 through 15.
 
-# How to import Excel spreadsheets using the Excel Import MySQL Data option
+## How to import Excel spreadsheets using the Excel Import MySQL Data option
 
 1. Open the Excel file you want to import.
 2. Select the Data tab.
@@ -606,7 +606,7 @@ Went into **config/excel.php** and change the path for temporary storage from **
 9. Click import
 10. Now all data is imported, and you should check your MySQL database to make sure that it imported the way you expected.
 
-# Raw PHP to import an Excel spreadsheet into a MySQL database
+## Raw PHP to import an Excel spreadsheet into a MySQL database
 
 1. Create an html form for user to choose the excel file they want to import
 2. Download and deploy PHP spreadsheet-reader library

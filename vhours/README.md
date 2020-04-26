@@ -1,4 +1,4 @@
-# Importing Excel Data  <img src='images/0.png' align="right">
+# Importing Excel Data  
 
 ### How to import an Excel spreadsheet into a MySQL database utilizing a Laravel tool called Maatwebsite 
 
@@ -7,7 +7,7 @@ Up until now, all our data has come from user input, a seeder file, or just rece
 What I found was that there are several ways to import an Excel spreadsheet into a MySQL database. 
 
 - **manually** import excel data 
-- use the **Excel Import to MySQL** option in Excel,
+- use the **Excel Import to MySQL** option in Excel,<img src='images/0.png' align="right">
 - write **raw php code** using a **spreadsheet-reader library** to import the data 
 - utilize **Laravel** and the **Maatwebsite** package
 

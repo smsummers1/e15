@@ -493,6 +493,9 @@ If you see what is in the image above your application is working!
 
 You have now officially created a Laravel 7 application that will import an Excel file and populate the respective database table. Amazing work!
 
+![]()
+
+
 ## A few things to consider as you move forward with this application
 **1. Validation** - we want to make sure the user is submitting an Excel file and not an SQL injection or other malicious file.  
 **2. Duplicate Data** - It might be important to make sure duplicate data is not being entered.  Right now you can import the same file over and over again and it will keep importing the data into the table.

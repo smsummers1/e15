@@ -24,7 +24,7 @@ Go ahead and create a new Laravel application and point the local server to your
 
 I named my new Laravel application **vhours**
 
-<img src='images/1.png' width='500'>
+<img src='images/1.png' width='600'>
 
 ![alt-text](images/1.png)
 

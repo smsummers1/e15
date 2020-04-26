@@ -197,7 +197,7 @@ Now run the following URL in your browser
 
 You should see **vhours** in the array of databases. This means you are connected successfully to the database and ready to move forward.
 
-<img src='images/13.png' width='400' height='150'>
+<img src='images/13.png' width='400' height='500'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_905129c85ce26769.png)
 

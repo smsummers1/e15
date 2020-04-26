@@ -18,7 +18,7 @@ Let&#39;s get started. We have a lot of ground to cover.
 
 ## 1. Create a new Laravel application
 
-Go ahead and create a new Laravel application and point the local server to your new app called **vhours**. If you don&#39;t remember how to do this follow the instructions at the link below.
+Go ahead and create a new Laravel application and point the local server to your new app called **vhours**. If you don&#39;t remember how to do this follow the instructions at the link below.  Be sure to install the most recent version of Laravel and check to make sure that you are using PHP 7 or higher.  To do this you can type **php -v** into the command line.
 
 [https://hesweb.dev/e15/notes/laravel/new-laravel-app](https://hesweb.dev/e15/notes/laravel/new-laravel-app)
 
@@ -31,7 +31,9 @@ I named my new Laravel application **vhours**
 
 ## 2. Install Maatwebsite package
 
-To get our applications to import Excel files to our database we are going to need an additional Laravel package called Maatwebsite that doesn&#39;t come standard with the framework. We need to install the Maatwebsite package and check that our dependencies are set up correctly for this new package.
+To get our applications to import Excel files to our database we are going to use an additional Laravel package called Maatwebsite that doesn&#39;t come standard with the framework. We need to install the Maatwebsite package and check that our dependencies are set up correctly for this new package.
+
+**Note:** Maatwebsite is built on another tool called PhpSpreadsheet so you will see this package come in with Maatwebsite when you install it.
 
 To install the Maatwebsite package we will use our PHP dependency manager tool [Composer](https://getcomposer.org/).
 
@@ -52,11 +54,11 @@ You should see &quot;maatwebsite/excel&quot;: &quot;^3.1&quot;
 
 ![]()
 
-## 3. Add service provider and alias to your config/app.php file
+## 3. Add Maatwebsite to the Service Provider 
 
-Open the **config/app.php** file and add the line you see below in the **providers section** of the file. Then add the **alias** line in the **aliases section** of the file. (You can copy and paste the lines in the grey boxes below).
+The service provider is the central place of all Laravel application bootstrapping.  When you add this new package to the service provider, you can utilize it throughout the application.  Basically you are plugging in the new tool so you can start using it.  While the documentation states that Maatwebite\Excel\ExcelServiceProvider is auto-discovered and registered by default, we are going to be on the safe side and register it ourselves. 
 
-**Note** : Notice that the aliases are in alphabetical order, so be sure to put the **Excel** alias after the **Event** alias.
+Open the **config/app.php** file and add the line you see below in the **providers section** of the file.  (You can copy and paste the lines below).
 
 ```php
 'providers' =>; [
@@ -68,6 +70,17 @@ Open the **config/app.php** file and add the line you see below in the **provide
 
 <img src='images/4.png' width='500' height='auto'>
 
+
+## 4. Assign Maatwebsite an alias
+
+Laravel comes with a feature called, Class Alias, where you can create an alias for any class you want to work with.  It is much easier to remember an alias than the entire Namespaced Class.  Facades utilize these aliases when we want to utilize a method from our Maatwebsite\Excel\Facades\Excel Namespace class we will just use the alias 'Excel' rather than typing that long Namespace.
+
+The Excel facade is auto-discovered, but again we will go ahead and add the alias just in case.
+
+While you are still in the **config/app.php** file add the **alias** line in the **aliases section**.
+(You can copy and paste the lines below)
+
+**Note** : Notice that the aliases are in alphabetical order, so be sure to put the **Excel** alias after the **Event** alias.
 
 ```php
 'aliases' => [
@@ -81,9 +94,11 @@ Open the **config/app.php** file and add the line you see below in the **provide
 
 ![]()
 
-## 4. Now we Publish the configuration file with the following command
+## 5. Publish Maatwebsite's configuration file
 
-Use the command below to create a new file named **config/excel.php**. You will be prompted to choose the provider from a list to publish. Be sure to choose the **Provider: Maatwebsite\Excel\ExcelServiceProvider**
+Publishing Maatwebsite's configuration file will copy it to the specified publish location allowing you to easily access the configuration values if needed.  When we publish Maatwebsite's config file, a new file will be created in the config directory called excel.php.  Then the Maatwebsite's config file will be copied over to the new config/excel.php file.
+
+Use the command below to start the publishing process.  You will be prompted to choose the provider from a list to publish. Be sure to choose the **Provider: Maatwebsite\Excel\ExcelServiceProvider**
 
 ```
 $ php artisan vendor:publish
@@ -97,9 +112,15 @@ Check to make sure that the **config/excel.php** file was created
 
 <img src='images/7.png' width='700' height='auto'>
 
+**Note:**  There is a quicker way to publish the config file with the following command.  This will skip the part where you are prompted to select the service provider.
+
+```
+$ php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider"
+```
+
 ![]()
 
-## 5. Prepare the database
+## 6. Create the vhours database
 
 Create the database via phpMyAdmin
 
@@ -138,9 +159,9 @@ And again, you may not have as many databases as I have. Just be sure that you h
 ![]()
 
 
-## 6. Configure Database Environment
+## 7. Connect vhours database to the application
 
-Now that we have our **vhours** database we need to update the database configuration in the .env file at the root of the application so that we can connect our application to the database. Open the **vhours/.env** file.
+Now that we have our **vhours** database we need to update the database configuration variables in the .env file at the root of the application so that we can connect our application to the database. Open the **vhours/.env** file.
 
 Go ahead and set the following database configurations as you see below. Notice that the **DB\_PASSWORD** is **empty**. There isn&#39;t anything there because I didn&#39;t set a password. Once you set this file up the way you see below, save and close.
 
@@ -149,7 +170,7 @@ Go ahead and set the following database configurations as you see below. Notice 
 ![]()
 
 
-## 7. Test our connection
+## 8. Test the connection
 
 Put the following code in your **routes/web.php** file.
 
@@ -197,7 +218,7 @@ Now that the database has been created and we are connected, we need to create a
 ![]()
 
 
-## 8. Creating a table in our database via migrations
+## 9. Create database table via migrations
 
 While we could manually create our table via phpMyAdmin, we are going to opt to utilize [migrations](https://medium.com/@rakshithvasudev/laravel-migrations-what-are-they-why-use-them-how-to-use-203769a917c3). They are a necessity when creating a database driven app. Check out the notes to remind yourself just how powerful migrations are and why they are a necessity.
 
@@ -254,6 +275,7 @@ Now we are going to set up our tables in our **vhours** database by running our 
 ```
 $ php artisan migrate:fresh
 ```
+
 <img src='images/17.png' width='600' height='auto'>
 
 ![]()
@@ -276,21 +298,11 @@ and then if we click on the **Structure** tab you should see this:
 
 ![]()
 
-
-## 9. Set up a Route
-
-Now we need to set up a resource route in our **routes/web.php** file for our crud application, which means that we want to have a route to allow users to get to our import web page where they will be able to import the excel file. We will create that page soon. For now we will set up the route.
-
-Add the following line to the **routes/web.php** file under the **debug** route at the end of the file.
-
-<img src='images/21.png' width='500' height='auto'>
-
-![]()
-
-
 ## 10. Set up a Model
 
-Now we need to create an **import** class so we can start creating the ability to import our Excel spreadsheet. Maatwebsite package provides a way to build an import class. We will need to use this in our controller. Run the following command.
+All database tables in Laravel have a corresponding class, known as a **Model**, that will allow us to interact with the specified table.  Models give us the ability to execute CRUD operations.  The Model we are building is for the only table we will have....**students**.
+
+The main thing we are trying to accomplish is importing our Excel spreadsheet into our students table in the vhours database.  To do this we will build an **import** model to have the ability to import our Excel spreadsheet. Maatwebsite package provides a way to build an import class. We will need to use this in our controller which we will set up next. For now run the following command to create the **StudentImport.php** file in the **app/Imports** directory.
 
 ```
 $ php artisan make:import StudentsImport –-model=Student
@@ -299,9 +311,9 @@ $ php artisan make:import StudentsImport –-model=Student
 
 ![]()
 
-This should create a **StudentsImport.php** file in the **app/Imports** directory. Let&#39;s go make sure this file was generated. Go ahead and open the **StudentsImport.php file**.
+Let&#39;s go make sure the **app/Imports/StudenImport.php** file was generated. 
 
-Now we need to edit this file to reflect the data that will be imported from the Excel spreadsheet.
+Go ahead and open it up.  We need to edit this file so we can import the data from the Excel spreadsheet properly.
 
 ```php
 public function model(array $row)
@@ -315,9 +327,9 @@ public function model(array $row)
 }
 ```
 
-Now we need to generate the App\Student use file listed at the top of the StudentImport.php file.
+Now we need to generate the **App\Student** use file listed at the top of the **StudentImport.php** file.
 
-Navigate to the app directory and manually create a Student.php file. Then open the User.php file and copy the contents and paste them into the Student.php file. Be sure the change the class name to Student instead of User. You also need to change the $fillable array to correspond with the fields in the database.
+Navigate to the **app** directory and manually create a **Student.php** file. Then open the **User.php** file and copy the contents and paste them into the **Student.php** file. Be sure to change the class name to **Student** instead of **User**. You also need to change the $fillable array to correspond with the fields in the database.
 
 Your Student.php file should look like this…..
 
@@ -351,11 +363,11 @@ class Student extends Authenticatable
 ![]()
 
 
-## 11. Create a Controller
+## 11. Create the Controller and the import method
 
-Now we need to create **MyController** by extending the **controller** class in **vhours/app/Http/Controllers/MyController.php**.
+Now that we have the Model set up we can create our Controller.  We are going to set up a Controller class with an import method that will call the import method in the Maatwebsite class (alias is Excel) and send it our Model and the Excel spreadsheet file submitted by the user.  Basically, this controller will have a method that will import the Excel spreadsheet data into our student database table and then return our view back to the form.  
 
-We will create the import request logic and return response here. Go ahead and manually create the **MyController.php** file in the **Controllers directory** and write the following code in the file. Feel free to copy and paste the code below.
+Let's go ahead and manually create the **MyController.php** file in the **app\HTTP\Controllers directory** and write the following code in the file. Feel free to copy and paste the code below.
 
 ```php
 <?php
@@ -372,7 +384,7 @@ class MyController extends Controller
     /*
     * @return \Illuminate\Support\Collection
     */
-    publicfunction importView()
+    public function importView()
     {
         return view('import');
     }
@@ -380,7 +392,7 @@ class MyController extends Controller
     /*
     * @return \Illuminate\Support\Collection
     */
-    publicfunction import()
+    public function import()
     {
         Excel::import(new StudentsImport,request()->file('file'));
         return back();
@@ -392,9 +404,21 @@ class MyController extends Controller
 ![]()
 
 
-## 12. Create a View
+## 12. Set up a Route
 
-And finally, we need to create our html form to allow users to import a file. This new file will be called **import.blade.php** and will be placed in the **vhours/resources/views** directory. Go ahead and navigate to the **views** directory and manually create the **import.blade.php** file. Then put the following code in the file.
+Now that we have everything set up we need to set up a route in our **routes/web.php** file.  Our route will allow the user to get to our web page where they will be able to import the excel file. This route will also trigger the import function in our MyController so the excel data will populate our students table in our vhours database.
+
+Add the following line to **routes/web.php** under the **debug** route at the end of the file.
+
+<img src='images/21.png' width='500' height='auto'>
+
+![]()
+
+
+
+## 13. Create a View
+
+Finally, we need to create a web page that has an html form that will allow users to import a file. This new web page file will be called **import.blade.php** and will be placed in the **vhours/resources/views** directory. Go ahead and navigate to the **views** directory and manually create the **import.blade.php** file. Then put the following code in the file.
 
 ```html
 <!DOCTYPEhtml>
@@ -404,24 +428,24 @@ And finally, we need to create our html form to allow users to import a file. Th
 <head>
     <title>Laravel 7 Import Excel to MySQL database</title>
 
-    <linkrel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css"/>
 
 </head>
 
 <body>
 
-<divclass="container">
-    <divclass="card bg-light mt-3">
-        <divclass="card-header">
+<div class="container">
+    <div class="card bg-light mt-3">
+        <div class="card-header">
             Laravel 7 Import Excel to MySQL database
         </div>
     
-        <divclass="card-body">
-            <formaction="{{ route('import') }}"method="POST"enctype="multipart/form-data">
+        <div class="card-body">
+            <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
             {{ csrf\_field() }}
-            <inputtype="file"name="file"class="form-control">
+            <input type="file" name="file" class="form-control">
             <br>
-            <buttonclass="btn btn-success">Import User Data</button>
+            <button class="btn btn-success">Import User Data</button>
             </form>
         </div>
     </div>
@@ -435,48 +459,53 @@ And finally, we need to create our html form to allow users to import a file. Th
 ![]()
 
 
-## 13. Run the app
+## 14. Run the app
 
-Go to your **vhours.loc/** page. The import form should look like what you see below.
+After all that work we are now at that exciting moment of seeing if our application will work.  Don't be surprised if there are issues or errors in your code.  When I ran this the first time I had 4 different errors.  As soon as I fixed one then there was another one, and then another, etc.  If you do run into errors, I have a few of the ones I ran into listed below the recap section with solutions.
+
+No time like the present, let's see if this application will work.  Go to your **vhours.loc/** page. The import form should look like what you see below.
 
 <img src='images/23.png' width='700' height='auto'>
 
 ![]()
 
-Let's see if it works. Go ahead and choose the studentData.xlsx file provided with this tutorial. Then click **Import User Data**.
+Let's see if it works. Go ahead and choose the **studentData.xlsx** file provided with this tutorial. Then click **Import User Data**.
 
 <img src='images/24.png' width='700' height='auto'>
 
 ![]()
 
-After you click the Import User Data button, you should return to the form again. Check the database to see the newly imported data in the students' table.
+After you click the Import User Data button, you should return to the form again. Check the database to see the newly imported data is in the students table.
 
 <img src='images/25.png' width='700' height='auto'>
 
 ![]()
 
+If you see what is in the image above your application is working!
+
 ### **The import is complete! Congratulations!!!**
 
-You have now officially created a Laravel 7 application that will import an Excel file and populate the respective database table.
+You have now officially created a Laravel 7 application that will import an Excel file and populate the respective database table. Amazing work!
 
 ![]()
 
 
 ## **Recap:**
 
-1. Create a new Laravel 7 application
+1. Create the vhours Laravel 7 application
 2. Install Maatwebsite package
-3. Update the config file
-4. Publish the config file
-5. Prepare the database
-6. Configure the database environment
-7. Test Connection
-8. Add Migration to create table
-9. Setup a Route 
+3. Add Maatwebsite to the Service Provider
+4. Assign Maatwebsite an alias
+5. Publish Maatwebsite's configuration file
+6. Create the vhours database
+7. Connet the database to the application
+8. Test the connection
+9. Create database table via migrations
 10. Setup a Model
-11. Create the Controller
-12. Create the View
-13. Run the app
+11. Create MyController and the import method
+12. Set up a Route
+13. Create the View
+14. Run the app
 
 ![]()
 
@@ -535,7 +564,6 @@ Went into **config/excel.php** and change the path for temporary storage from **
 - [https://docs.laravel-excel.com/3.1/imports/](https://docs.laravel-excel.com/3.1/imports/)
 - [https://www.itsolutionstuff.com/post/laravel-57-import-export-excel-to-database-exampleexample.html](https://www.itsolutionstuff.com/post/laravel-57-import-export-excel-to-database-exampleexample.html)
 - [https://medium.com/maatwebsite/introducing-laravel-excel-3-1-e478502bf92e](https://medium.com/maatwebsite/introducing-laravel-excel-3-1-e478502bf92e)
-- [https://github.com/Maatwebsite/Laravel-Excel/blob/3.1/.github/SUPPORT.md](https://github.com/Maatwebsite/Laravel-Excel/blob/3.1/.github/SUPPORT.md)
 - [https://docs.laravel-excel.com/3.1/getting-started/support.html](https://docs.laravel-excel.com/3.1/getting-started/support.html)
 - [https://docs.laravel-excel.com/3.1/getting-started/installation.html](https://docs.laravel-excel.com/3.1/getting-started/installation.html)
 - [http://www.phpzone.in/laravel-5-import-export-data-csv-excel-using-maatwebsite/](http://www.phpzone.in/laravel-5-import-export-data-csv-excel-using-maatwebsite/)
@@ -543,6 +571,12 @@ Went into **config/excel.php** and change the path for temporary storage from **
 - [https://ourcodeworld.com/articles/read/234/how-to-create-an-excel-file-using-php-office-in-laravel](https://ourcodeworld.com/articles/read/234/how-to-create-an-excel-file-using-php-office-in-laravel)
 - [https://laravel.com/docs/5.8/migrations](https://laravel.com/docs/5.8/migrations)
 - [http://www.phpzone.in/laravel-5-import-export-data-csv-excel-using-maatwebsite/](http://www.phpzone.in/laravel-5-import-export-data-csv-excel-using-maatwebsite/)
+
+### Understanding Laravel Better
+
+- [https://medium.com/@basantbesra/create-aliases-for-your-classes-in-laravel-6814c349d3af](https://medium.com/@basantbesra/create-aliases-for-your-classes-in-laravel-6814c349d3af)
+- [https://medium.com/grevo-techblog/service-provider-in-laravel-3b7267b0576e] (https://medium.com/grevo-techblog/service-provider-in-laravel-3b7267b0576e)
+- [https://laravel.com/docs/7.x/packages](https://laravel.com/docs/7.x/packages)
 
 ### Style and Formatting:
 

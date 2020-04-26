@@ -481,7 +481,7 @@ You have now officially created a Laravel 7 application that will import an Exce
 ![]()
 
 
-# ERRORS
+## ERRORS
 #### Below are some of the errors that may come up when you run your app and their solutions are below.
 
 ### **Error: Permission Denied**

@@ -73,7 +73,7 @@ $ nano app.php
 ],
 ```
 
-<img src='images/4.png' width='400'>
+<img src='images/4.png' width='500'>
 
 
 ```php
@@ -84,7 +84,7 @@ $ nano app.php
 ],
 ```
 
-<img src='images/5.png' width='700'>
+<img src='images/5.png' width='500'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 

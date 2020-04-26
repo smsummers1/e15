@@ -197,7 +197,7 @@ Now run the following URL in your browser
 
 You should see **vhours** in the array of databases. This means you are connected successfully to the database and ready to move forward.
 
-<img src='images/13.png' width='300'>
+<img src='images/13.png' width='400' height='150'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_905129c85ce26769.png)
 
@@ -306,7 +306,7 @@ Now we need to create an **import** class so we can start creating the ability t
 ```
 $ php artisan make:import StudentsImport –-model=Student
 ```
-<img src='images/22.png' width='50'>
+<img src='images/22.png' width='500'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_d9ecb8ad29f6bf02.png)
 

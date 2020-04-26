@@ -128,13 +128,13 @@ We need to create a new database. For consistency, we will name our database the
 
 Click on the **Databases** tab at the top just above the heading General settings shown below.
 
-<img src='images/9.png' width='700'>
+<img src='images/9.png' width='500'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_c80e4f0b41a204.png)
 
 Then type in the name of your database. Set the database name is to **vhours** and the collation to **utf8mb4\_general\_ci.** Then click the **create** button.
 
-<img src='images/10.png' width='700'>
+<img src='images/10.png' width='500'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_dd8328ccde62fa10.png)
 
@@ -142,7 +142,7 @@ You should now see the **vhours** database listed on the left-hand side of the p
 
 And again, you may not have as many databases as I have. Just be sure that you have the **vhours** database listed.
 
-<img src='images/11.png' width='300'>
+<img src='images/11.png' width='200'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
@@ -265,7 +265,7 @@ Now we are going to set up our tables in our **vhours** database by running our 
 ```
 $ php artisan migrate:fresh
 ```
-<img src='images/17.png' width='700'>
+<img src='images/17.png' width='500'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_9553587631451459.png)
 

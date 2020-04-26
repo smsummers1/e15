@@ -280,19 +280,15 @@ Now we are going to set up our tables in our **vhours** database by running our 
 $ php artisan migrate:fresh
 ```
 
-<img src='images/17.png' width='600' height='auto'>
+Let&#39;s go check phpMyAdmin to see if we have our new tables. You should have 4 tables; failed_jobs, migrations, students, and users.  We are going to focus our attention on the students table.
 
-![]()
-
-Let&#39;s go check phpMyAdmin to see if we have our new tables. You should have the same tables I have listed below. We are going to focus our attention on the students table.
-
-<img src='images/18.png' width='700' height='auto'>
+<img src='images/18.png' width='600' height='auto'>
 
 ![]()
 
 Click on the **vhours** database in the left-hand column and you should see 4 tables appear in the center of the screen one of which is our **students** table. Now let&#39;s check to see if it is set up the way we expected. Click on the **students** table and you should see this:
 
-<img src='images/19.png' width='700' height='auto'>
+<img src='images/19.png' width='600' height='auto'>
 
 ![]()
 
@@ -311,9 +307,6 @@ The main thing we are trying to accomplish is importing our Excel spreadsheet in
 ```
 $ php artisan make:import StudentsImport –-model=Student
 ```
-<img src='images/22.png' width='600' height='auto'>
-
-![]()
 
 Let&#39;s go make sure the **app/Imports/StudenImport.php** file was generated. 
 
@@ -526,6 +519,9 @@ You have now officially created a Laravel 7 application that will import an Exce
 
 # ERRORS
 #### Below are some of the errors that may come up when you run your app and their solutions.
+
+![]()
+
 
 ## **Error: Permission Denied**
 

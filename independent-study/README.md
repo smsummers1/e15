@@ -266,10 +266,10 @@ public function up()
     Schema::create('students', function (Blueprint $table) {
         $table->id();
         $table->timestamps();
-        $table->string('student\_name', 100);
-        $table->smallInteger('volunteer\_hours')->nullable();
+        $table->string('student_name', 100);
+        $table->smallInteger('volunteer_hours')->nullable();
         $table->string('homeroom', 100)->nullable();
-        $table->string('street\_address', 100)->nullable();
+        $table->string('street_address', 100)->nullable();
     });
 }
 ```
@@ -491,7 +491,9 @@ You have now officially created a Laravel 7 application that will import an Exce
 
 ## A few things to consider as you move forward with this application
 **1. Validation** - we want to make sure the user is submitting an Excel file and not an SQL injection or other malicious file.  
+
 **2. Duplicate Data** - It might be important to make sure duplicate data is not being entered.  Right now you can import the same file over and over again and it will keep importing the data into the table.
+
 **3. Notification** - Right now when you import the file you just return to the form without any notification that your data was imported into the database table.  It would be nice to give the user some sort of information that the data has been imported successfully.
 
 ![]()

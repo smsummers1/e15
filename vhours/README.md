@@ -6,9 +6,9 @@ Up until now, all our data has come from user input, a seeder file, or just rece
 
 What I found was that there are several ways to import an Excel spreadsheet into a MySQL database.
 
-- **manually** import excel data
+- **manually** import excel data 
 - use the **Excel Import to MySQL** option in Excel,
-- write **raw php code** using a **spreadsheet-reader library** to import the data
+- write **raw php code** using a **spreadsheet-reader library** to import the data ![](images/0.png)
 - utilize **Laravel** and the **Maatwebsite** package
 
 This tutorial covers the later and we will be walking through the creation of an entire Laravel application that will utilize the Maatwebsite package to import an Excel spreadsheet via an html form.  You have access to the code and the Excel spreadsheet here in Github.
@@ -549,6 +549,7 @@ Went into **config/excel.php** and change the path for temporary storage from **
 - [https://cdnjs.com/libraries/twitter-bootstrap](https://cdnjs.com/libraries/twitter-bootstrap)
 - [https://stackoverflow.com/questions/19075023/flow-text-around-an-image-in-github-markdown](https://stackoverflow.com/questions/19075023/flow-text-around-an-image-in-github-markdown)
 - [https://www.markdownguide.org](https://www.markdownguide.org/basic-syntax/#paragraphs-1)
+- [https://gist.github.com/uupaa/f77d2bcf4dc7a294d109](https://gist.github.com/uupaa/f77d2bcf4dc7a294d109)
 
 ### PhpSpreadsheet:
 

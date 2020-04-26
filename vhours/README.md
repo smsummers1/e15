@@ -294,7 +294,7 @@ Now we need to set up a resource route in our **routes/web.php** file for our cr
 
 Add the following line to the **routes/web.php** file under the **debug** route at the end of the file.
 
-<img src='images/21.png' width='700'>
+<img src='images/21.png' width='500'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_d37d0bbaa68a6bc8.png)
 
@@ -306,7 +306,7 @@ Now we need to create an **import** class so we can start creating the ability t
 ```
 $ php artisan make:import StudentsImport –-model=Student
 ```
-<img src='images/22.png' width='700'>
+<img src='images/22.png' width='50'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_d9ecb8ad29f6bf02.png)
 

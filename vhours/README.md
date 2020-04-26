@@ -482,7 +482,7 @@ You have now officially created a Laravel 7 application that will import an Exce
 
 
 ## ERRORS
-#### Below are some of the errors that may come up when you run your app and their solutions are below.
+#### Below are some of the errors that may come up when you run your app and their solutions.
 
 ### **Error: Permission Denied**
 

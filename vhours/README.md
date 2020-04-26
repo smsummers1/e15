@@ -24,9 +24,7 @@ Go ahead and create a new Laravel application and point the local server to your
 
 I named my new Laravel application **vhours**
 
-<img src='images/1.png' width='600'>
-
-![alt-text](images/1.png)
+<img src='images/1.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_8b09b34cafb52ee5.png)
 
@@ -40,17 +38,16 @@ To install the Maatwebsite package we will use our PHP dependency manager tool [
 ```
 $ composer require maatwebsite/excel
 ```
+<img src='images/2.png' width='700'>
 
-![](RackMultipart20200425-4-1tqgdeb_html_1fc5aa1a9d6feebd.png) ![](RackMultipart20200425-4-1tqgdeb_html_ff31f92b40313be9.gif)
+![](RackMultipart20200425-4-1tqgdeb_html_1fc5aa1a9d6feebd.png) 
 
 Once the package has generated successfully, check the **composer.json** file to make sure you see the **maatwebsite/excel** line that is highlighted below. It should be listed under the **&quot;require&quot;** area of the file.
 
 ```
 $ cat composer.json
 ```
-
-![](RackMultipart20200425-4-1tqgdeb_html_b0d517f50d4d83a7.png) ![](RackMultipart20200425-4-1tqgdeb_html_17d832186f4bbefb.gif)
-
+<img src='images/3.png' width='300'>
 _You should see &quot;maatwebsite/excel&quot;: &quot;^3.1&quot;_
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
@@ -76,6 +73,9 @@ $ nano app.php
 ],
 ```
 
+<img src='images/4.png' width='700'>
+
+
 ```php
 'aliases' => [
 
@@ -83,6 +83,8 @@ $ nano app.php
 
 ],
 ```
+
+<img src='images/5.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
@@ -95,9 +97,13 @@ Use the command below to create a new file named **config/excel.php**. You will 
 $ php artisan vendor:publish
 ```
 
+<img src='images/6.png' width='700'>
+
 ![](RackMultipart20200425-4-1tqgdeb_html_f8fbbdcfb1de4513.png)
 
 Check to make sure that the **config/excel.php** file was created
+
+<img src='images/7.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_90609fb25283932e.png)
 
@@ -114,21 +120,29 @@ Open a browser and type in the URL [http://localhost/phpmyadmin/](http://localho
 
 You should see a screen that looks like what you see below. You might not have all the same databases I have shown on the left-hand side of the page, but it should look very similar. Right now, we do **not** have a database for our application.
 
+<img src='images/8.png' width='700'>
+
 ![](RackMultipart20200425-4-1tqgdeb_html_f2240975acb5c54.png)
 
 We need to create a new database. For consistency, we will name our database the same as our application.
 
 Click on the **Databases** tab at the top just above the heading General settings shown below.
 
+<img src='images/9.png' width='700'>
+
 ![](RackMultipart20200425-4-1tqgdeb_html_c80e4f0b41a204.png)
 
 Then type in the name of your database. Set the database name is to **vhours** and the collation to **utf8mb4\_general\_ci.** Then click the **create** button.
+
+<img src='images/10.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_dd8328ccde62fa10.png)
 
 You should now see the **vhours** database listed on the left-hand side of the phpMyAdmin screen as you see highlighted below.
 
 And again, you may not have as many databases as I have. Just be sure that you have the **vhours** database listed.
+
+<img src='images/11.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
@@ -138,6 +152,8 @@ And again, you may not have as many databases as I have. Just be sure that you h
 Now that we have our **vhours** database we need to update the database configuration in the .env file at the root of the application so that we can connect our application to the database. Open the **vhours/.env** file.
 
 Go ahead and set the following database configurations as you see below. Notice that the **DB\_PASSWORD** is **empty**. There isn&#39;t anything there because I didn&#39;t set a password. Once you set this file up the way you see below, save and close.
+
+<img src='images/12.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_ae819880d5e3a9a9.png)
 
@@ -181,6 +197,8 @@ Now run the following URL in your browser
 
 You should see **vhours** in the array of databases. This means you are connected successfully to the database and ready to move forward.
 
+<img src='images/13.png' width='700'>
+
 ![](RackMultipart20200425-4-1tqgdeb_html_905129c85ce26769.png)
 
 Now that the database has been created and we are connected, we need to create a table in our database that will line up with our Excel data file.
@@ -200,13 +218,19 @@ To start this process we will use the [Artisan](https://laravel.com/docs/7.x/art
 $ php artisan make:migration create\_students\_table --create=students
 ```
 
+<img src='images/14.png' width='700'>
+
 ![](RackMultipart20200425-4-1tqgdeb_html_1c4e5995e11f2d86.png)
 
 Let&#39;s go check and make sure it was created. The new migration file will be in **vhours/database/migrations** directory.
 
-![](RackMultipart20200425-4-1tqgdeb_html_e702f5a759aea14b.png) ![](RackMultipart20200425-4-1tqgdeb_html_cd5ac38297186de1.gif)
+<img src='images/15.png' width='700'>
+
+![](RackMultipart20200425-4-1tqgdeb_html_e702f5a759aea14b.png)
 
 To code our new migration file correctly we need to check out the data we want to import into our table first. Below is an example Excel file that we will be practicing with for our application. Notice the column headings and the content in each column.
+
+<img src='images/16.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_2334f618f45df8c1.png)
 
@@ -241,18 +265,25 @@ Now we are going to set up our tables in our **vhours** database by running our 
 ```
 $ php artisan migrate:fresh
 ```
+<img src='images/17.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_9553587631451459.png)
 
 Let&#39;s go check phpMyAdmin to see if we have our new tables. You should have the same tables I have listed below. We are going to focus our attention on the students table.
 
+<img src='images/18.png' width='700'>
+
 ![](RackMultipart20200425-4-1tqgdeb_html_6b714d0e7955e975.png)
 
 Click on the **vhours** database in the left-hand column and you should see 4 tables appear in the center of the screen one of which is our **students** table. Now let&#39;s check to see if it is set up the way we expected. Click on the **students** table and you should see this:
 
+<img src='images/19.png' width='700'>
+
 ![](RackMultipart20200425-4-1tqgdeb_html_f2f95ae39570c056.png)
 
 and then if we click on the **Structure** tab you should see this:
+
+<img src='images/20.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_90d358f049784e34.png)
 
@@ -262,6 +293,8 @@ and then if we click on the **Structure** tab you should see this:
 Now we need to set up a resource route in our **routes/web.php** file for our crud application, which means that we want to have a route to allow users to get to our import web page where they will be able to import the excel file. We will create that page soon. For now we will set up the route.
 
 Add the following line to the **routes/web.php** file under the **debug** route at the end of the file.
+
+<img src='images/21.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_d37d0bbaa68a6bc8.png)
 
@@ -273,6 +306,7 @@ Now we need to create an **import** class so we can start creating the ability t
 ```
 $ php artisan make:import StudentsImport –-model=Student
 ```
+<img src='images/22.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_d9ecb8ad29f6bf02.png)
 
@@ -416,13 +450,19 @@ And finally, we need to create our html form to allow users to import a file. Th
 
 Go to your **vhours.loc/** page. The import form should look like what you see below.
 
+<img src='images/23.png' width='700'>
+
 ![](RackMultipart20200425-4-1tqgdeb_html_e12d6846b930c5ff.png)
 
 Let's see if it works. Go ahead and choose the studentData.xlsx file provided with this tutorial. Then click **Import User Data**.
 
+<img src='images/24.png' width='700'>
+
 ![](RackMultipart20200425-4-1tqgdeb_html_af8fc248086de6c1.png)
 
 After you click the Import User Data button, you should return to the form again. Check the database to see the newly imported data in the students' table.
+
+<img src='images/25.png' width='700'>
 
 ![](RackMultipart20200425-4-1tqgdeb_html_f71dde573c2d92e2.png)
 

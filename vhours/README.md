@@ -573,6 +573,8 @@ Went into **config/excel.php** and change the path for temporary storage from **
 
 ![]()
 
+![]()
+
 
 # BONUS INFORMATION:
 

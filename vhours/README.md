@@ -5,9 +5,9 @@
 Up until now, all our data has come from user input, a seeder file, or just recently the testing tool Dusk. My final project is the beginning of a volunteer hour tracking software application that will have data entered via excel files. I wanted to learn how to allow a user to input a file via an html form that would then populate the database. Thus, my search for the best way to import an Excel spreadsheet into a MySQL database.
 
 What I found was that there are several ways to import an Excel spreadsheet into a MySQL database. 
-
+<img src='images/0.png' align="right">
 - **manually** import excel data 
-- use the **Excel Import to MySQL** option in Excel,<img src='images/0.png' align="right">
+- use the **Excel Import to MySQL** option in Excel,
 - write **raw php code** using a **spreadsheet-reader library** to import the data 
 - utilize **Laravel** and the **Maatwebsite** package
 

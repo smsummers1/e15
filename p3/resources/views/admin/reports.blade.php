@@ -1,17 +1,5 @@
 @extends('layouts.master')
 
-@section('title')
-Reports
-@endsection
-
-@section('portal')
-Admin Portal
-@endsection
-
-@section('user')
-Hi, User
-@endsection
-
 @section('adminPortal')
 <br><br>
 <h2>Generate Reports</h2>
@@ -21,25 +9,21 @@ Hi, User
 <div class="alert alert-secondary" role="alert">
 
     <form method='POST' action=''>
-        <div class='details'>* Required fields</div>
         {{ csrf_field() }}
 
-        <label for='fileType' class="col-form-label-lg">* Select Report to Generate: </label>
-        <select id='underHours' name="underHours">
-            <option value="underHours" {{ (old('underHours') == 'Too Few Hours') ? 'selected="selected"' : ''}}> Families Under Hours </option>
+        <label for='fileType' class="col-form-label-lg">Select Report to Generate: </label>
+        <select id='report' name="report" onchange="location = this.value;">
+            <option value="/reports"> Click here to choose a report..... </option>
 
-            <option hidden value="specificStudent" {{ (old('specificStudent') == 'Specific Student Data') ? 'selected="selected"' : ''}}> Specific Student Data </option>
+            <option hidden value="">Families below expected hours </option>
 
-            <option value="allVolunteers" {{ (old('allVolunteers') == 'All Volunteers') ? 'selected="selected"' : ''}}> All Volunteer Report </option>
+            <option hidden value="">Specific Student Data </option>
 
-            <option value="familyVolunteerReport" {{ (old('familyVolunteerReport') == 'Family Volunteer Report') ? 'selected="selected"' : ''}}> Family Volunteer Report </option>
+            <option dusk="list-all-volunteers-link" value="/reports/listVolunteers"> List All Volunteers </option>
+
+            <option dusk="hours-per-student-link" value="/reports/studentHours">Hours per Student</option>
 
         </select>
-
-        <br>
-
-        <input type='submit' class="btn btn-primary" value='Generate'>
-
     </form>
 </div>
 

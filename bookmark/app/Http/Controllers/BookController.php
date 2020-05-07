@@ -7,6 +7,7 @@ use Arr;
 use Str;
 use App\Book;
 use App\Author;
+use App\Actions\Books\StoreNewBook;
 
 class BookController extends Controller
 {
@@ -54,20 +55,10 @@ class BookController extends Controller
         #NOTE: If validation fails, it will automatically redirect the visitor back to the form 
         #and none of the code that follows will execute.
 
-        #Add the book to the database
-        $newBook = new Book();
-        $newBook->slug = $request->slug;
-        $newBook->title = $request->title;
-        //$newBook->author = $request->author;
-        $newBook->author_id = $request->author_id;
-        $newBook->published_year = $request->published_year;
-        $newBook->cover_url = $request->cover_url;
-        $newBook->info_url = $request->info_url;
-        $newBook->purchase_url = $request->purchase_url;
-        $newBook->description = $request->description;
-        $newBook->save();
+        #Add the book to the database - outsourced to app/Actions/Books/StoreNewBook.php
+        $action = new StoreNewBook((object) $request->all());
 
-        return redirect('/books/create')->with(['flash-alert' => $newBook->title . ' was added.']);
+        return redirect('/books/' . $request->slug)->with(['flash-alert' => 'Your book ' . $action->rda['title'] . ' was added.']);
         //dump($newBook->toArray());
     }
 
@@ -357,7 +348,7 @@ class BookController extends Controller
     {
         $book = Book::where('slug', '=', $slug)->first();
 
-        #not the best way to code this in that you could lose very valuable user notes
+        #not the best way to code this in that you could lose every valuable user notes
         #remove any relationships with this book and its users
         if ($book->users()) {
             $book->users()->detach();

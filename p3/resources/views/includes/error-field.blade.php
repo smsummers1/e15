@@ -1,5 +1,5 @@
 @if($errors->get($fieldName))
-<div class='alert alert-danger error'>
+<div usk='error-field-{{ $fieldName }}' class='alert alert-danger error'>
     {{ $errors->first($fieldName) }}
 </div>
 @endif

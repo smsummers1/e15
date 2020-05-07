@@ -3,63 +3,103 @@
 namespace Tests\Browser;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\WithFaker;
+
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
+use App\User;
 
 class AuthTest extends DuskTestCase
 {
     use DatabaseMigrations;
+    use withFaker;
+
     /**
-     * A Dusk test example.
      *
-     * @return void
      */
-    public function testRegistration()
+    public function testAuthorizationRequired()
     {
-        #user enters correct information for registration
         $this->browse(function (Browser $browser) {
+            $browser->visit('/books')
+                ->assertPresent('@login-heading')
+                ->visit('/list')
+                ->assertPresent('@login-heading');
+        });
+    }
+
+    /**
+     *
+     */
+    public function testSuccessfulRegistration()
+    {
+        $this->browse(function (Browser $browser) {
+            $name = $this->faker->name;
+
             $browser->visit('/')
                 ->click('@register-link')
-                ->assertSee('Register')
                 ->assertVisible('@register-heading')
-                ->type('@name-input', 'Joe Smith')
-                ->type('@email-input', 'joe@gmail.com')
+                ->type('@name-input', $name)
+                ->type('@email-input', $this->faker->safeEmail())
                 ->type('@password-input', 'helloworld')
                 ->type('@password-confirm-input', 'helloworld')
                 ->click('@register-button')
-                ->assertSee('Joe Smith');
+                ->assertSee($name);
         });
     }
 
-    public function testFailedRegistration()
+    /**
+     *
+     */
+    public function testRegisteringWithExistingEmail()
     {
-        #registration fails upon incorrect data entry
-        #testing the validation
         $this->browse(function (Browser $browser) {
+
+            // Create a user so we can try registering with their same info
+            $user = factory(User::class)->create();
+
             $browser->logout()
                 ->visit('/register')
-                ->type('@name-input', 'Joe Smith')
-                ->type('@email-input', 'joe@gmail.com')
-                ->type('@password-input', 'hello')
-                ->type('@password-confirm-input', 'hello')
+                ->type('name', $user->name)
+                ->type('email', $user->email)
+                ->type('password', 'helloworld')
+                ->type('password_confirmation', 'helloworld')
                 ->click('@register-button')
-                ->assertSee('The password must be at least 8 characters');
+                ->assertPresent('@error-field-email')
+                ->assertSee('The email has already been taken.');
         });
     }
 
-    public function testLogin()
+    /**
+     *
+     */
+    public function testSuccesfulLogin()
     {
-        #seed the database
-        $this->seed();
-
-        #testing that login page is working properly with correct data
         $this->browse(function (Browser $browser) {
+            $user = factory(User::class)->create();
+
             $browser->logout()
                 ->visit('/login')
-                ->type('@email-input', 'jill@harvard.edu')
+                ->type('@email-input', $user->email)
                 ->type('@password-input', 'helloworld')
                 ->click('@login-button')
-                ->assertSee('LOGOUT JILL HARVARD');
+                ->assertSee(strtoupper('logout ' . $user->name));
+        });
+    }
+
+    /**
+     *
+     */
+    public function testLoginValidation()
+    {
+        $this->browse(function (Browser $browser) {
+            $user = factory(User::class)->create();
+
+            $browser->logout()
+                ->visit('/login')
+                ->type('@email-input', $user->email)
+                ->type('@password-input', 'this-is-the-wrong-password')
+                ->click('@login-button')
+                ->assertSee('These credentials do not match our records.');
         });
     }
 }

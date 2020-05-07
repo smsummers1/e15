@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 #Support page
 Route::get('/support', function () {
-    return view('/admin/support');
+    return view('/pages/support');
 });
 
 #RESTRICTED ROUTES
@@ -36,12 +36,38 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     #Generate reports based on the selection on the /reports page
-    Route::get('/admin/{id?}', 'AdminController@show');
+    //Route::get('/admin/{id?}', 'AdminController@show');
 
     #Edit Information page
     Route::get('/editInfo', function () {
         return view('/admin/editInfo');
     });
+
+    #EDIT STUDENT
+    //Show all students in a dropdown list
+    Route::get('/students', 'AdminController@getStudents');
+
+    #Get specific student user chose from the dropdown list
+    Route::get('/editStudent/{id}', 'AdminController@findStudent');
+
+    #Update the specific student after user updated info in the form
+    Route::put('/editStudent/{id}/update', 'AdminController@updateStudent');
+
+
+    #DELETE STUDENT
+    //Show all students in a dropdown list
+    Route::get('/deleteStudent', 'AdminController@getStudentsToDelete');
+    #Remove the one that is clicked.
+    //used web spoofing to use get instead of delete
+    Route::get('/deleteStudent/{id}/remove', 'AdminController@destroy');
+
+
+    #REPORT - listVolunteers.blade.php
+    Route::get('/reports/listVolunteers', 'AdminController@reportListVolunteers');
+
+    #REPORT - studentHours.blade.php
+    Route::get('/reports/studentHours', 'AdminController@reportStudentHours');
+
 
     #Add New Family page
     #Remove Family/Student (graduated, moved)

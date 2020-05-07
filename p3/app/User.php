@@ -5,10 +5,21 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Student;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    //RELATIONSHIPS - Many to Many
+    //add a Student in the User model
+    public function students()
+    {
+        return $this->belongsToMany('App\Student')
+            ->withTimestamps() # Must be added to have Eloquent update the created_at/updated_at columns in a pivot table
+            ->withPivot(['timeVolunteered']); # Must also specify any other fields that should be included when fetching this relationship
+    }
+
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'firstName', 'lastName', 'phone', 'streetAddress', 'city', 'state', 'zipcode', 'accountType'
+        'email', 'firstName', 'lastName', 'phone', 'streetAddress', 'accountType', 'password'
     ];
 
     /**

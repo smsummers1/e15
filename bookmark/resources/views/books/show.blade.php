@@ -5,7 +5,6 @@
   @endsection
 
   @section('head')
-  {{-- Page specific CSS includes should be defined here; this .css file does not exist yet, but we can create it --}}
   <link href='/css/books/show.css' rel='stylesheet'>
   @endsection
 
@@ -30,7 +29,7 @@
   <h1>{{ $book->title }}</h1>
 
   @if($book->author)
-  <p>By {{ $book->author->first_name. " ".$book->author->last_name }}</p>
+  <p dusk="author-info">By {{ $book->author->first_name. " ".$book->author->last_name }}</p>
   @endif
 
   <p>({{$book->published_year}})</p>

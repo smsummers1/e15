@@ -109,10 +109,12 @@ h1 {
 }
 
 h2 {
+    text-align: center;
     font-size: 2.5rem;
 }
 
 h3 {
+    text-align: center;
     font-size: 2.0rem;
 }
 
@@ -206,6 +208,19 @@ ul.inputs label {
 
 
 /*----------------------------------------------------
+Reports
+-----------------------------------------------------*/
+
+#list {
+    color: darkgreen;
+}
+
+#count {
+    color: blue;
+}
+
+
+/*----------------------------------------------------
 Misc
 -----------------------------------------------------*/
 
@@ -229,11 +244,11 @@ Misc
 }
 
 .flash-alert {
-    background-color: yellow;
+    background-color: lightgreen;
     width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
+    /position: fixed;
+    /top: 0;
+    /left: 0;
     padding: 5px;
     font-weight: bold;
     text-align: center;

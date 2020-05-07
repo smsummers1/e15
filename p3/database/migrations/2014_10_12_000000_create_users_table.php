@@ -20,24 +20,11 @@ class CreateUsersTable extends Migration
             $table->string('lastName');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            //best user phone 
             $table->string('phone', 12);
-
-            //street address
             $table->string('streetAddress');
 
-            //city
-            $table->string('city');
-
-            //state
-            $table->string('state');
-
-            //zipcode
-            $table->integer('zipcode');
-
-            //account Type
+            //account Type: Admin, Volunteer, Both
             $table->string('accountType')->nullable();
-
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

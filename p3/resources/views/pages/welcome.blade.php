@@ -1,7 +1,7 @@
 <!-- 
 Administrators Portal Welcome page with Main Menu
 
-Here administrators can choose to:
+Once registered and logged in the administrators can choose to:
 
 Upload New Data Files - Each year they upload new excel files to quickly populate the student table (this may need to change in that when  new file is loaded old students get marked as 'Moved' or 'Graduated' in the database rather than just deleted.) [CRUD - Creating]
 
@@ -15,33 +15,13 @@ Get Support - Give contact information to the assistant principal, Jen Rimes, Me
 
 @extends('layouts.master')
 
-@section('head')
-<link href='/css/pages/vhours.css' rel='stylesheet'>
-@endsection
-
-@if(!Auth::user())
-@section('register')
-<a href='/register'>Register</a>
-@endsection
-@else
-@section('portal')
-Admin Portal
-@endsection
-@endif
-
-@if(!Auth::user())
-@section('login')
-<a href='/login'>Login</a>
-@endsection
-@endif
-
+<!-- Logged In  - Master checks for Logged In status-->
 @section('adminPortal')
 <br><br>
 
-@if(Auth::user())
-<h2>Welcome!</h2>
+<h2 dusk="welcome-administrator-heading">Welcome Administrator!</h2>
 
-<h4>This is the administrative portal for you to update files, generage reports, edit information, and much more. Choose from one of the options below.</h4>
+<h4>This portal for you to update files, generage reports, edit information, and much more. Choose from one of the options below.</h4>
 
 <br><br>
 
@@ -50,19 +30,27 @@ Admin Portal
     <ul class='mx-auto' style="width:500; list-style:none;">
         <li><a href='/admin/create' style="font-size:25px;">Upload New Data Files</a></li>
 
-        <li><a href='/reports' style="font-size:25px;">Generate Reports</a></li>
+        <li><a href='/reports' dusk="reports-link" style="font-size:25px;">Generate Reports</a></li>
 
-        <li><a href='/editInfo' style="font-size:25px;">Edit Information</a></li>
+        <li><a href='/editInfo' dusk="edit-info-link" style="font-size:25px;">Edit Information</a></li>
 
     </ul>
 </div>
+@endsection
 
-<!-- Not Logged In -->
-@else
-<h2>Welcome!</h2>
-<br><br><br>
+<!-- Not Logged In - Master checks for logged in status-->
+@section('login')
+
+@endsection
 
 
-@endif
+@section('welcome')
+<!-- Not Logged In - Master checks for logged in status-->
+
+<h2 dusk='welcome-heading'>Welcome!</h2>
+<br><br>
+<h3>This is the administrator side of the volunteer hour application. Once logged in, you will be able to upload new data files, generate reports, and edit information in the database.</h3>
+<br>
+<h5>First time here? Be sure to <a href="/register" dusk='register-link2'>register</a> as a new user and then you can <a href="/login">login</a> immediately after to start working with this application.</h5>
 
 @endsection

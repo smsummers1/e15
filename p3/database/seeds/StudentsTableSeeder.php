@@ -22,18 +22,18 @@ class StudentsTableSeeder extends Seeder
 
         //id=2
         $student = new Student();
-        $student->firstName = 'Julie';
-        $student->lastName = 'Jones';
+        $student->firstName = 'Emory';
+        $student->lastName = 'Summers';
         $student->homeroom = '3_FloresR_Rm 3';
         $student->streetAddress = '645 Juliet Dr';
         $student->save();
 
         //id=3
         $student = new Student();
-        $student->firstName = 'Jack';
-        $student->lastName = 'Turner';
+        $student->firstName = 'Janie';
+        $student->lastName = 'Summers';
         $student->homeroom = '23_Richards_Rm 23';
-        $student->streetAddress = '132 Lion Ln';
+        $student->streetAddress = '645 Juliet Dr';
         $student->save();
 
         //id=4
@@ -46,10 +46,10 @@ class StudentsTableSeeder extends Seeder
 
         //id=5
         $student = new Student();
-        $student->firstName = 'John';
-        $student->lastName = 'Jones';
+        $student->firstName = 'Jones';
+        $student->lastName = 'Sumner';
         $student->homeroom = '92_MayhewM_Rm 203';
-        $student->streetAddress = '645 Juliet Dr';
+        $student->streetAddress = '65 Jules Dr';
         $student->save();
 
         //id=6
@@ -91,47 +91,5 @@ class StudentsTableSeeder extends Seeder
         $student->homeroom = '31_BarhamA_Rm 31';
         $student->streetAddress = '446 Westfield Dr';
         $student->save();
-
-        //id=11
-        $student = new Student();
-        $student->firstName = 'Ryan';
-        $student->lastName = 'Hudson';
-        $student->homeroom = '31_BarhamA_Rm 31';
-        $student->streetAddress = '446 Westfield Dr';
-        $student->save();
-
-        //id=12
-        $student = new Student();
-        $student->firstName = 'Miles';
-        $student->lastName = 'Key';
-        $student->homeroom = '12_FalgoutM_Rm 12';
-        $student->streetAddress = '22 Jonestown Rd';
-        $student->save();
-
-        /**
-         * Run the database seeds.
-         *
-         * @return void
-
-        public function run()
-        {
-            //Faker data for now
-            //Want to use my excel sheets as seeders instead in 
-            //I have time
-
-            $faker = Faker\Factory::create();
-
-            for ($i=0; $i<100; $1++){
-                $student = new Student();
-
-                $student->name = $faker->lastName.', '.$faker->firstName;
-
-                $student->homeroom = $faker->randomDigit.$faker->randomDigit.'_'.$faker->lastName.$faker->randomLetter.'_Rm'.$faker->randomDigit.$faker->randomDigit;
-
-                $student->address = $faker->streetAddress;
-
-                $student->save();
-            }
-   }*/
     }
 }

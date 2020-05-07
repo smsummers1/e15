@@ -13,17 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 #Welcome Page for users not logged in
 Route::get('/', function () {
     return view('/pages/welcome');
 });
 
-#Support page
-Route::get('/support', function () {
-    return view('/pages/support');
-});
+#Support page for both logged in and not logged in users
+Route::get('/support', 'PageController@support');
 
-#RESTRICTED ROUTES
+
+
+#RESTRICTED ROUTES - ONLY FOR LOGGED IN USERS
 Route::group(['middleware' => 'auth'], function () {
     #Two routes to Upload New Data Files Page
     Route::get('/admin/create', 'AdminController@create');

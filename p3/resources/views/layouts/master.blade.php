@@ -74,6 +74,7 @@
         @if(Auth::user())
         @yield('adminPortal')
         @yield('editInfo')
+        @yield('support')
 
         <!-- Not Logged In -->
         @else(!Auth::user())
@@ -107,7 +108,7 @@
                 </div>
                 <!-- Bottom Right -->
                 <div class="col-2">
-                    <a href='/support' style="float:right;">Need Support?</a>
+                    <a href='/support' dusk="support-link" style="float:right;">Need Support?</a>
                 </div>
             </div>
         </div>

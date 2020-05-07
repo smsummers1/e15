@@ -12,10 +12,10 @@
     @if(count($volunteers) == 0)
     No current volunteers are in the system......
     @else
-    <p id="volunteerCount">{{count($volunteers)}} current volunteers</p>
+    <p id="count">{{count($volunteers)}} current volunteers</p>
     @foreach($volunteers as $volunteer)
 
-    <p id="volunteerList"> {{$volunteer->firstName}} {{$volunteer->lastName}}</p>
+    <p id="list"> {{$volunteer->firstName}} {{$volunteer->lastName}}</p>
 
     @endforeach
 

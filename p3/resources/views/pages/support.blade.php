@@ -2,7 +2,7 @@
 
 @section('support')
 <br><br>
-<h2>Volunteer Support Staff</h2>
+<h2 dusk="volunteer-support-staff-heading">Volunteer Support Staff</h2>
 
 <h4>Please do not hesitate to email or call any of the support staff listed below. We are here to support you and make sure that your experience with volunteering is the best it can possibly be. </h4>
 <h4><b>We are here for you!!</b></h4>

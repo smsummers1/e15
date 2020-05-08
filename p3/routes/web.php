@@ -22,14 +22,22 @@ Route::get('/', function () {
 #Support page for both logged in and not logged in users
 Route::get('/support', 'PageController@support');
 
-
-
 #RESTRICTED ROUTES - ONLY FOR LOGGED IN USERS
 Route::group(['middleware' => 'auth'], function () {
     #Two routes to Upload New Data Files Page
-    Route::get('/admin/create', 'AdminController@create');
+    //Route::get('/admin/create', 'AdminController@create');
+    //Route::post('/admin', 'AdminController@store');
 
-    Route::post('/admin', 'AdminController@store');
+    #View the Import page
+    Route::get('/import', function () {
+        return view('admin/import');
+    });
+
+    #IMPORT AN EXCEL FILE to our STUDENT TABLE
+    Route::post('/import/students', 'MyController@import')->name('import');
+
+    #get php info
+    Route::get('/getinfo', 'MyController@getinfo');
 
     #Report option page
     Route::get('/reports', function () {
@@ -68,12 +76,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     #REPORT - studentHours.blade.php
     Route::get('/reports/studentHours', 'AdminController@reportStudentHours');
-
-
-    #Add New Family page
-    #Remove Family/Student (graduated, moved)
-    #Change Current Student Info
-    #Change Volunteer Hours
 });
 
 #Testing my local database connection

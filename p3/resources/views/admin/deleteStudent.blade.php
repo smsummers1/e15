@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('editInfo')
+<br><br>
 <h2 dusk="choose-student-to-remove-heading">Choose Student To Delete</h2>
 
 <div class="alert alert-secondary" role="alert">
@@ -8,10 +9,12 @@
     @if(count($students) == 0)
     No students found.
     <br><br>
-    <p>Back to <a href="/">Admin Main Menu</a></p>
+    <p>Back to <a href="/editInfo">Edit Information Menu</a></p>
     @else
 
     <form method="post" action="">
+        <h6 class="floatLeft"><a href="/editInfo">Back</a></h6>
+        <br>
         <!-- security token used to make sure data isn't coming from another site -->
         {{ csrf_field() }}
 

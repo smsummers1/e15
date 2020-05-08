@@ -28,7 +28,7 @@ Get Support - Give contact information to the assistant principal, Jen Rimes, Me
 <!--https://getbootstrap.com/docs/4.1/utilities/spacing/#horizontal-centering -->
 <div class="alert alert-dark" role="alert">
     <ul class='mx-auto' style="width:500; list-style:none;">
-        <li><a href='/admin/create' style="font-size:25px;">Upload New Data Files</a></li>
+        <li><a href='/import' style="font-size:25px;">Import New Students</a></li>
 
         <li><a href='/reports' dusk="reports-link" style="font-size:25px;">Generate Reports</a></li>
 

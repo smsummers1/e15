@@ -6,6 +6,8 @@
 <br>
 
 <div class="alert alert-secondary" role="alert">
+    <h6 class="floatLeft"><a href="/reports">Back</a></h6>
+    <br>
     <h3>All Current Volunteers</h3>
     <br>
 

@@ -17,10 +17,6 @@
         <select id='report' name="report" onchange="location = this.value;">
             <option value="/reports"> Click here to choose a report..... </option>
 
-            <option hidden value="">Families below expected hours </option>
-
-            <option hidden value="">Specific Student Data </option>
-
             <option dusk="list-all-volunteers-link" value="/reports/listVolunteers"> List All Volunteers </option>
 
             <option dusk="hours-per-student-link" value="/reports/studentHours">Hours per Student</option>

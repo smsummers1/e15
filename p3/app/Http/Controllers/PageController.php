@@ -13,4 +13,12 @@ class PageController extends Controller
     {
         return view('pages.support');
     }
+
+    /**
+     * GET /bloomz
+     */
+    public function bloomz()
+    {
+        return view('pages.bloomz');
+    }
 }

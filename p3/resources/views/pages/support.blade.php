@@ -10,6 +10,8 @@
 <br><br>
 
 <div class="alert alert-dark" role="alert">
+    <h6 class="floatLeft"><a href="/">Back to Welcome Page</a></h6>
+    <br>
     <h2 style="color:#2764D7;">Coordinator</h2>
     <p>pcurry@theschool.com</p>
     <p>336-234-5555</p>

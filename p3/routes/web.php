@@ -53,8 +53,11 @@ Route::get('/', function () {
     return view('/pages/welcome');
 });
 
-#Support page for both logged in and not logged in users
+#Support page for all users whether logged in or not
 Route::get('/support', 'PageController@support');
+
+#Bloomz page for all users whether logged in or not
+Route::get('/bloomz', 'PageController@bloomz');
 
 Auth::routes();
 

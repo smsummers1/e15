@@ -119,7 +119,11 @@ class AdminTest extends DuskTestCase
     }
 
     /**
-     * Remove Student is working - Student id = 1
+     * Remove Student successfully deletes student with 
+     * id equal to 1
+     * 
+     * If this student is not present in the database it 
+     * will fail---in this case just reseed the database.
      *
      * @group testRemoveStudent
      */
@@ -136,7 +140,6 @@ class AdminTest extends DuskTestCase
                 ->click('@remove-student-link')
                 ->assertPresent('@choose-student-to-remove-heading')
                 ->select('selectStudent', '/deleteStudent/1/remove')
-                //->pause(3000)
                 ->assertPresent('@remove-student-link');
         });
     }

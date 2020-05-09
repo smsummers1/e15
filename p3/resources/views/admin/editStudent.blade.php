@@ -7,7 +7,7 @@
 <div class="alert alert-secondary" role="alert">
 
     <form method='POST' action='/editStudent/{{$student->id}}/update'>
-        <h6 class="floatLeft"><a href="/editInfo">Back</a></h6>
+        <h6 class="floatLeft"><a href="/editInfo">Back to Edit Information Menu</a></h6>
         <br>
         <div class='details'>* Required fields</div>
 

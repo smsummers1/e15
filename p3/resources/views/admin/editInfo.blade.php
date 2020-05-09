@@ -1,17 +1,5 @@
 @extends('layouts.master')
 
-@section('head')
-<link href='/css/pages/vhours.css' rel='stylesheet'>
-@endsection
-
-@section('portal')
-Admin Portal
-@endsection
-
-@section('user')
-Hi, User
-@endsection
-
 @section('adminPortal')
 <br><br>
 
@@ -23,7 +11,7 @@ Hi, User
 
 <!--https://getbootstrap.com/docs/4.1/utilities/spacing/#horizontal-centering -->
 <div class="alert alert-dark" role="alert">
-    <h6 class="floatLeft"><a href="/">Back</a></h6>
+    <h6 class="floatLeft"><a href="/">Back to Admin Main Menu</a></h6>
     <br>
     <ul class='mx-auto' style="width:500; list-style:none;">
         <li><a href='#' hidden style="font-size:25px;">Add New Student</a></li>

@@ -9,7 +9,8 @@ use Tests\DuskTestCase;
 class MiscTest extends DuskTestCase
 {
     /**
-     * Support link works - logged in
+     * Support link is visable and works when
+     * user is logged in
      *
      * @group testSupportLoggedIn
      */
@@ -28,7 +29,8 @@ class MiscTest extends DuskTestCase
     }
 
     /**
-     * Support link works - Not Logged In
+     * Support link is visable and works when
+     * user is not Logged In
      *
      * @group testSupportNotLoggedIn
      */

@@ -52,10 +52,10 @@ class AdminController extends Controller
         $student = Student::where('id', '=', $id)->first();
 
         $request->validate([
-            'firstName' => 'required|between:2,50|alpha_dash',
-            'lastName' => 'required|between:2,50|alpha_dash',
-            'homeroom' => 'required|between:2,50',
-            'streetAddress' => 'required|between:10,50'
+            'firstName' => 'required|between:2,30',
+            'lastName' => 'required|between:2,40',
+            'homeroom' => 'required|between:2,30',
+            'streetAddress' => 'required|between:2, 50'
         ]);
 
         # save student edits to the database
@@ -67,7 +67,7 @@ class AdminController extends Controller
         $student->save();
 
         return redirect('/editInfo')->with([
-            'flash-alert' => 'Your changes were saved'
+            'flash-alert' => 'Your changes were saved for ' . $student->firstName . ' ' . $student->lastName . '.'
         ]);
     }
 
@@ -171,13 +171,61 @@ class AdminController extends Controller
      **************************************************/
     public function reportStudentHours(Request $request)
     {
-        $students = $request->user()->students->sortByDesc('pivot.created_at');
+        //takes the current logged in user and finds correlating students in database
+        #$students = $request->user()->students->sortByDesc('pivot.created_at');
+
+        //loop through each student and accumulate the
+        //total volunteer hours
+        //put total volunteer hours as a key value attribute
+        //onto each student array
+        //then return the array of students
+
+        //get all students and their data
+        $students = Student::with('users')->get();
+
+        //iterate through each student
+        foreach ($students as $student) {
+            //dump($student->firstName);
+            //dump($student->users->toArray());
+
+            //convert each student collection into an array
+            $items = $student->users->toArray();
+
+            $totalTimeVolunteered = 0;
+
+            //iterate through each data item in the student array
+            foreach ($items as $item) {
+                //dump($item);
+
+                //get the pivot array from the student array
+                $pivotValues = $item['pivot'];
+
+                //dump($pivotValues);
+
+                //get the last item off of the student pivot array which happens to be the timeVolunteered
+                $timeVolunteered = array_pop($pivotValues);
+
+                //accumulate the total time volunteered for each student
+                $totalTimeVolunteered += $timeVolunteered;
+
+                //dump($timeVolunteered);
+            }
+            //dump($totalTimeVolunteered);
+
+            //convert the total time volunteered into hours
+            $totalTimeVolunteered /= 60;
+
+            //format number to the nearest two decimal place
+            $totalTimeVolunteered = number_format($totalTimeVolunteered, 2, '.', '');
+
+            //add totalTimeVolunteered to each $student array
+            $student['totalTimeVolunteered'] = $totalTimeVolunteered;
+
+            //dump($student);
+        }
+        //return all of the students with the new total
+        //volunteered time array item
 
         return view('admin.studentHours')->with(['students' => $students]);
-
-        //$students = Student::orderby('lastName')->get();
-
-        //return view('admin.studentHours')->with(['students' => $students]);
-
     }
 }

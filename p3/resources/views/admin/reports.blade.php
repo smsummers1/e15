@@ -10,7 +10,7 @@
 
     <form method='POST' action=''>
         {{ csrf_field() }}
-        <h6 class="floatLeft"><a href="/">Back</a></h6>
+        <h6 class="floatLeft"><a href="/">Back to Admin Main Menu</a></h6>
         <br>
 
         <label for='fileType' class="col-form-label-lg">Select Report to Generate: </label>

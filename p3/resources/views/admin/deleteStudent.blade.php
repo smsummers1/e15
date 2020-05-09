@@ -13,7 +13,7 @@
     @else
 
     <form method="post" action="">
-        <h6 class="floatLeft"><a href="/editInfo">Back</a></h6>
+        <h6 class="floatLeft"><a href="/editInfo">Back to Edit Information Menu</a></h6>
         <br>
         <!-- security token used to make sure data isn't coming from another site -->
         {{ csrf_field() }}

@@ -140,4 +140,49 @@ class AdminTest extends DuskTestCase
                 ->assertPresent('@remove-student-link');
         });
     }
+
+    /**
+     * Test that the import form is working 
+     *
+     * @group testImportSuccessful
+     */
+    public function testImportSuccessful()
+    {
+        $this->browse(function (Browser $browser) {
+
+            $browser->logout()
+                ->visit('/login')
+                ->type('@email-input', 'jill@harvard.edu')
+                ->type('@password-input', 'helloworld')
+                ->click('@login-button')
+                ->click('@import-new-students-link')
+                ->assertPresent('@import-new-students-heading')
+                ->attach('file', storage_path('app/public/testing/students.xlsx'))
+                ->click('@import-button')
+                ->assertPresent('@welcome-administrator-heading');
+        });
+    }
+
+    /**
+     * Test that only excel files will be
+     * allowed to be submitted
+     *
+     * @group testImportWithNonExcelFile
+     */
+    public function testImportWithNonExcelFile()
+    {
+        $this->browse(function (Browser $browser) {
+
+            $browser->logout()
+                ->visit('/login')
+                ->type('@email-input', 'jill@harvard.edu')
+                ->type('@password-input', 'helloworld')
+                ->click('@login-button')
+                ->click('@import-new-students-link')
+                ->assertPresent('@import-new-students-heading')
+                ->attach('file', storage_path('app/public/testing/students.docx'))
+                ->click('@import-button')
+                ->assertSee('Import New Students');
+        });
+    }
 }

@@ -16,6 +16,8 @@ class ListController extends Controller
     {
         $books = $request->user()->books->sortByDesc('pivot.created_at');
 
+        dd($books);
+
         return view('lists.show')->with(['books' => $books]);
     }
 

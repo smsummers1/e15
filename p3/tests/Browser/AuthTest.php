@@ -16,9 +16,9 @@ class AuthTest extends DuskTestCase
     use withFaker;
 
     /**
-     * A Dusk test example.
+     * Test that user is required to login
      *
-     * @group authReq
+     * @group testAuthorizationRequired
      */
     public function testAuthorizationRequired()
     {
@@ -33,7 +33,7 @@ class AuthTest extends DuskTestCase
     /**
      * Test for successful registration
      *
-     * @group successfulReg
+     * @group testSuccessfulRegistration
      */
     public function testSuccessfulRegistration()
     {
@@ -63,7 +63,12 @@ class AuthTest extends DuskTestCase
     }
 
     /**
-     *
+     * test registering user with existing email
+     * emails are required to be unique for each
+     * registrant
+     * 
+     * @group testRegisteringWithExistingEmail
+     * 
      */
     public function testRegisteringWithExistingEmail()
     {
@@ -84,7 +89,9 @@ class AuthTest extends DuskTestCase
     }
 
     /**
-     *
+     * test for successful login
+     * 
+     * @group testSuccessfulLogin
      */
     public function testSuccesfulLogin()
     {
@@ -100,7 +107,10 @@ class AuthTest extends DuskTestCase
     }
 
     /**
+     *Test that the login form is validating
+     *users entries properly
      *
+     * @group testLoginValidation
      */
     public function testLoginValidation()
     {

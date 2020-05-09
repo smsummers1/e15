@@ -18,26 +18,26 @@
         {{ method_field('put') }}
 
         <label for='firstName'>* First Name</label>
-        <div class='details' style="float:left;">The first name may only contain letters.</div>
-        <input type='text' name='firstName' id='firstName' value='{{ old("firstName", $student->firstName) }}'>
+        <div class='details' style="float:left;"></div>
+        <input dusk='firstName-input' type='text' name='firstName' id='firstName' value='{{ old('firstName', $student->firstName) }}'>
         @include('includes.error-field', ['fieldName'=>'firstName'])
 
         <label for='lastName'>* Last Name</label>
-        <div class='details' style="float:left;">The last name may only contain letters and hyphens.</div>
-        <input type='text' name='lastName' id='lastName' value='{{ old("lastName", $student->lastName) }}'>
+        <div class='details' style="float:left;"></div>
+        <input dusk='lastName-input' type='text' name='lastName' id='lastName' value='{{ old("lastName", $student->lastName) }}'>
         @include('includes.error-field', ['fieldName'=>'lastName'])
 
         <label for='homeroom'>* Homeroom</label>
-        <div class='details' style="float:left;">The homeroom name may only contain letters, numbers, spaces and underscores.</div>
-        <input type='text' name='homeroom' id='homeroom' value='{{ old("homeroom", $student->homeroom) }}'>
+        <div class='details' style="float:left;"></div>
+        <input dusk='homeroom-input' type='text' name='homeroom' id='homeroom' value='{{ old("homeroom", $student->homeroom) }}'>
         @include('includes.error-field', ['fieldName'=>'homeroom'])
 
         <label for='streetAddress'>* Street Address</label>
-        <input type='text' name='streetAddress' id='streetAddress' value='{{ old("streetAddress", $student->streetAddress) }}'>
+        <input dusk='streetAddress-input' type='text' name='streetAddress' id='streetAddress' value='{{ old("streetAddress", $student->streetAddress) }}'>
         @include('includes.error-field', ['fieldName'=>'streetAddress'])
 
         <br>
-        <input type='submit' class="btn btn-primary" value='Update'>
+        <input dusk='update-button' type='submit' class="btn btn-primary" value='Update'>
 
     </form>
 </div>

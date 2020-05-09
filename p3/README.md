@@ -50,6 +50,10 @@ Administrators Portal Welcome page with Main Menu
 + https://laravel.com/docs/7.x/authorization - GATES
 + https://www.quora.com/How-do-I-insert-link-in-select-tag-in-HTML - How to turn dropdown items into links - 
 + https://github.com/fzaninotto/Faker#fakerprovideren_usaddress
++ https://laravel.com/docs/7.x/validation#rule-mimes
++ https://www.thinktanker.io/blog/validate-and-import-data-into-database-using-excel-file.html
+### Testing
++ https://stackoverflow.com/questions/46362849/testing-attaching-a-file-with-dusk-works-via-tinker-but-not-from-the-test
 + 
 
 ## Notes for instructor

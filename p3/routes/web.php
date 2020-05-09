@@ -7,78 +7,16 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| Here is where you can register web routes for your
+| application. These
+| routes are loaded by the RouteServiceProvider 
+| within a group which
+| contains the "web" middleware group. Now create 
+| something great!
 |
 */
 
-
-#Welcome Page for users not logged in
-Route::get('/', function () {
-    return view('/pages/welcome');
-});
-
-#Support page for both logged in and not logged in users
-Route::get('/support', 'PageController@support');
-
-#RESTRICTED ROUTES - ONLY FOR LOGGED IN USERS
-Route::group(['middleware' => 'auth'], function () {
-    #Two routes to Upload New Data Files Page
-    //Route::get('/admin/create', 'AdminController@create');
-    //Route::post('/admin', 'AdminController@store');
-
-    #View the Import page
-    Route::get('/import', function () {
-        return view('admin/import');
-    });
-
-    #IMPORT AN EXCEL FILE to our STUDENT TABLE
-    Route::post('/import/students', 'MyController@import')->name('import');
-
-    #get php info
-    Route::get('/getinfo', 'MyController@getinfo');
-
-    #Report option page
-    Route::get('/reports', function () {
-        return view('/admin/reports');
-    });
-
-    #Generate reports based on the selection on the /reports page
-    //Route::get('/admin/{id?}', 'AdminController@show');
-
-    #Edit Information page
-    Route::get('/editInfo', function () {
-        return view('/admin/editInfo');
-    });
-
-    #EDIT STUDENT
-    //Show all students in a dropdown list
-    Route::get('/students', 'AdminController@getStudents');
-
-    #Get specific student user chose from the dropdown list
-    Route::get('/editStudent/{id}', 'AdminController@findStudent');
-
-    #Update the specific student after user updated info in the form
-    Route::put('/editStudent/{id}/update', 'AdminController@updateStudent');
-
-
-    #DELETE STUDENT
-    //Show all students in a dropdown list
-    Route::get('/deleteStudent', 'AdminController@getStudentsToDelete');
-    #Remove the one that is clicked.
-    //used web spoofing to use get instead of delete
-    Route::get('/deleteStudent/{id}/remove', 'AdminController@destroy');
-
-
-    #REPORT - listVolunteers.blade.php
-    Route::get('/reports/listVolunteers', 'AdminController@reportListVolunteers');
-
-    #REPORT - studentHours.blade.php
-    Route::get('/reports/studentHours', 'AdminController@reportStudentHours');
-});
-
-#Testing my local database connection
+#Testing my local database connection 
 Route::get('/debug', function () {
 
     $debug = [
@@ -105,4 +43,82 @@ Route::get('/debug', function () {
     dump($debug);
 });
 
+/********************************** 
+ *
+ * ROUTES FOR USERS NOT LOGGED IN
+ ***********************************/
+
+#Welcome Page
+Route::get('/', function () {
+    return view('/pages/welcome');
+});
+
+#Support page for both logged in and not logged in users
+Route::get('/support', 'PageController@support');
+
 Auth::routes();
+
+
+/***********************************
+ * ROUTES ONLY FOR USERS LOGGED IN
+ *
+ * RESTRICTED ROUTES
+ *
+ ************************************/
+Route::group(['middleware' => 'auth'], function () {
+
+    //IMPORT
+    #Import new students form page
+    Route::get('/import', function () {
+        return view('admin/import');
+    });
+    #Import new students Excel File to the STUDENT
+    #TABLE in p3 database
+    Route::post('/import/students', 'MyController@import')->name('import');
+    #Get Php Info
+    Route::get('/getinfo', 'MyController@getinfo');
+
+
+
+    //REPORTS
+    #Reports Main Menu Page
+    Route::get('/reports', function () {
+        return view('/admin/reports');
+    });
+
+    #REPORT - listVolunteers.blade.php
+    Route::get('/reports/listVolunteers', 'AdminController@reportListVolunteers');
+
+    #REPORT - studentHours.blade.php
+    Route::get('/reports/studentHours', 'AdminController@reportStudentHours');
+
+    #Generate reports based on the selection on the /reports page
+    //Route::get('/admin/{id?}', 'AdminController@show');
+
+
+
+    //EDIT 
+    #Edit Information Main Menu Page
+    Route::get('/editInfo', function () {
+        return view('/admin/editInfo');
+    });
+
+
+    #EDIT STUDENT
+    //Show all students in a dropdown list
+    Route::get('/students', 'AdminController@getStudents');
+
+    //Get student data 
+    Route::get('/editStudent/{id}', 'AdminController@findStudent');
+
+    //Update student data
+    Route::put('/editStudent/{id}/update', 'AdminController@updateStudent');
+
+
+    #REMOVE STUDENT
+    //Show all students in a dropdown list
+    Route::get('/deleteStudent', 'AdminController@getStudentsToDelete');
+    #Remove the one that is clicked.
+    //used web spoofing to use get instead of delete
+    Route::get('/deleteStudent/{id}/remove', 'AdminController@destroy');
+});

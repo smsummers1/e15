@@ -24,6 +24,7 @@
 
 **Get Support** - Display contact information for users and volunteers.
 
+**Bloomz Information** - Display Bloomz information with code for users and volunteers.
   
 ## Database summary
 *Describe the tables and relationships used in your database. Delete the examples below and replace with your own info.*
@@ -93,4 +94,6 @@
 ## Notes for instructor
 
 + The Import New Students feature - Dusk testing utilizes two files to test for success and failure of this feature.  The files that Dusk uses are found in the storage/app/public/testing directory (students.xlsx and students.docx).  For you to test this feature manually I have the students.xlsx in the root of the project.
+
++ Thank you for everything this semester.  I learned a lot and am looking forward to continuing to learn more about the laravel framework.  I hope you have a wonderful summer.
 
